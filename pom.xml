@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>tk.ainiyue.danyuan</groupId>
+	<groupId>org.danyuan.application</groupId>
 	<artifactId>danyuan-application</artifactId>
 	<version>C0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -21,7 +21,9 @@
 		</developer>
 	</developers>
 	<modules>
-		<module>danyuan-application-crawler-manage</module>
+		<module>danyuan-application-crawler-server</module>
+		<module>danyuan-application-web-vue-adminLTE</module>
+		<module>danyuan-application-eureka-server</module>
 	</modules>
 
 	<properties>
