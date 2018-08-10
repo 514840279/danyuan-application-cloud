@@ -1,3 +1,21 @@
 # \u5e94\u7528\u7aef\u53e3\u914d\u7f6e
 server:
   port: 80
+spring:
+  application:
+    name: danyuan-application-web-vue-adminLTE
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    
+    
+zuul:
+  ignored-services: '*'
+  routes:
+    danyuan-application-crawler-server: /crawler/**
+        
