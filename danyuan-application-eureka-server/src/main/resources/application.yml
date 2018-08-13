@@ -5,7 +5,10 @@ server:
 spring:
   application:
     name: danyuan-application-crawler-server
-    
+security:
+  user:
+    name: wth
+    password: wth  
  
 eureka:
   instance:
@@ -14,4 +17,4 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://wth:wth@${eureka.instance.hostname}:${server.port}/eureka/
