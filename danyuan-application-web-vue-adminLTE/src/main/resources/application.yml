@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: danyuan-application-web-vue-adminLTE
-
 eureka:
   client:
     serviceUrl:
@@ -15,9 +14,22 @@ eureka:
     lease-expiration-duration-in-seconds: 30 
     lease-renewal-interval-in-seconds: 10
     
-    
+ribbon:  
+  ReadTimeout: 3000
+  ConnectTimeout: 3000    
 zuul:
+  host:
+      connect-timeout-millis: 3000
+      socket-timeout-millis: 3000
   ignored-services: '*'
   routes:
     danyuan-application-crawler-server: /crawler/**
+      
         
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeout-in-milliseconds: 3000        

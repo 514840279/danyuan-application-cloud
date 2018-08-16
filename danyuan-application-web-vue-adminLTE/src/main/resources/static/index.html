@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="utf-8"/>
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
@@ -275,7 +276,7 @@
 
 	</div>
 	<!-- ./wrapper -->
-
+  <div id="app"></div>
 	<!-- jQuery 2.2.3 -->
 	<!-- 	<script type="text/javascript" src="plugins/jQuery/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
@@ -326,13 +327,14 @@
 	<script type="text/javascript" src="/plugins/echarts/map/china.js"></script>
 	<script type="text/javascript" src="/plugins/echarts/theme/macarons.js"></script>
 
-	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script th:inline="javascript">
 	var username = "test";
     console.log("欢迎用户{{"+username+"}}登录本系统！\n 	本系统为个人项目，已在网络上开源展示，\n 	最新消息请登录演示网站： http://danyuan.wang 进行详细查看，\n	如果有好多意见或建议请发邮箱到  514840279@qq.com");
     
 	</script>
-	<script type="text/javascript" src="/pages/index.js">	</script>
+	<script type="text/javascript" src="/pages/main.js">	</script>
+<!-- 	<script type="text/javascript" src="/pages/index.js">	</script> -->
 
 </body>
 </html>
