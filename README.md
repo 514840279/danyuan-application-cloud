@@ -1,44 +1,49 @@
-# danyuan-application
+# danyuan-application(C版)
 
 [![GitHub issues](https://img.shields.io/github/issues/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/issues)[![GitHub forks](https://img.shields.io/github/forks/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/network)[![GitHub stars](https://img.shields.io/github/stars/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/stargazers)[![GitHub license](https://img.shields.io/github/license/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/blob/master/LICENSE)[![Twitter](https://img.shields.io/twitter/url/https/github.com/514840279/danyuan-application.svg?style=social&style=plastic)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2F514840279%2Fdanyuan-application)
 
 ## 系统采用技术或开源框架：
 
-1. 前端框架：adminLTE
-2. 前端技术：bootstrap,bootstrap-table,js,juqery,ajax,ztree,
-3. 后端技术：spring-boot,security,jpa
-4. 数据库: mysql
-5. 其他工具：maven
+1. 前端框架：vue
+2. 前端模板：adminLTE
+3. 前端技术：bootstrap,bootstrap-table,js,juqery,ajax,ztree,...
+4. 后端技术：spring-cloud
+5. 数据库: mysql
+6. 其他工具：maven
 
 ## 项目启动配置:
 
 1. 系统安装jdk1.8，mysql5.7，maven3.3
+
 2. 新建数据库:application
+
 3. 导入数据库脚本 sql/All.sql
-4. 修改项目配置：src/main/resources/application.properties
-	1. 修改数据库链接地址数据库用户名密码 
-	2. 修改 server.port=80 # 项目端口号
-	3. 修改 security.user.name=admin # 项目验证登录用户	       
-	4. 修改 security.user.password=admin # 项目验证登录密码
-5. 执行mvn clean
-6. 执行mvn install
-7. 执行mvn spring-boot:run(java -jar target/danyuan.jar)
-8. 访问http://localhost # 端口号
-9. 输入用户名、密码 admin/admin
+
+4. 启动服务端：
+  1. danyuan-application-eureka-server  
+  2. danyuan-application-crawler-server
+  3. danyuan-application-getway-server
+  
+5. 需要修改启动配置nginx 监听服务端口81 改代理端口82
+	 server {
+        listen       81;
+        server_name  localhost;
+        location / {
+            root   html;
+            index  index.html index.htm;
+			proxy_redirect off;
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			proxy_pass http://localhost:82;
+        }  
+6. 启动客户端；
+  客户端是由node创建的vue框架，所以需要使用node运行
+  cd   danyuan-application-web-vue-lte
+  npm run dev
+
+  
 
 ## 演示地址
 http://www.danyuan.wang/#
-
-QQ群： <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a">
-	  	<img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
-  	 </a>
-
-## 效果
-![登录验证](screen/7.png)
-![首页](screen/6.png)
-![ztree](screen/5.png)
-![种子管理](screen/4.png)
-![弹窗1](screen/3.png)
-![弹窗1](screen/2.png)
-![右键](screen/1.png)
 
