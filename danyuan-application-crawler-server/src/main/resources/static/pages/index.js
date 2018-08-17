@@ -24,7 +24,7 @@ _history = [];
     // 添加《li》
     function sidebar_menu_add_li(item) {
         // 返回值
-        html = '';
+       var html = '';
         if (item.children.length == 0) {
 	        html = "<li><a href='#' data-url='"+item.url+"' data-id='"+item.id+"' data-name='"+item.name+"' ><i class='"+item.icon+"'></i>" + item.name + "</a></li>";
 	        if(item.homePage){
@@ -124,6 +124,9 @@ function loadPage(url, id, name, paramter, flag_r) {
 				        return response;
 			        }
 		        }
+	        }else{
+	        	 $("#mainDiv").html("");
+	        	 return "";
 	        }
         });
 }

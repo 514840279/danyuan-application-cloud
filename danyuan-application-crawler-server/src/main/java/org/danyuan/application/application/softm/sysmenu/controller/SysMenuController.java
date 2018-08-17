@@ -82,7 +82,7 @@ public class SysMenuController {
 	@RequestMapping(path = "/findzTreeByUser", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTreeByUser(@RequestBody String username) {
 		System.err.println(username);
-		return sysMenuService.findzTreeByUser("0", username.replace("\"", ""));
+		return sysMenuService.findzTreeByUser("0", username.replace("=", ""));
 	}
 
 	/**
