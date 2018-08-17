@@ -22,7 +22,7 @@
 	</developers>
 	<modules>
 		<module>danyuan-application-crawler-server</module>
-		<module>danyuan-application-web-vue-adminLTE</module>
+		<module>danyuan-application-getway-server</module>
 		<module>danyuan-application-eureka-server</module>
 	</modules>
 
