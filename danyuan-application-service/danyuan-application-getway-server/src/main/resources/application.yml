@@ -3,7 +3,7 @@ server:
   port: 82
 spring:
   application:
-    name: danyuan-application-web-vue-adminLTE
+    name: danyuan-application-getway-server
 eureka:
   client:
     serviceUrl:
