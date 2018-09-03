@@ -56,12 +56,7 @@
 				<artifactId>sqljdbc4</artifactId>
 				<version>4.0</version>
 			</dependency>
-			<!-- 阿里大于 短信服务 -->
-			<dependency>
-				<groupId>fakepath</groupId>
-				<artifactId>taobao-sdk-java-auto_1455552377940</artifactId>
-				<version>20160607</version>
-			</dependency>
+
 
 
 			<dependency>
