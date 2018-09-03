@@ -2,13 +2,21 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import router from './router'
+import Axios from 'axios'
 
-
+Vue.prototype.$axios = Axios
 Vue.config.productionTip = false
+
 
 /* eslint-disable no-new */
 new Vue({
-
+  el: '#app',
+  router,
+  components: { 
+    App 
+  },
+  template: '<App/>',
   //这里可以用created或mounted
   mounted() {
     this.submitForm()
@@ -20,52 +28,7 @@ new Vue({
     }
   }
 })
-$(function (){
-  $.ajax({
-    url: 'http://localhost:81/crawler/sysMenuInfo/findzTreeByUser',
-    type: 'POST',
-    dataType: 'json',
-    data: "test",
-    success: loadMenu
-  }) 
-})
-// 加载menu
-function loadMenu(result) {
-  // 遍历结果集
-  $.each(result, function (index, value) {
-    // 加载数据
-    $(".sidebar-menu").append(sidebar_menu_add_li(value));
-  });
-  // console.log(JSON.stringify(result));
-  $("a[data-url]").click(function (evt) {
-    loadPage($(this).data("url"), $(this).data("id"), $(this).data("name"));
-    $("ul.treeview-menu li").removeClass("active");
-    $(this).parent().addClass("active");
-  });
-}
 
-// 添加《li》
-function sidebar_menu_add_li(item) {
-  // 返回值
-  var html = '';
-  if (item.children.length == 0) {
-    html = "<li><a href='#' data-url='" + item.url + "' data-id='" + item.id + "' data-name='" + item.name + "' ><i class='" + item.icon + "'></i>" + item.name + "</a></li>";
-    if (item.homePage) {
-      //loadPage(item.url);
-    }
-  } else {
-    html = "<li class='treeview'>" + "<a href='#'>" + "<i class='" + item.icon + "'></i>" 
-    + "<span>" + item.name + "</span>" + "<span class='pull-right-container'>"
-      // + "<span class='label label-primary pull-right'>" + item.children.length + "</span>" 
-      + "</span>" + "</a>" + "<ul class='treeview-menu'>";
-    $.each(item.children, function (index, value) {
-      html = html + sidebar_menu_add_li(value);
-    });
-    html = html + "</ul>" + "</li>";
-  }
-  return html;
-
-}
 
 function findError() {
 };

@@ -7,7 +7,7 @@
 	<version>C0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>DY</name>
+	<name>danyuan-application</name>
 	<url>http://danyuan.wang</url>
 
 	<developers>

@@ -1,4 +1,3 @@
-# \u5e94\u7528\u7aef\u53e3\u914d\u7f6e
 server:
   port: 82
 spring:
@@ -11,18 +10,32 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    lease-expiration-duration-in-seconds: 30 
+    lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
-      
+#security:
+#  user:
+#    password: user
+#  ignored: /
+#  sessions: never
+#  oauth2:
+#    sso:
+#      loginPath: /login
+#    client:
+#      clientId: 922cb28064e15219957b
+#      clientSecret: 775d7f9f391916f6007ac8a89bba9a4ba1049417
+#      accessTokenUri: https://github.com/login/oauth/access_token
+#      userAuthorizationUri: https://github.com/login/oauth/authorize
+#    resource:
+#      userInfoUri: https://api.github.com/user
+#      preferTokenInfo: false
 zuul:
   host:
-      connect-timeout-millis: 30000
-      socket-timeout-millis: 30000
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
   routes:
-    crawler: 
+    crawler:
       path: /crawler/**
       serviceId: danyuan-application-crawler-server
-      
 ribbon:
   ReadTimeout: 60000
-  ConnectTimeout: 60000      
+  ConnectTimeout: 60000

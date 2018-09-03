@@ -31,4 +31,7 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<finalName>danyuan-application-eureka-server</finalName>
+	</build>
 </project>

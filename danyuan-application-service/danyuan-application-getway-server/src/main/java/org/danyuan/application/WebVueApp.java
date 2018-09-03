@@ -21,5 +21,5 @@ public class WebVueApp {
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(WebVueApp.class, args);
 	}
-	
+
 }
