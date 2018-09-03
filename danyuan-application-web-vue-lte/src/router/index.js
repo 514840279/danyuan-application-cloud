@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import AddrIndex from '@/components/dbms/addr/index'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+     {
+      path: '/addrIndexPath',
+      name: 'addrIndex',
+      component: AddrIndex
     }
   ]
 })
