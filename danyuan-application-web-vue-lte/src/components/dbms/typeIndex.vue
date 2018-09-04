@@ -94,6 +94,60 @@ export default {
         
     },
     mounted:function(){
+        $('#addnew_type').click(function() {
+            $("#dbm_type_add_uuid").val(this.getUuid);
+            $('#dbm_type_add_modal').modal({
+                show:true,
+            });
+        });
+        $('#editold_type').click(function() {
+            var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
+            if(data.length == 0){
+                alert("先选中一条数据");
+            }else if(data.length == 1){
+                $("#dbm_type_add_uuid").val(data[0].uuid);
+                $("#dbm_type_add_typeName").val(data[0].typeName);
+                $("#dbm_type_add_typeIcon").val(data[0].typeIcon);
+                $("#dbm_type_add_typeOrder").val(data[0].typeOrder);
+                $("#dbm_type_add_discription").val(data[0].discription);
+                if(data[0].deleteFlag==1){
+                    $('#dbm_type_add_deleteFlag[value="0"]').attr('checked',false);
+                    $('#dbm_type_add_deleteFlag[value="1"]').attr('checked',true);
+                }else if(data[0].deleteFlag==0){
+                    $('#dbm_type_add_deleteFlag[value="0"]').attr('checked',true);
+                    $('#dbm_type_add_deleteFlag[value="1"]').attr('checked',false);
+                }
+                $("#dbm_type_add_modal").modal({
+                    show:true,
+                })
+            }else{
+                alert("只能选中一条数据");
+            }
+        });
+        $('#deleteold_type').click(function() {
+            var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
+            var url = this.baseURL+"/crawler/sysDbmsTabsTypeInfo/sysTableTypeDeleteAll";
+            var param={list:data};
+            ajaxPost(url, param, this.addSysTableTypeInfoSuccess, 5000, this.findError);
+        });
+        
+        $('#dbm_type_add_button').click(function() {
+            
+            var url = "/crawler/sysDbmsTabsTypeInfo/save";
+            console.log(this.baseURL)
+            var	sysTableTypeInfo={
+                uuid:$("#dbm_type_add_uuid").val(),
+                typeName:$("#dbm_type_add_typeName").val(),
+                typeIcon:$("#dbm_type_add_typeIcon").val(),
+                typeOrder:$("#dbm_type_add_typeOrder").val(),
+                discription:$("#dbm_type_add_discription").val(),
+                deleteFlag:$('#dbm_type_add_deleteFlag:checked').val(),
+            }
+            console.log(sysTableTypeInfo);
+            ajaxPost(url, sysTableTypeInfo, this.addSysTableTypeInfoSuccess, 5000, this.findError);
+            $('#dbm_type_add_modal').modal("hide");
+        });
+        
         // bootstrap table init
         $('#dbm_type_datagrid').bootstrapTable({
             url : this.baseURL+"/crawler/sysDbmsTabsTypeInfo/findAllBySearchText",
@@ -155,7 +209,9 @@ export default {
         });
     },
     methods:{
-        
+        addSysTableTypeInfoSuccess:function(result){
+            $('#dbm_type_datagrid').bootstrapTable('refresh');
+        }
     }
 }
 </script>

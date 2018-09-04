@@ -26,6 +26,7 @@
                 <ul class='treeview-menu'>
                   <li><router-link to='/addrIndexPath'  ><i class='fa  fa-database'></i> 数据连接管理 </router-link></li>
                   <li><router-link to='/typeIndexPath'  ><i class='fa  fa-database'></i> 数据种类管理 </router-link></li>
+                  <li><router-link to='/userIndexPath'  ><i class='fa  fa-database'></i> 查询种类管理 </router-link></li>
                 </ul>
               </li>
               
@@ -41,7 +42,7 @@ export default {
     created: function () {
       this.$axios.post('/crawler/sysMenuInfo/findzTreeByUser',"test")
       .then(res =>{
-          loadMenu(res.data);
+         // loadMenu(res.data);
       }).catch(error=>{
 
       })

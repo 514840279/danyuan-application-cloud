@@ -1,0 +1,1 @@
+java -jar  -Xms10m -Xmx200m -Dspring.config.location=../danyuan-application-service/danyuan-application-getway-server/src/main/resources/application.yml ../danyuan-application-service/danyuan-application-getway-server/target/danyuan-application-getway-server.jar 

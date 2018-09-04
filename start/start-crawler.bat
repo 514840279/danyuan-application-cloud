@@ -1,0 +1,1 @@
+java -jar  -Xms10m -Xmx200m -Dspring.config.location=../danyuan-application-service/danyuan-application-crawler-server/src/main/resources/application.yml ../danyuan-application-service/danyuan-application-crawler-server/target/danyuan-application-crawler-server.jar

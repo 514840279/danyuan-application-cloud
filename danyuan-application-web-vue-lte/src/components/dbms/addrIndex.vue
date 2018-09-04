@@ -57,6 +57,59 @@ export default {
         
     },
     mounted:function(){
+        $('#addnew_addr').click(function() {
+           // 获取屏幕宽度
+            var  url = this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/addBefor";
+            modals.openWin({
+                winId:"add_addr_id",
+                title:'添加连接信息',
+                width:screen.width*0.5+'px',
+                url:url
+            });
+        });
+        $('#editold_addr').click(function() {
+            var data = $('#db_addr_datagrid').bootstrapTable('getAllSelections');
+            if(data.length == 0){
+                alert("先选中一条数据");
+            }else if(data.length > 1){
+                alert("只能选择一条");
+            }else{
+                //			loadPage('/sysDbmsTabsJdbcInfo/addBefor','add_addr_id','修改连接',,'reload')
+                // 获取屏幕宽度
+                var url = this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/addBefor?uuid="+data[0].uuid;
+                
+                modals.openWin({
+                    winId:"add_addr_id",
+                    title:'添加连接信息',
+                    width:screen.width*0.5 +'px',
+                    url:url
+                });
+            }
+        });
+        
+        $('#deleteold_addr').click(function() {
+            var data = $('#db_addr_datagrid').bootstrapTable('getAllSelections');
+            if(data.length == 0){
+                alert("先选中一条数据");
+            }else if(data.length > 0){
+                bootbox.setLocale("zh_CN");
+                bootbox.confirm({
+                message : "确定要删除选定行",
+                title : "系统提示",
+                callback : function(result) {
+                        if (result) {
+                            var param = {
+                                    "list":data,
+                            };
+                            // 重载
+                            var url = this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/delete";
+                            ajaxPost(url, param, successDeleteSysDatabaseInfo, 1000, findError);
+                        }
+                    }
+                });
+            }
+        });
+
         $('#db_addr_datagrid').bootstrapTable({
             url : this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/findAll",
             dataType : "json",
