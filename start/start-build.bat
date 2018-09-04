@@ -1,25 +1,18 @@
 @echo off
  echo ================================================================================
- echo ²é¿´»·¾³±äÁ¿ £º
+ echo æŸ¥çœ‹ç¯å¢ƒå˜é‡ ï¼š
  echo 	JAVA_HOME=%JAVA_HOME%
  echo 	M2_HOME/MAVEN_HOME=%M2_HOME%%MAVEN_HOME%
  echo/
  echo ------------- 
- echo µ±Ç°Â·¾¶ £º
+ echo å½“å‰è·¯å¾„ ï¼š
  echo 	%CD%
  echo/
  echo ================================================================================
+cd ../danyuan-application-service
 
+mvn clean install
 
-echo ÕıÔÚÆô¶¯·şÎñ×¢²áÓë·¢ÏÖ×é¼ş£¬Ä¬ÈÏ¶Ë¿Ú£º8761
-
-start start-eureka.bat
-
-echo --
-TIMEOUT /T 10
-
-start start-crawler.bat
-
-start start-getway.bat
+::call start-all.bat
 
 pause

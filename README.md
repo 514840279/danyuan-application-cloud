@@ -4,27 +4,23 @@
 
 ## 系统采用技术或开源框架：
 
-1. 前端框架：vue
-2. 前端模板：adminLTE
-3. 前端技术：bootstrap,bootstrap-table,js,juqery,ajax,ztree,...
-4. 后端技术：spring-cloud
-5. 数据库: mysql
-6. 其他工具：maven
+1. 前端模板：adminLTE
+2. 前端技术：vue
+3. 后端技术：spring-cloud,nginx,maven,node...
+4. 数据库: mysql
+5. 其他工具：sts,vscode
 
 ## 项目启动配置:
 
-1. 系统安装jdk1.8，mysql5.7，maven3.3
+1. 系统安装jdk1.8，mysql5.7，maven3.3 node ,nginx,sts,vscode
 
 2. 新建数据库:application
 
-3. 导入数据库脚本 sql/All.sql
+3. 导入数据库脚本 sql/AllForC.sql
 
-4. 启动服务端：
-  1. danyuan-application-eureka-server  
-  2. danyuan-application-crawler-server
-  3. danyuan-application-getway-server
-  
-5. 需要修改启动配置nginx 监听服务端口81 改代理端口82
+4. 需要修改启动配置nginx 监听服务端口81 改代理端口82 ，有示例模板（design/nginx.conf）
+	
+	```
 	 server {
         listen       81;
         server_name  localhost;
@@ -37,11 +33,27 @@
 			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 			proxy_pass http://localhost:82;
         }  
-6. 启动客户端；
-  客户端是由node创建的vue框架，所以需要使用node运行
-  cd   danyuan-application-web-vue-lte
-  npm run dev
+	```
+	
+5. 启动服务端：
+  1. 执行 start/start-build.bat  
+  2. 执行 start/start-all.bat 
 
+6. 启动客户端；
+  客户端是由node创建的vue框架，所以需要使用node运行 
+	```
+		cd   danyuan-application-web-vue-lte
+	```
+	1. install dependencies
+	```
+		npm install
+		npm install --save vue-router
+		npm install --save axios
+	```
+	2. serve with hot reload at localhost:80
+	```
+		npm run dev
+	```
   
 
 ## 演示地址
