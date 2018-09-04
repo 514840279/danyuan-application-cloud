@@ -54,18 +54,11 @@ export default {
         }
     },
     created:function(){
-        this.init();
-    },methods:{
-        init:function(){
-           
-        }
-    }
-}
-
-$(function(){
- // bootstrap table
+        
+    },
+    mounted:function(){
         $('#db_addr_datagrid').bootstrapTable({
-            url : "/crawler/sysDbmsTabsJdbcInfo/findAll",
+            url : this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/findAll",
             dataType : "json",
             toolbar : '#db_addr_toolbar', // 工具按钮用哪个容器
             cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -88,17 +81,7 @@ $(function(){
             singleSelect : false,
             locales : "zh-CN", // 表格汉化
             search : true, // 显示搜索框
-            sidePagination: "server", // 服务端处理分页
-            queryParamsType : "undefined",
-            contentType: "application/json",
-            method: "post",  //使用get请求到服务器获取数据  
-            queryParams: function queryParams(params) {  
-                var param = {  
-                    pageNumber: params.pageNumber,    
-                    pageSize: params.pageSize,
-                }; 
-                return param;
-            },
+            sidePagination: "client", // 服务端处理分页
             columns : [
                 {title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
                 {title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle',visible:false},
@@ -107,13 +90,18 @@ $(function(){
                 {title : 'ip',field : 'ip',sortable : true,align : 'center'},
                 {title : '端口',field : 'port',align : 'center',sortable : true,valign : 'middle'},
                 {title : '用户名',field : 'username',align : 'center',sortable : true,valign : 'middle'},
-    //			{title : '密码',field : 'password',sortable : true,align : 'center',valign : 'middle',visible:false},
+                // {title : '密码',field : 'password',sortable : true,align : 'center',valign : 'middle',visible:false},
                 {title : '描述',field : 'discription',sortable : true,align : 'center',valign : 'middle'},
                 {title : '状态',field : 'deleteFlag',sortable : true,align : 'center',valign : 'middle'},
             ]
         });
-    
-})
+    },
+    methods:{
+        init:function(){
+           
+        }
+    }
+}
 
 
 </script>

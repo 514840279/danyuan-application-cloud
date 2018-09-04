@@ -1,4 +1,5 @@
 <template>
+    <!-- template 有且仅有一个子元素-->
     <div></div>
 </template>
 <script>
@@ -8,10 +9,17 @@ export default {
         return {
 
         }
-    }, created:function(){
-        
-    },methods:{
-        
+    },
+    created:function(){
+        this.init();
+    },
+    mounted:function(){
+
+    },
+    methods:{
+        init:function(){
+
+        }
     }
 }
 </script>

@@ -10,15 +10,25 @@
                 <img src="../../static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-            
                 <a href="#">
                 <i class="fa fa-circle text-success"></i> Online</a>
             </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
-            <li><router-link to='/addrIndexPath'  ><i class='fa fa-clock'></i> aabbs </router-link></li>
+              <li class="header">MAIN NAVIGATION</li>
+              <!-- 1 -->
+              <li class='treeview'>
+                <a href='#'><i class='fa  fa-database'></i><span>数据库管理</span>
+                  <span class='pull-right-container'><span class='label label-primary pull-right'></span>
+                  </span>
+                </a>
+                <ul class='treeview-menu'>
+                  <li><router-link to='/addrIndexPath'  ><i class='fa  fa-database'></i> 数据连接管理 </router-link></li>
+                  <li><router-link to='/typeIndexPath'  ><i class='fa  fa-database'></i> 数据种类管理 </router-link></li>
+                </ul>
+              </li>
+              
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -29,12 +39,12 @@
 export default {
     name: "test",
     created: function () {
-        this.$axios.post('http://localhost:81/crawler/sysMenuInfo/findzTreeByUser',"test")
-        .then(res =>{
-            loadMenu(res.data);
-        }).catch(error=>{
+      this.$axios.post('/crawler/sysMenuInfo/findzTreeByUser',"test")
+      .then(res =>{
+          loadMenu(res.data);
+      }).catch(error=>{
 
-        })
+      })
     },
     data:function(){
         return {

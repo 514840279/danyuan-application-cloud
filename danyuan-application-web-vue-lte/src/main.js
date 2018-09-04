@@ -5,9 +5,14 @@ import App from './App'
 import router from './router'
 import Axios from 'axios'
 
+// 全局参数设置
 Vue.prototype.$axios = Axios
+Vue.prototype.baseURL = "http://localhost:81";
 Vue.config.productionTip = false
 
+/** 全局默认配置 */
+Axios.defaults.baseURL="http://localhost:81";
+Axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded';
 
 /* eslint-disable no-new */
 new Vue({
@@ -18,7 +23,12 @@ new Vue({
   },
   template: '<App/>',
   //这里可以用created或mounted
-  mounted() {
+  // created 模板渲染成html前
+  // mounted 模板渲染成html后，
+  created:function(){
+
+  },
+  mounted:function() {
     this.submitForm()
   },
   methods: {
