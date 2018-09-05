@@ -11,15 +11,22 @@
  echo ================================================================================
 
 
-echo 正在启动服务注册与发现组件，默认端口：8761
+echo 正在启动服务注册与发现组件(eureka),默认端口：8761
 
-start start-eureka.bat
+start  start-eureka.bat 
 
-echo --
+echo --等待10s启动eureka完成
 TIMEOUT /T 10
 
-start start-crawler.bat
-
+echo --正在启动启动网关(getway),默认端口：82 预计用时10s
 start start-getway.bat
 
+echo --正在启动启动服务(crawler),默认端口：8080 预计用时30s
+start start-crawler.bat 
+
+echo ================================================================================
+
 pause
+exit
+
+

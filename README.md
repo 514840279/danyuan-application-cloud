@@ -19,43 +19,41 @@
 3. 导入数据库脚本 sql/AllForC.sql
 
 4. 需要修改启动配置nginx 监听服务端口81 改代理端口82 ，有示例模板（design/nginx.conf）
-	
-	```
-	 server {
-        listen       81;
-        server_name  localhost;
-        location / {
-            root   html;
-            index  index.html index.htm;
-			proxy_redirect off;
-			proxy_set_header Host $host;
-			proxy_set_header X-Real-IP $remote_addr;
-			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-			proxy_pass http://localhost:82;
-        }  
-	```
-	
+
+  ```
+   server {
+       listen       81;
+       server_name  localhost;
+       location / {
+           root   html;
+           index  index.html index.htm;
+  		proxy_redirect off;
+  		proxy_set_header Host $host;
+  		proxy_set_header X-Real-IP $remote_addr;
+  		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  		proxy_pass http://localhost:82;
+       }  
+  ```
+
 5. 启动服务端：
-  1. 执行 start/start-build.bat  
-  2. 执行 start/start-all.bat 
+       1. 执行 start/start-build.bat  
+       2. 执行 start/start-all.bat 
 
 6. 启动客户端；
-  客户端是由node创建的vue框架，所以需要使用node运行 
-	```
-		cd   danyuan-application-web-vue-lte
-	```
-	1. install dependencies
-	```
-		npm install
-		npm install --save vue-router
-		npm install --save axios
-	```
-	2. serve with hot reload at localhost:80
-	```
-		npm run dev
-	```
-  
+     客户端是由node创建的vue框架，所以需要使用node运行 
+     ```bash
+     	cd   danyuan-application-web-vue-lte
+     ```
+     1. install dependencies
+     ```bash
+     	npm install
+     	#npm install --save vue-router
+     	#npm install --save axios
+     ```
+     2. serve with hot reload at localhost:80
+     ```bash
+     	npm run dev
+     ```
 
-## 演示地址
-http://www.danyuan.wang/#
+     3. http://localhost
 
