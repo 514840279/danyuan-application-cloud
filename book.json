@@ -4,23 +4,18 @@
   "description": "初学者是基于spring boot的一套整合开发方案",
   "language": "zh-hans",
   "plugins": [
-    "disqus",
-    "github",
+    "github", 
     "-highlight", 
 	"prism", 
-	"prism-themes",
-	"github@^2.0.0",
-	"github-buttons@2.1.0",
-	"-lunr",
+    "prism-themes","chart",
+    "-lunr",
 	"-search",
     "search-pro",
-	"book-summary-scroll-position-saver",
-	"include-codeblock",
 	"codeblock-filename",
 	"donate",
-	"favicon@^0.0.2",
+	"custom-favicon",
 	"-sharing",
-	"sharing-plus@^0.0.2",
+	"sharing-plus",
 	"expandable-chapters-small",
 	"sectionx",
 	"bilibili",
@@ -35,31 +30,27 @@
 	},
 	"theme-default": {
 		"showLevel": true
-	},
+    },
+    "github": {
+        "url": "https://github.com/514840279/danyuan-application"
+    },
 	"donate": {
-        "wechat": "./document/wechat.png",
-        "alipay": "./document/alipay.jpg",
+        "wechat": "/document/wechat.png",
+        "alipay": "/document/alipay.jpg",
         "title": "",
         "button": "打赏",
         "alipayText": "",
         "wechatText": ""
     },
-	"favicon": {
-        "shortcut":  "./document/favicon_16x16.ico",
-        "bookmark": "./document/favicon_16x16.ico",
-        "appleTouch": "./document/favicon_16x16.ico",
-        "appleTouchMore": {
-            "120x120":  "./document/favicon_16x16.ico",
-            "180x180":  "./document/favicon_16x16.ico"
-        }
-    },
-	"sharing": {
+    "favicon": "/document/favicon_16x16.ico",
+   
+    "sharing": {
        "douban": false,
        "facebook": false,
-       "google": true,
+       "google": false,
        "hatenaBookmark": false,
        "instapaper": false,
-       "line": true,
+       "line": false,
        "linkedin": false,
        "messenger": false,
        "pocket": false,
@@ -77,19 +68,6 @@
            "pocket", "stumbleupon"
        ]
     },
-    "disqus": {
-      "shortName": "初学者"
-    },
-    "github": {
-      "url": "https://github.com/514840279/danyuan-application"
-    },
-	"github-buttons": {
-		"repo": "514840279/danyuan-application",
-		"types": [
-			"star"
-		],
-		"size": "small"
-	},
 	"sectionx": {
 		"tag": "b"
 	}
