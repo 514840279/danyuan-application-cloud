@@ -54,13 +54,8 @@
         "wechatText": ""
     },
     "favicon": {
-        "shortcut": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
-        "bookmark": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
-        "appleTouch": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
-        "appleTouchMore": {
-            "120x120": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
-            "180x180": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico"
-        }
+        "shortcut": "favicon_16x16.ico",
+        "bookmark": "favicon_16x16.ico"
     },
     "include-codeblock": {
         "template": "ace"
