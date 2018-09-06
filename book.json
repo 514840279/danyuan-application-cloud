@@ -1,5 +1,5 @@
 {
-  "title": "初学者介绍",
+  "title": "初学者.单元介绍",
   "author" : "王滕辉",
   "description": "初学者是基于spring boot的一套整合开发方案",
   "language": "zh-hans",
@@ -10,10 +10,9 @@
     "-highlight", 
 	"prism", 
     "prism-themes","chart",
-    "-lunr","code",
+    "-lunr",
 	"-search",
     "search-pro", "include-codeblock",
-    "ace",
 	"codeblock-filename",
 	"donate",
 	"favicon",
@@ -28,9 +27,7 @@
   "pluginsConfig": {
 	"prism": {
 		"css": [
-            "prism-themes/themes/prism-duotone-dark.css",
-            "prism-themes/themes/prism-duotone-earth.css",
-            "prism-themes/themes/prism-pojoaque.css"
+            "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
         ], 
         "ignore": [
             "mermaid",
@@ -56,9 +53,6 @@
     "favicon": {
         "shortcut": "favicon_32x32.ico",
         "bookmark": "favicon_32x32.ico"
-    },
-    "include-codeblock": {
-        "template": "ace"
     },
     "sharing": {
        "douban": false,
