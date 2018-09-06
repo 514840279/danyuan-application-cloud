@@ -10,7 +10,7 @@
     "-highlight", 
 	"prism", 
     "prism-themes","chart",
-    "-lunr","mp3-player","code",
+    "-lunr","code",
 	"-search",
     "search-pro", "include-codeblock",
     "ace",
