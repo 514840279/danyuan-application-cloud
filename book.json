@@ -52,12 +52,12 @@
         "wechatText": ""
     },
     "favicon": {
-        "shortcut":  "./document/favicon_16x16.ico",
-        "bookmark": "./document/favicon_16x16.ico",
-        "appleTouch": "./document/favicon_16x16.ico",
+        "shortcut":  "/document/favicon_16x16.ico",
+        "bookmark": "/document/favicon_16x16.ico",
+        "appleTouch": "/document/favicon_16x16.ico",
         "appleTouchMore": {
-            "120x120":  "./document/favicon_16x16.ico",
-            "180x180":  "./document/favicon_16x16.ico"
+            "120x120":  "/document/favicon_16x16.ico",
+            "180x180":  "/document/favicon_16x16.ico"
         }
     },
     "include-codeblock": {
