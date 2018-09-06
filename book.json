@@ -46,20 +46,20 @@
         "url": "https://github.com/514840279/danyuan-application"
     },
 	"donate": {
-        "wechat": "/wechat.png",
-        "alipay": "/alipay.jpg",
+        "wechat": "https://514840279.gitbooks.io/danyuan/wechat.png",
+        "alipay": "https://514840279.gitbooks.io/danyuan/alipay.jpg",
         "title": "",
         "button": "打赏",
         "alipayText": "",
         "wechatText": ""
     },
     "favicon": {
-        "shortcut": "/favicon_16x16.ico",
-        "bookmark": "/favicon_16x16.ico",
-        "appleTouch": "/favicon_16x16.ico",
+        "shortcut": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
+        "bookmark": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
+        "appleTouch": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
         "appleTouchMore": {
-            "120x120": "/favicon_16x16.ico",
-            "180x180": "/favicon_16x16.ico"
+            "120x120": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico",
+            "180x180": "https://514840279.gitbooks.io/danyuan/favicon_16x16.ico"
         }
     },
     "include-codeblock": {
