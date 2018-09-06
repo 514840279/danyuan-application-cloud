@@ -24,10 +24,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("sysUserBaseDao")
 public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
-
+	
 	@Query("   select t from  SysMenuInfo t where t.uuid in ( " + " select a.id.menuId from SysRolesJurisdictionInfo a where a.id.roleId in ( " + "   select b.rolesId  from SysUserRolesInfo b where   b.userId =:uuid" + " ) " + ") ")
 	List<SysMenuInfo> getRoleByUser(@Param("uuid") String uuid);
-
+	
 	/**
 	 * 方法名： saveu
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -40,7 +40,7 @@ public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 	@Modifying
 	@Query(" update SysUserBaseInfo t set userName =:userName,persionName =:persionName,sex=:sex,email=:email,phone=:phone,age=:age,discription=:discription,updateTime = CURRENT_TIMESTAMP  where uuid =:uuid")
 	void saveu(@Param("uuid") String uuid, @Param("persionName") String persionName, @Param("age") Integer age, @Param("userName") String userName, @Param("email") String email, @Param("phone") String phone, @Param("sex") String sex, @Param("discription") String discription);
-	
+
 	/**
 	 * 方法名： changePassword <br />
 	 * 功 能： TODO(这里用一句话描述这个方法的作用) <br />
@@ -55,4 +55,22 @@ public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 	@Query("update SysUserBaseInfo t set t.password = :password where t.uuid = :uuid")
 	void changePassword(@Param("password") String password, @Param("uuid") String uuid);
 
+	/**
+	 * 方法名： savec
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param uuid
+	 * 参 数： @param userName
+	 * 参 数： @param email
+	 * 参 数： @param phone
+	 * 参 数： @param organization
+	 * 参 数： @param department
+	 * 返 回： void
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	@Transactional
+	@Modifying
+	@Query(" update SysUserBaseInfo t set userName =:userName,email=:email,phone=:phone,organization=:organization,department=:department,updateTime = CURRENT_TIMESTAMP  where uuid =:uuid")
+	void savec(@Param("uuid") String uuid, @Param("userName") String userName, @Param("email") String email, @Param("phone") String phone, @Param("organization") String organization, @Param("department") String department);
+	
 }
