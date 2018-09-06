@@ -3,6 +3,8 @@
   "author" : "王滕辉",
   "description": "初学者是基于spring boot的一套整合开发方案",
   "language": "zh-hans",
+  "gitbook": "3.2.3",
+  "root": "./document",
   "plugins": [
     "github", 
     "-highlight", 
@@ -44,20 +46,20 @@
         "url": "https://github.com/514840279/danyuan-application"
     },
 	"donate": {
-        "wechat": "/document/wechat.png",
-        "alipay": "/document/alipay.jpg",
+        "wechat": "/wechat.png",
+        "alipay": "/alipay.jpg",
         "title": "",
         "button": "打赏",
         "alipayText": "",
         "wechatText": ""
     },
     "favicon": {
-        "shortcut":  "/document/favicon_16x16.ico",
-        "bookmark": "/document/favicon_16x16.ico",
-        "appleTouch": "/document/favicon_16x16.ico",
+        "shortcut": "/favicon_16x16.ico",
+        "bookmark": "/favicon_16x16.ico",
+        "appleTouch": "/favicon_16x16.ico",
         "appleTouchMore": {
-            "120x120":  "/document/favicon_16x16.ico",
-            "180x180":  "/document/favicon_16x16.ico"
+            "120x120": "/favicon_16x16.ico",
+            "180x180": "/favicon_16x16.ico"
         }
     },
     "include-codeblock": {
