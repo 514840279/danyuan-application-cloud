@@ -8,9 +8,10 @@
     "-highlight", 
 	"prism", 
     "prism-themes","chart",
-    "-lunr",
+    "-lunr","mp3-player","code",
 	"-search",
-    "search-pro",
+    "search-pro", "include-codeblock",
+    "ace",
 	"codeblock-filename",
 	"donate",
 	"custom-favicon",
@@ -18,15 +19,23 @@
 	"sharing-plus",
 	"expandable-chapters-small",
 	"sectionx",
-	"bilibili",
-	"multipart"
+    "bilibili",
+    "multipart"
 
   ],
   "pluginsConfig": {
 	"prism": {
 		"css": [
-			"prism-themes/themes/prism-duotone-dark.css"
-		]
+            "prism-themes/themes/prism-duotone-dark.css",
+            "prism-themes/themes/prism-duotone-earth.css",
+            "prism-themes/themes/prism-pojoaque.css"
+        ], 
+        "ignore": [
+            "mermaid",
+            "eval-js",
+            "chart",
+            "mp3"
+        ]
 	},
 	"theme-default": {
 		"showLevel": true
@@ -43,7 +52,9 @@
         "wechatText": ""
     },
     "favicon": "/document/favicon_16x16.ico",
-   
+    "include-codeblock": {
+        "template": "ace"
+    },
     "sharing": {
        "douban": false,
        "facebook": false,

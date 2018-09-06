@@ -25,3 +25,5 @@
 		<g id="svg-atext" class="svg-element" transform="matrix(1,0,0,1,334.5028381347656,249.50283813476562)" style="cursor: pointer; display: none;"></g>
 	</g>
 <defs id="SvgjsDefs1006"></defs><g id="svg-ghost" transform="matrix(1,0,0,1,0,0)"></g></svg>
+
+[import](../../danyuan-application-service/danyuan-application-crawler-server/src/main/resources/application.yml)
