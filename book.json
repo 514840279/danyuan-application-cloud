@@ -14,7 +14,7 @@
     "ace",
 	"codeblock-filename",
 	"donate",
-	"custom-favicon",
+	"favicon",
 	"-sharing",
 	"sharing-plus",
 	"expandable-chapters-small",
@@ -51,7 +51,15 @@
         "alipayText": "",
         "wechatText": ""
     },
-    "favicon": "/document/favicon_16x16.ico",
+    "favicon": {
+        "shortcut":  "./document/favicon_16x16.ico",
+        "bookmark": "./document/favicon_16x16.ico",
+        "appleTouch": "./document/favicon_16x16.ico",
+        "appleTouchMore": {
+            "120x120":  "./document/favicon_16x16.ico",
+            "180x180":  "./document/favicon_16x16.ico"
+        }
+    },
     "include-codeblock": {
         "template": "ace"
     },
