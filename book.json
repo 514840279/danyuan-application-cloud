@@ -54,8 +54,8 @@
         "wechatText": ""
     },
     "favicon": {
-        "shortcut": "favicon_16x16.ico",
-        "bookmark": "favicon_16x16.ico"
+        "shortcut": "favicon_32x32.ico",
+        "bookmark": "favicon_32x32.ico"
     },
     "include-codeblock": {
         "template": "ace"
