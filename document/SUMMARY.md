@@ -36,6 +36,7 @@
         * [性能调优](database/oracle/oracle管理（十六）性能调优.md)
         * [数据文件整理](database/oracle/oracle管理（十八）数据文件整理.md)
         * [sql新建表空间，表，用户](database/oracle/oracle管理（十七）sql新建表空间，表，用户.md)
+    * [oracle学习](database/oracle/oracle学习.md)
     * [mysql管理](database/mysql/README.md)
 * [Linux相关](linux/README.md)
     * [虚拟机VirtualBox安装](linux/linux-centos7-虚拟机VirtualBox安装详细.md)
@@ -48,7 +49,12 @@
     * [hadoop安装](linux/linux-下安装hadoop.md)
     * [mysql5.7安装](linux/linux-下安装-mysql5-7.md)
 
-## 示例代码
+## 资源分享    
+* [视频课程分享](share/video.md)
+* [工具地址分享](share/tools.md)
+* [优秀网站分享](share/webs.md)
+
+## 测试代码
 * [demo](demo/bilibili.md)
     * [bilibili](demo/bilibili.md)
     * [echarts](demo/echarts.md)
