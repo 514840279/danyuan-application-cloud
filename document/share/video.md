@@ -18,3 +18,31 @@
 
 ### 第二版主流CCPP开发环境工具文档视频2014.4.18日
 链接：https://pan.baidu.com/s/1lqgqlURDTbDxOOFLNkDQqg 密码：3epy
+
+
+
+
+### 其他
+区块链】以太坊（Ethereum ）高级进阶实战视频教程
+http://edu.51cto.com/course/14785.html
+
+【区块链】以太坊（Ethereum）入门实战视频教程
+http://edu.51cto.com/course/13888.html?qd=liuzy
+
+【消息中间件RabbitMQ】Spring AMQP分析与实战视频教程
+http://edu.51cto.com/course/10627.html?qd=liuzy
+
+Spring Security4实战视频教程
+http://edu.51cto.com/course/8615.html?qd=liuzy
+
+Spring Data JPA实战视频教程
+http://edu.51cto.com/course/7375.html?qd=liuzy
+
+Spring Boot实战视频教程
+http://edu.51cto.com/course/6558.html?qd=liuzy
+
+跟上Java8 Lambda表达式实战视频教程
+http://edu.51cto.com/course/10768.html?qd=liuzy
+
+Java动态模型系统OSGi实战视频教程
+http://edu.51cto.com/course/5320.html?qd=liuzy

@@ -24,24 +24,31 @@
 
 ######  虚拟机系统环境设置
 1. 新建
+
 ![1.png](http://upload-images.jianshu.io/upload_images/2787821-d91a65f2aacc8dcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 2. 随便写名称，类型选linux 版本选红帽
+
 ![2.png](http://upload-images.jianshu.io/upload_images/2787821-6066d8537b9c6024.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 3. 调整虚拟机内存，适当调整，不要想着调个128GB，因为那是不可能的，因为虚拟机的内存是吃你真机的内存的，所以 也不要都分配给虚拟机，不然你启动虚拟机后，真机就真的什么也干不了了。默认或者按照建议的绿色部分就可以啦。
+
 ![3.png](http://upload-images.jianshu.io/upload_images/2787821-9fa6ebd6b47ed13c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 4. 添加硬盘
+
 ![4.png](http://upload-images.jianshu.io/upload_images/2787821-6432386d5b2fbc57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这里随便选一种
+5.这里随便选一种
+
 ![5.png](http://upload-images.jianshu.io/upload_images/2787821-8bf07a9d571b2736.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-动态分配的好处是虚拟磁盘会逐步增长到你设置的大小，然后不在增长，固定大小好处在于以后使用起来更顺畅，个人感觉并不影响。
+6.动态分配的好处是虚拟磁盘会逐步增长到你设置的大小，然后不在增长，固定大小好处在于以后使用起来更顺畅，个人感觉并不影响。
+
 ![6.png](http://upload-images.jianshu.io/upload_images/2787821-c20fdae28c33590c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-給虚拟硬盘选个保存数据的位置并调整最大文件大小。
+7.給虚拟硬盘选个保存数据的位置并调整最大文件大小。
+
 ![7.png](http://upload-images.jianshu.io/upload_images/2787821-81de8b6bc4663b38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ###### 系统安装 这一步与真机安装是一样的了
@@ -60,83 +67,84 @@
 5. 选择系统安装那些软件
 ![11.png](http://upload-images.jianshu.io/upload_images/2787821-c9baa4d12edd41e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这里根据需要进行选择。我是为了方便以后所以都选择安装了。当然也可以以后修改。或者手动添加，方法很多种。
+6.这里根据需要进行选择。我是为了方便以后所以都选择安装了。当然也可以以后修改。或者手动添加，方法很多种。
 ![12.png](http://upload-images.jianshu.io/upload_images/2787821-daf70302783168bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这里我都选择完后
+7.这里我都选择完后
 ![13.png](http://upload-images.jianshu.io/upload_images/2787821-8d6678232b4aead6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-6. 选择安装位置。就是系统安装到哪里
+8. 选择安装位置。就是系统安装到哪里
 ![14.png](http://upload-images.jianshu.io/upload_images/2787821-0f77725101bda8ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-由于并没有分区和多块硬盘，所以只有一个位置
+9.由于并没有分区和多块硬盘，所以只有一个位置
 ![15.png](http://upload-images.jianshu.io/upload_images/2787821-80c3831026dd661d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-7 选择网络 当然也可以以后修改
+10. 选择网络 当然也可以以后修改
 ![16.png](http://upload-images.jianshu.io/upload_images/2787821-7d29a22b83f1ef35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-设置好网络
+11.设置好网络
 ![17.png](http://upload-images.jianshu.io/upload_images/2787821-712e68bc9671a583.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-8. 下一步安装
+12. 下一步安装
 ![18.png](http://upload-images.jianshu.io/upload_images/2787821-50ca8550b73f7b3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-9. 设置管理员密码 
+13. 设置管理员密码 
 ![19.png](http://upload-images.jianshu.io/upload_images/2787821-26323f0cfaf18c8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-填写管理员密码
+14.填写管理员密码
 ![20.png](http://upload-images.jianshu.io/upload_images/2787821-9354a3bd38bdfe3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-等待完成安装，由于我全选了软件所以时间较长
+15.等待完成安装，由于我全选了软件所以时间较长
 ![21.png](http://upload-images.jianshu.io/upload_images/2787821-e7ce1f27ee1b88da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-重启完成系统安装，
+16.重启完成系统安装，
 ![22.png](http://upload-images.jianshu.io/upload_images/2787821-d912ac0053c178e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-进入系统
+17.进入系统
 ![23.png](http://upload-images.jianshu.io/upload_images/2787821-9a2fe1aad7ce1df5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-添加许可信息
+18.添加许可信息
 ![24.png](http://upload-images.jianshu.io/upload_images/2787821-1b354733c2312a4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-同意添加完成
+19.同意添加完成
 ![25.png](http://upload-images.jianshu.io/upload_images/2787821-b42731c147899971.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-下一步
+20.下一步
 ![26.png](http://upload-images.jianshu.io/upload_images/2787821-c65e6463ef145552.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-选择系统语言
+21.选择系统语言
 ![27.png](http://upload-images.jianshu.io/upload_images/2787821-dc712e0abef2eeff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-选择输入法
+22.选择输入法
 ![28.png](http://upload-images.jianshu.io/upload_images/2787821-0670cbbe04971e6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这时创建的是一般身份账户也是你使用登录系统的账户
+23.这时创建的是一般身份账户也是你使用登录系统的账户
 ![29.png](http://upload-images.jianshu.io/upload_images/2787821-337d4e10eef05c35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-选择时区
+24.选择时区
 ![30.png](http://upload-images.jianshu.io/upload_images/2787821-72e184c0cb310cf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-这个连接就不需要了直接过
+25.这个连接就不需要了直接过
 ![31.png](http://upload-images.jianshu.io/upload_images/2787821-5d31879e59d48f23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-完成系统安装
+26.完成系统安装
 ![32.png](http://upload-images.jianshu.io/upload_images/2787821-30dff2f95bf5f59d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-修改下网卡
+27.修改下网卡
 ![33.png](http://upload-images.jianshu.io/upload_images/2787821-6dab55fbc4ec73e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-系统启动效果
+28.系统启动效果
 ![34.png](http://upload-images.jianshu.io/upload_images/2787821-fe1ac635790c6ad9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-登录界面
+29.登录界面
 ![35.png](http://upload-images.jianshu.io/upload_images/2787821-50307fe3c7db98fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ![36.png](http://upload-images.jianshu.io/upload_images/2787821-e0783af28effe201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##　连接文件上传
+
+## 连接文件上传
 ssh 连接的工具用很多可选用，我习惯用xshell，百度下载
 
 

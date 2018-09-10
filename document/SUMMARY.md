@@ -13,7 +13,8 @@
 ## 第二部分
 * [应用接口](api/README.md)
 * [数据库设计](api/database/README.md)
-* [页面设计](api/pages/README.md)
+    * [权限管理设计](api/database/RBAC.md)
+    * [数据库管理设计](api/database/DBMS.md)
 
 ## 其他笔记
 * [数据库管理](database/README.md)
@@ -49,7 +50,7 @@
     * [hadoop安装](linux/linux-下安装hadoop.md)
     * [mysql5.7安装](linux/linux-下安装-mysql5-7.md)
 
-## 资源分享    
+## 资源分享
 * [视频课程分享](share/video.md)
 * [工具地址分享](share/tools.md)
 * [优秀网站分享](share/webs.md)
