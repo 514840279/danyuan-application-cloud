@@ -10,7 +10,7 @@
 2. maven 3.0+ [下载 3.5.4](http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip)
 3. nexus  [下载 3.5.4](http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip)
 4. Spring Tool Suite(sts) java开发工具 [下载 3.9.5.RELEASE-e4.8.0-win32-x86_64](https://download.springsource.com/release/STS/3.9.5.RELEASE/dist/e4.8/spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64.zip)
-5. python 3.4 + [下载 3.7.0-amd64](https://www.python.org/ftp/python/3.7.0/python-3.7.0-amd64.exe)
+5. python 3.4 + [下载 3.7.0-amd64](https://www.python.org/ftp/python/3.7.0/python-3.7.0-amd64.exe) [Anaconda3-5.2.0-Windows-x86_64](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Windows-x86_64.exe)
 6. Python IDE for Professional Developers by JetBrains（pycharm）python开发工具  [下载 Community](http://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC)
 7. nodeJS [下载 v8.11.4-x64](https://nodejs.org/dist/v8.11.4/node-v8.11.4-x64.msi)
 8. Visual Studio Code(vsCode) 前端开发工具  [下载 x64](https://aka.ms/win32-x64-user-stable)

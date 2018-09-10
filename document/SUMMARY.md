@@ -107,6 +107,8 @@
 * [python相关](python/README.md)
     * [斗图网爬虫](python/python学习笔记之七[斗图网爬虫].md)
     * [浏览器模拟](python/python学习笔记之八[selenium-浏览器模拟].md)
+* [认证](secret/README.md)
+    * [keystore](secret/keystore.md)
 
 ## 资源分享
 * [视频课程分享](share/video.md)
