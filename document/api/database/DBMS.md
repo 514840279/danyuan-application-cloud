@@ -1,70 +1,216 @@
 # 数据库管理设计
 
-
-### 描述	数据库管理表结构
-
+#### 数据库配置
+###### 用户查询配置
+用户查询配置	sys_dbms_user_index_info
 
 |No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
 |--|-----|---------|----|--------|---|---------|-----|-------|
 |1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |user_desc|配置列信息||varchar|100|| | |
+|9 |user_index|配置列信息||varchar|100|| | |
+|10 |user_placeholder|提示信息||varchar|15|| | |
+|11 |user_order|排序||int||| | |
+|12 |multeity|多条件配置||int||| | |
+|13 |chart|图表配置||int||| | ||
 
-#### 用户查询配置	sys_dbms_user_index_info	说明	用户索引配置说明	
 
-|唯一约束建|	配置列信息|	提示信息|	排序|	多条件配置|	图表配置|	描述|	插入时间|	插入人|	更新时间|	更新人|	标记|
-|---------|-------------|--------|-------| ---------- | ------ |------| --------- |--------- | -------| ------ | --- |									
-|uuid	|user_desc|	user_index|	user_placeholder|	user_order|	multeity|	chart|	discription	|create_time|	create_user	|updata_time|	updata_user|	delete_flag|									
-|varchar（36）|	varchar（100）|	varchar（15）|	varchar(36)|	int	|int|	int|	varchar（140）|	date|	varchar|	date|	varchar	|int	|															
-																						
-#### 数据库信息	sys_dbms_tabs_jdbc_info	说明	转换换数据库连接的配置表																			
-	唯一主键	数据库类型	数据库名称	数据库说明	端口	用户名	密码	驱动类	描述	插入时间	插入人	更新时间	更新人	标记								
-	uuid	type	database_name	ip	port	username	password 	driver	discription	create_time	create_user	updata_time	updata_user	delete_flag								
-	varchar（32）	varchar（50）	varchar（30）	varchar（120）	varchar（6）	varchar（30）	varchar（30）	varchar（240）	varchar（140）	date	varchar	date	varchar	int								
-	UUID（）													删除标志								
-																						
-#### 数据库表分类	sys_dbms_tabs_type_info	说明	表分类																			
-	唯一主键	类型名称	类型代码	排序	样式	描述	插入时间	插入人	更新时间	更新人	标记											
-	uuid	type_name	type_class	type_order	type_icon	discription	create_time	create_user	updata_time	updata_user	delete_flag											
-	varchar（36）	varchar（30）	varchar（30）	int	varchar（140）	varchar（140）	date	varchar	date	varchar	int											
-	UUID（）										删除标志											
-																						
-#### 表信息	sys_dbms_tabs_info	说明	表的注释说明																			
-	唯一约束建	数据库名称id	表类型ID	数据库表名称	表的翻译	表数据量	空间大小	排序	描述	插入时间	插入人	更新时间	更新人	标记								
-	uuid	jdbc_uuid	type_uuid	tabs_name	tabs_desc	tabs_rows	tabs_space	tabs_order	discription	create_time	create_user	updata_time	updata_user	delete_flag								
-	varchar（36）	varchar（36）	varchar（36）	varchar（30）	varchar（50）	varchar（1020）	varchar(100)	int	varchar（140）	date	varchar	date	varchar	int								
-	UUID（）	外键												删除标志								
-																						
-#### 字段信息	sys_dbms_tabs_cols_info	说明	列的注释说明																			
-	唯一约束建	表名称id	字段名	字段的翻译	字段的长度	字段展示时排序	字段类型	列表展示	对齐方式	对齐方式	每列的宽度	列项目隐藏	列项目的选项卡隐藏	用户查询列配置	图表	字段最大长度	描述	插入时间	插入人	更新时间	更新人	标记
-	uuid	table_uuid	cols_name	cols_desc	cols_length	cols_order	cols_type	page_list	colsAlign	colsValign	colsWidth	colsVisible	colsSwitchable	colsIndex	userIcon	maxLength	discription	create_time	create_user	updata_time	updata_user	delete_flag
-	varchar（36）	varchar（36）	varchar（30）	varchar（100）	int	int	int	int	varchar(36)	varchar(36)	varchar(36)	varchar(36)	varchar(36)	varchar(36)	varchar(36)	int	varchar（140）	date	varchar	date	varchar	int
-	UUID（）	外键			删除标志																	删除标志
-																						
-#### 用户维护建议信息	sys_dbms_advi_mess_info	说明	系统维护建议说明																			
-	唯一约束建	分类	建议消息	建议执行语句	针对的表名	针对的表名	针对的数据库	描述	插入时间	插入人	标记											
-	uuid	type	message	execute_sql	table_desc	table_name	jdbc_uuid	discription	create_time	create_user	delete_flag											
-	varchar（36）	varchar（100）	varchar（2000）	varchar（2000）	varchar（50）	varchar（36）	varchar（36）	varchar（140）	date	varchar	int											
-	UUID（）										删除标志											
-																						
-#### 数据统计表	sys_dbms_cout_info	说明	每天每个表的增量输出信息																			
-	唯一约束建	表名称id	表名名	数据量	增量	插入时间	插入人	标记														
-	uuid	table_id	table_name	all_count	inc_number	create_time	create_user	delete_flag														
-	varchar（36）	varchar（36）	varchar（30）	int	int	date	varchar	int														
-	UUID()	外键						删除标志														
-																						
-#### 数据分析组	sys_dbms_chart_dime_group																					
-	唯一约束建	标题	主题	排序	描述	描述	插入时间	插入人	更新时间	更新人	标记											
-	uuid	title	theme	group_order	discription	discription	create_time	create_user	updata_time	updata_user	delete_flag											
-	varchar（36）	varchar(36)	varchar(36)	varchar(200)	varchar（140）	date	date	varchar	date	varchar	int											
-	UUID()										删除标志											
-																						
-#### 数据分析分类	sys_dbms_chart_dime																					
-	唯一约束建	唯一约束建	标题	排序	统计类型	主题	图表种类	开始数据	返回结果结束数据	宽	高	表id	统计的字段	统计字段2	描述	插入时间	插入人	更新时间	更新人	标记		
-	uuid	group_uuid	title	dimeOrder	countType	theme	chartType	startNum	endNum	width	heigth	table_uuid	column_uuid1	column_uuid2	discription	create_time	create_user	updata_time	updata_user	delete_flag		
-	varchar（36）	varchar（36）	varchar（140）	int	varchar（140）	varchar（140）	varchar（140）	int	int	int	int	varchar（30）	varchar（30）	varchar（30）	varchar（140）	date	varchar	date	varchar	int		
-	UUID()	UUID()																		删除标志		
-																						
-#### 数据分析详细条件	sys_dbms_chart_dime_data																					
-	唯一约束建	唯一约束建	列id	列含义	符号	值	排序	描述	插入时间	插入人	更新时间	更新人	标记									
-	uuid	dimeUuid	colsUuid	colsDesc	symbol	conditions	table_order	discription	create_time	create_user	updata_time	updata_user	delete_flag									
-	varchar（36）	varchar（36）	varchar（36）	varchar（140）	varchar（140）	varchar（140）	int	varchar（140）	date	varchar	date	varchar	int									
-	UUID()	UUID()											删除标志									
+####### 数据库信息
+数据库信息	sys_dbms_tabs_jdbc_info	
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |type|数据库类型||varchar|30|| | 人为进行分类|
+|9 |database_name|数据库名称||varchar|50|| | |
+|10 |ip|地址||varchar|22|| | |
+|11 |port|端口||varchar|6|| | |
+|12 |username|用户名||varchar|30|| | |
+|13 |password|密码||varchar|30|| | |
+|14 |driver|驱动类||varchar|240|| | ||
+
+
+###### 数据库表分类	
+数据库表分类	sys_dbms_tabs_type_info	
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |type_name|类型名称||varchar|30|| | |
+|9 |type_class|类型代码||varchar|50|| | |
+|10 |type_order|排序||varchar|22|| | |
+|11 |type_icon|样式||varchar|6|| | ||
+
+
+
+###### 表信息
+表信息	sys_dbms_tabs_info
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |jdbc_uuid|数据库id||varchar|36|| |数据库类型id|
+|9 |type_uuid|表类型ID||varchar|36|| | 表类型id|
+|10 |tabs_name|数据库表名称||varchar|30|| | |
+|11 |tabs_desc|表的翻译||varchar|30|| | |
+|12 |tabs_rows|表数据量||int||| | |
+|13 |tabs_space|空间大小||int||| | |
+|14 |tabs_order|排序||int|6|| | ||
+
+
+
+###### 字段信息
+字段信息	sys_dbms_tabs_cols_info
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |table_uuid|表名称id||varchar|36|| ||
+|9 |cols_name|字段名||varchar|30|| | |
+|10 |cols_desc|字段的翻译||varchar|50|| | |
+|11 |cols_length|字段的长度||int||| | |
+|12 |cols_order|字段排序||int||| | |
+|13 |cols_type|字段类型||varchar|30|| | |
+|14 |colsAlign|对齐方式||varchar||30| | |
+|15 |colsValign|对齐方式||varchar|30|| | |
+|16 |colsWidth|列宽度||varchar|30|| | |
+|17 |colsVisible|列项目隐藏||int||| | |
+|18 |colsSwitchable|列项目的选项卡隐藏||int||| | |
+|19 |colsIndex|用户查询列配置||varchar|30|| | |
+|20 |colsIcon|icon||varchar|30|| | |
+|21 |colsColor|背景色||varchar|150|| | ||
+
+
+###### 用户维护建议信息
+用户维护建议信息	sys_dbms_advi_mess_info
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |type|分类||varchar|36|| ||
+|9 |message|建议消息||varchar|30|| | |
+|10 |execute_sql|建议执行语句||varchar|50|| | |
+|11 |table_name|针对的表名||int||| | |
+|12 |jdbc_uuid|针对的数据库||int||| | ||
+
+
+#### 数据统计
+###### 数据统计表
+数据统计表	sys_dbms_cout_info
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |table_id|表名称id||varchar|36|| ||
+|9 |table_name|表名名||varchar|30|| | |
+|10 |all_count|数据量||int||| | |
+|11 |inc_number|增量||int||| | ||
+
+#### 数据分析
+
+###### 数据分析组
+数据分析组	sys_dbms_chart_dime_group
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |title|标题||varchar|36|| ||
+|9 |theme|主题||varchar|30|| | |
+|10 |group_order|排序||int||| | ||
+
+
+
+
+###### 数据分析分类
+数据分析分类	sys_dbms_chart_dime
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |group_uuid|唯一约束建||varchar|36|| ||
+|9 |title|标题||varchar|30|| | |
+|10 |dimeOrder|排序||int||| | |
+|11 |countType|统计类型||varchar|30|| | |
+|12 |theme|主题||varchar|30|| | |
+|13 |chartType|图表种类||varchar|30|| | |
+|14 |startNum|开始数据||int||| | |
+|15 |endNum|结束数据||int||| | |
+|16 |width|宽||int||| | |
+|17 |heigth|高||int||| | |
+|18 |table_uuid|表id||varchar|36|| | |
+|19 |column_uuid|统计的字段||varchar|36|| | |
+
+
+
+###### 数据分析详细条件
+数据分析详细条件	sys_dbms_chart_dime_data
+
+|No|字段名|字段中文名|PKEY|数据类型|位数|NOT NULL|初期値|内容说明|
+|--|-----|---------|----|--------|---|---------|-----|-------|
+|1 |uuid|唯一约束建|true|varchar|36|true|UUID（）|主键|
+|2 |create_time|插入时间||datetime||true| | |
+|3 |create_user|插入人||varchar|50|true| | |
+|4 |updata_time|更新时间||datetime||true| | |
+|5 |updata_user|更新人||varchar|50|true| | |
+|6 |delete_flag|标记||int||true| | |
+|7 |discription|描述||varchar|200|| | |
+|8 |dimeUuid|唯一约束建||varchar|36|| ||
+|9 |colsUuid|列id||varchar|30|| | |
+|10 |colsDesc|列含义||int||| | |
+|11 |symbol|符号||varchar|30|| | |
+|12 |conditions|值||varchar|30|| | |
+|13 |table_order|排序||varchar|30|| | |

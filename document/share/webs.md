@@ -8,6 +8,7 @@
 
 ### 社交类
 [简书](https://www.jianshu.com/u/cf31b9838b17)
+[微博](https://weibo.com/u/5224671392?is_all=1)
 
 ### 资料库
 [w3cschool](http://www.w3cschool.cc/)
