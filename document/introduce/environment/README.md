@@ -14,7 +14,7 @@
 6. Python IDE for Professional Developers by JetBrains（pycharm）python开发工具  [下载 Community](http://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC)
 7. nodeJS [下载 v8.11.4-x64](https://nodejs.org/dist/v8.11.4/node-v8.11.4-x64.msi)
 8. Visual Studio Code(vsCode) 前端开发工具  [下载 x64](https://aka.ms/win32-x64-user-stable)
-9. mysql5+ [下载 8.0.12-winx64](https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.12-winx64.zip)
+9. mysql5+ [下载 8.0.12-winx64](https://dev.mysql.com/downloads/file/?id=479862) 
 10. nginx [下载 1.15.3](http://nginx.org/download/nginx-1.15.3.zip)
 11. 
 
