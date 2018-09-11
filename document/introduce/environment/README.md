@@ -5,8 +5,8 @@
 而前端使用vue矿建 所以需要安装node
 
 工具介绍将讲解系统开发时需要安装的工具或软件：
-0. git [下载 2.18.0-64](https://github-production-release-asset-2e65be.s3.amazonaws.com/23216272/c0b82e3e-7623-11e8-93a5-b72bebbce542?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180910%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180910T121331Z&X-Amz-Expires=300&X-Amz-Signature=7a35c86d6165a162314dea55e17dd1066587c79e70d1c2da222dcee78d114797&X-Amz-SignedHeaders=host&actor_id=15716620&response-content-disposition=attachment%3B%20filename%3DGit-2.18.0-64-bit.exe&response-content-type=application%2Foctet-stream) [小乌龟 2.7.0.0-64](https://download.tortoisegit.org/tgit/2.7.0.0/TortoiseGit-2.7.0.0-64bit.msi) [汉化 2.7.0.0-64](https://download.tortoisegit.org/tgit/2.7.0.0/TortoiseGit-LanguagePack-2.7.0.0-64bit-zh_CN.msi)
-1. java 1.8+ [下载 10.0.2](http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_windows-x64_bin.exe?AuthParam=1536581632_0e10c7d4a1f70d437bebf1523d34f0bb)
+0. git [下载 2.18.0-64](https://www.git-scm.com/download/win) [小乌龟 2.7.0.0-64](https://download.tortoisegit.org/tgit/2.7.0.0/TortoiseGit-2.7.0.0-64bit.msi) [汉化 2.7.0.0-64](https://download.tortoisegit.org/tgit/2.7.0.0/TortoiseGit-LanguagePack-2.7.0.0-64bit-zh_CN.msi)
+1. java 1.8+ [下载 10.0.2](http://download.oracle.com/otn-pub/java/jdk/10.0.2+13/19aef61b38124481863b1413dce1855f/jdk-10.0.2_windows-x64_bin.exe)
 2. maven 3.0+ [下载 3.5.4](http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip)
 3. nexus  [下载 3.5.4](http://mirrors.hust.edu.cn/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip)
 4. Spring Tool Suite(sts) java开发工具 [下载 3.9.5.RELEASE-e4.8.0-win32-x86_64](https://download.springsource.com/release/STS/3.9.5.RELEASE/dist/e4.8/spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64.zip)
@@ -19,3 +19,6 @@
 11. 
 
 环境准备好后我们介绍如何导入代码进行修改，二次开发
+
+
+为了大家的方便，上面链接都已经准备好，点击即可下载。

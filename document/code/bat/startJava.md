@@ -16,11 +16,61 @@ mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&
 start xxx.bat 可以调用执行其他的bat脚本
 
 ###### start-all
-[import](../../../start/start-all.bat)
+```
+@echo off
+ echo ================================================================================
+ echo 查看环境变量 ：
+ echo 	JAVA_HOME=%JAVA_HOME%
+ echo 	M2_HOME/MAVEN_HOME=%M2_HOME%%MAVEN_HOME%
+ echo/
+ echo ------------- 
+ echo 当前路径 ：
+ echo 	%CD%
+ echo/
+ echo ================================================================================
+
+
+echo 正在启动服务注册与发现组件(eureka),默认端口：8761
+
+start  start-eureka.bat 
+
+echo --等待10s启动eureka完成
+TIMEOUT /T 10
+
+echo --正在启动启动网关(getway),默认端口：82 预计用时10s
+start start-getway.bat
+
+echo --正在启动启动服务(crawler),默认端口：8080 预计用时30s
+start start-crawler.bat 
+
+echo ================================================================================
+
+pause
+exit
+
+
+
+ ```
 ###### start-crawler
-[import](../../../start/start-crawler.bat)
+```
+if "%1" == "h" goto begin 
+mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit 
+:begin
+java -jar  -Xms10m -Xmx200m -Dspring.config.location=../danyuan-application-service/danyuan-application-crawler-server/src/main/resources/application.yml ../danyuan-application-service/danyuan-application-crawler-server/target/danyuan-application-crawler-server.jar
+```
 ###### start-eureka
-[import](../../../start/start-eureka.bat)
+```
+if "%1" == "h" goto begin 
+mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit 
+:begin
+java -jar  -Xms10m -Xmx200m ../danyuan-application-service/danyuan-application-eureka-server/target/danyuan-application-eureka-server.jar
+```
 ###### start-getway
-[import](../../../start/start-getway.bat)
+```
+if "%1" == "h" goto begin 
+mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit 
+:begin
+java -jar  -Xms10m -Xmx200m -Dspring.config.location=../danyuan-application-service/danyuan-application-getway-server/src/main/resources/application.yml ../danyuan-application-service/danyuan-application-getway-server/target/danyuan-application-getway-server.jar 
+
+```
 
