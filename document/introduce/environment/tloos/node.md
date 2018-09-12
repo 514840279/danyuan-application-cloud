@@ -38,11 +38,19 @@ node比较势力只支持x64的版本
         ionic serve
         http://localhost:8100
 
-    ###     
+    ### axios    
         cnpm install -g axios
 
-    ###
-        cnpm install http-server -g
+    ### vue
+        # 全局安装 vue-cli
+        cnpm install --global vue-cli
+        # 创建一个基于 webpack 模板的新项目
+        vue init webpack my-project
+        cd my-project
+        npm install
+        npm run dev
+
+
     
-    ###
+    ###  gitbook
         cnpm install -g gitbook

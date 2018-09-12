@@ -16,7 +16,7 @@ mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&
 start xxx.bat 可以调用执行其他的bat脚本
 
 ###### start-all
-```
+``` bash
 @echo off
  echo ================================================================================
  echo 查看环境变量 ：
@@ -50,23 +50,23 @@ exit
 
 
 
- ```
+ ``` 
 ###### start-crawler
-```
+``` bash
 if "%1" == "h" goto begin 
 mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit 
 :begin
 java -jar  -Xms10m -Xmx200m -Dspring.config.location=../danyuan-application-service/danyuan-application-crawler-server/src/main/resources/application.yml ../danyuan-application-service/danyuan-application-crawler-server/target/danyuan-application-crawler-server.jar
 ```
 ###### start-eureka
-```
+``` bash
 if "%1" == "h" goto begin 
 mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit 
 :begin
 java -jar  -Xms10m -Xmx200m ../danyuan-application-service/danyuan-application-eureka-server/target/danyuan-application-eureka-server.jar
 ```
 ###### start-getway
-```
+``` bash
 if "%1" == "h" goto begin 
 mshta vbscript:createobject("wscript.shell").run("""%~nx0"" h",0)(window.close)&&exit 
 :begin
