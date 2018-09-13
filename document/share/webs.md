@@ -16,3 +16,5 @@
 [学习库](http://www.xuexiku.com.cn/Index.html)
 [ip138](http://www.ip138.com/)
 
+[现代WEB开发](https://whjin.github.io/full-stack-development/)
+[搜的一下](https://www.xuyonglin.com/)
