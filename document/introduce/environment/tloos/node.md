@@ -49,8 +49,19 @@ node比较势力只支持x64的版本
         cd my-project
         npm install
         npm run dev
-
-
     
     ###  gitbook
         cnpm install -g gitbook
+
+    ###  cordova6
+        cnpm install -g cordova@6.0.0
+        cordova create MyApp
+        cd MyApp
+        # cordova platform add browser
+        cordova platform add android
+        cordova platform ls
+        cordova requirements
+        # 注意：检查需要 jdk1.8 且不能升级，android需要api 23，同时gradle 默认2.2.1 不能修改
+        cordova build android
+        # 打包并签名
+        cordova run android --release -- --keystore=../my-release-key.keystore --storePassword=password --alias=alias_name --password=password.
