@@ -52,6 +52,11 @@ node比较势力只支持x64的版本
     
     ###  gitbook
         cnpm install -g gitbook
+    
+    ### JHipster
+        1. cnpm install -g generator-jhipster
+        2. mkdir myApp && cd myApp
+        3. jhipster
 
     ###  cordova6
         cnpm install -g cordova@6.0.0
