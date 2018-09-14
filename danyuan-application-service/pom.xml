@@ -24,7 +24,8 @@
 		<module>danyuan-application-crawler-server</module>
 		<module>danyuan-application-getway-server</module>
 		<module>danyuan-application-eureka-server</module>
-	</modules>
+    <module>danyuan-application-sidecar-server</module>
+  </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
