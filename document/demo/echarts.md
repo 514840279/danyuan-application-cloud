@@ -1,4 +1,4 @@
-```chart
+``` chart
 {
     "title": {
         "text": "Fruits number"

@@ -4,16 +4,19 @@
   "description": "初学者是基于spring boot的一套整合开发方案",
   "language": "zh-hans",
   "gitbook": "3.2.3",
+  "output.name": "初学者.单元",
   "root": "./document",
   "plugins": [
     "github", 
     "-highlight", 
 	"prism", 
-    "prism-themes","chart",
+    "prism-themes",
+	"chart",
     "-lunr",
 	"-search",
-    "search-pro", "include-codeblock",
-	"codeblock-filename",
+    "search-pro", 
+	"include-codeblock",
+	"ace",
 	"donate",
 	"favicon",
 	"-sharing",
@@ -22,9 +25,9 @@
 	"sectionx",
     "bilibili",
     "multipart"
-
   ],
   "pluginsConfig": {
+
 	"prism": {
 		"css": [
             "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
@@ -73,9 +76,9 @@
        "weibo": true,
        "whatsapp": false,
        "all": [
-           "facebook", "google", "twitter",
+           "douban","facebook", "google", "twitter",
            "weibo", "instapaper", "linkedin",
-           "pocket", "stumbleupon"
+           "pocket", "stumbleupon","line"
        ]
     },
 	"sectionx": {
