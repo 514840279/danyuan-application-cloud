@@ -24,6 +24,12 @@ start start-getway.bat
 echo --正在启动启动服务(crawler),默认端口：8080 预计用时30s
 start start-crawler.bat 
 
+echo --正在启动启动服务(python web),默认端口：3000 预计用时3s
+start start-python.bat
+
+echo --正在启动启动服务(sidecar),默认端口：9000 预计用时10s
+start start-sidecar.bat
+
 echo ================================================================================
 
 pause
