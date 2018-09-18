@@ -1,0 +1,62 @@
+server:
+  port: 95
+  
+spring:
+  application:
+    name: danyuan-application-oauth2-server
+  datasource:
+    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 514840279@qq.com
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: true
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect      
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+  session:
+    store-type: none
+  aop:
+    proxy-target-class: true
+  thymeleaf:
+    enabled: true
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html; charset=utf-8    
+endpoints:
+  health:
+    sensitive: false
+    enabled: true
+management:
+  security:
+    enabled: false
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    org.danyuan: DEBUG
+    
+   
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://wth:wth@localhost:8761/eureka/
+      
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+          

@@ -12,22 +12,16 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
-#security:
-#  user:
-#    password: user
-#  ignored: /
-#  sessions: never
-#  oauth2:
-#    sso:
-#      loginPath: /login
-#    client:
-#      clientId: 922cb28064e15219957b
-#      clientSecret: 775d7f9f391916f6007ac8a89bba9a4ba1049417
-#      accessTokenUri: https://github.com/login/oauth/access_token
-#      userAuthorizationUri: https://github.com/login/oauth/authorize
-#    resource:
-#      userInfoUri: https://api.github.com/user
-#      preferTokenInfo: false
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:95/oauth2/oauth/token
+      user-authorization-uri: http://localhost:95/oauth2/oauth/authorize
+      client-id: webapp
+    resource:
+      user-info-uri: http://localhost:95/oauth2/user
+      prefer-token-info: false
+      
 zuul:
   host:
     connect-timeout-millis: 30000
@@ -36,6 +30,12 @@ zuul:
     crawler:
       path: /crawler/**
       serviceId: danyuan-application-crawler-server
+    dbms:
+      path: /dbms/**
+      serviceId: danyuan-application-dbms-server
+    oauth2:
+      path: /oauth2/**
+      serviceId: danyuan-application-oauth2-server
       
     python:
       path: /python/**
