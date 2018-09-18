@@ -18,4 +18,5 @@
 		<module>danyuan-application-crawler-server</module>
 		<module>danyuan-application-dbms-server</module>
 	</modules>
+
 </project>

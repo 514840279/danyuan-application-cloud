@@ -47,11 +47,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.danyuan.application</groupId>
-				<artifactId>danyuan-application-common</artifactId>
-				<version>C0.0.1-SNAPSHOT</version>
-			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>

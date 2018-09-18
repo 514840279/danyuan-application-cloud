@@ -16,6 +16,7 @@
 		<dependency>
 			<groupId>org.danyuan.application</groupId>
 			<artifactId>danyuan-application-common</artifactId>
+			<version>C0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- spring boot web支持：mvc,aop... -->
 		<dependency>
