@@ -190,7 +190,7 @@ export default {
         
         // bootstrap table
         $('#dbm_userindex_datagrid').bootstrapTable({
-            url : this.baseURL+"/crawler/sysDbmsUserIndexInfo/page",
+            url : this.baseURL+"/dbms/sysDbmsUserIndexInfo/page",
             dataType : "json",
             toolbar : '#dbm_userindex_toolbar', // 工具按钮用哪个容器
             cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

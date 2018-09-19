@@ -40,7 +40,7 @@
 export default {
     name: "test",
     created: function () {
-      this.$axios.post('/crawler/sysMenuInfo/findzTreeByUser',"test")
+      this.$axios.post('/oauth2/sysMenuInfo/findzTreeByUser',"test")
       .then(res =>{
          // loadMenu(res.data);
       }).catch(error=>{

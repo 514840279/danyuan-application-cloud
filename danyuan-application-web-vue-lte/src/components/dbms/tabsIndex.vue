@@ -223,7 +223,7 @@ export default {
 
         // bootstrap table
         $('#db_table_datagrid').bootstrapTable({
-            url : "/sysDbmsTabsInfo/page",
+            url : this.baseURL+"/dbms/sysDbmsTabsInfo/page",
             dataType : "json",
             toolbar : '#db_table_toolbar', // 工具按钮用哪个容器
             cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

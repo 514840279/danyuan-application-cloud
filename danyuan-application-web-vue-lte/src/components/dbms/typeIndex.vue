@@ -150,7 +150,7 @@ export default {
         
         // bootstrap table init
         $('#dbm_type_datagrid').bootstrapTable({
-            url : this.baseURL+"/crawler/sysDbmsTabsTypeInfo/findAllBySearchText",
+            url : this.baseURL+"/dbms/sysDbmsTabsTypeInfo/findAllBySearchText",
             dataType : "json",
             toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
             cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

@@ -59,7 +59,7 @@ export default {
     mounted:function(){
         $('#addnew_addr').click(function() {
            // 获取屏幕宽度
-            var  url = this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/addBefor";
+            var  url = this.baseURL+"/dbms/sysDbmsTabsJdbcInfo/addBefor";
             modals.openWin({
                 winId:"add_addr_id",
                 title:'添加连接信息',
@@ -111,7 +111,7 @@ export default {
         });
 
         $('#db_addr_datagrid').bootstrapTable({
-            url : this.baseURL+"/crawler/sysDbmsTabsJdbcInfo/findAll",
+            url : this.baseURL+"/dbms/sysDbmsTabsJdbcInfo/findAll",
             dataType : "json",
             toolbar : '#db_addr_toolbar', // 工具按钮用哪个容器
             cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
