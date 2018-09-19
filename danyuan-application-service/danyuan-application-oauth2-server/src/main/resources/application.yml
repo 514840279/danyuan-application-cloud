@@ -31,17 +31,18 @@ spring:
     mode: HTML5
     encoding: UTF-8
     content-type: text/html; charset=utf-8    
-endpoints:
-  health:
-    sensitive: false
-    enabled: true
-management:
-  security:
-    enabled: false
+
 security:
   oauth2:
+    client:
+      client-id: wth
+      client-secret: wth
     resource:
       filter-order: 3
+
+management:
+  security:
+    enabled: false            
 logging:
   level:
     root: INFO

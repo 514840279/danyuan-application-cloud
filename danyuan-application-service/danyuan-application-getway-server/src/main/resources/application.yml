@@ -12,16 +12,41 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
+    
+# 自定义服务登录    
 security:
   oauth2:
+    sso:
+      loginPath: /login   # 登录路径
     client:
-      access-token-uri: http://localhost:95/oauth2/oauth/token
-      user-authorization-uri: http://localhost:95/oauth2/oauth/authorize
-      client-id: webapp
+      access-token-uri: http://localhost:82/oauth2/oauth/token
+      user-authorization-uri: http://localhost:82/oauth2/oauth/authorize
+      client-id: wth
+      client-secret: wth
     resource:
-      user-info-uri: http://localhost:95/oauth2/user
+      user-info-uri: http://localhost:82/oauth2/user
       prefer-token-info: false
       
+      
+
+#  使用github 提供的登录
+#security:
+#  user:
+#    password: user  # 直接登录时的密码
+#  ignored: /
+#  sessions: never   # session策略
+#  oauth2:
+#    sso:
+#      loginPath: /login   # 登录路径
+#    client:
+#      clientId: 922cb28064e15219957b
+#      clientSecret: 775d7f9f391916f6007ac8a89bba9a4ba1049417
+#      accessTokenUri: https://github.com/login/oauth/access_token
+#      userAuthorizationUri: https://github.com/login/oauth/authorize
+#    resource:
+#      userInfoUri: https://api.github.com/user
+#      preferTokenInfo: false
+
 zuul:
   host:
     connect-timeout-millis: 30000
@@ -36,10 +61,13 @@ zuul:
     oauth2:
       path: /oauth2/**
       serviceId: danyuan-application-oauth2-server
-      
+      sensitiveHeaders:
+      strip-prefix: false
     python:
       path: /python/**
       serviceId: danyuan-application-sidecar-server
+  add-host-header: true
+  add-proxy-headers: true
 ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000
