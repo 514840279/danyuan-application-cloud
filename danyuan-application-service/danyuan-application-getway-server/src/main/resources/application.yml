@@ -19,13 +19,15 @@ security:
     sso:
       loginPath: /login   # 登录路径
     client:
-      access-token-uri: http://localhost:82/oauth2/oauth/token
-      user-authorization-uri: http://localhost:82/oauth2/oauth/authorize
+      access-token-uri: http://localhost:8800/oauth/token
+      user-authorization-uri: http://localhost:8800/oauth/authorize
       client-id: wth
       client-secret: wth
     resource:
-      user-info-uri: http://localhost:82/oauth2/user
-      prefer-token-info: false
+      jwt:
+        key-uri: http://localhost:8800/oauth/token_key
+#      user-info-uri: http://localhost:8800/user
+#      prefer-token-info: false
       
       
 

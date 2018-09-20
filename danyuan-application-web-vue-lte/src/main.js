@@ -7,7 +7,7 @@ import Axios from 'axios'
 
 // 全局参数设置
 Vue.prototype.$axios = Axios
-Vue.prototype.baseURL = "http://localhost:81";
+Vue.prototype.baseURL = "http://localhost:83";
 Vue.config.productionTip = false
 
 Vue.prototype.findError=function(result) {
