@@ -25,28 +25,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
 	@Override
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
 	}
-
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().csrf().disable().httpBasic();
-//	}
-
+	
+	//	@Override
+	//	protected void configure(HttpSecurity http) throws Exception {
+	//		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().csrf().disable().httpBasic();
+	//	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 允许所有用户访问"/"和"/home"

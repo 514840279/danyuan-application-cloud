@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import Axios from 'axios'
 
+
+var HOST = "http://localhost:81"
 // 全局参数设置
 Vue.prototype.$axios = Axios
-Vue.prototype.baseURL = "http://localhost:83";
+Vue.prototype.baseURL = HOST;
 Vue.config.productionTip = false
 
 Vue.prototype.findError=function(result) {
@@ -45,7 +47,7 @@ Vue.prototype.getUuid = function() {
 }
 
 /** 全局默认配置 */
-Axios.defaults.baseURL="http://localhost:81";
+Axios.defaults.baseURL=HOST;
 Axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded';
 
 /* eslint-disable no-new */

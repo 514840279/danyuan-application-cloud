@@ -24,7 +24,8 @@ shift + 右键打开
     
     java - jar  danyuan-application-eureka-server\target\danyuan-application-eureka-server.jar
     java - jar  danyuan-application-getway-server\target\danyuan-application-getway-server.jar
-    java - jar  danyuan-application-crawler-server\target\danyuan-application-crawler-server.jar
+
+    java - jar  danyuan-application-provider\danyuan-application-crawler-server\target\danyuan-application-crawler-server.jar
 如此系统就启动起来了
 
 ###### sts方式启动程序

@@ -10,6 +10,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
 /**
  * 文件名 ： CorsFilter.java
  * 包 名 ： tk.ainiyue.danyuan.application.common.filter
@@ -21,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  * 版 本 ： V1.0
  */
 
-//@Component
-//@Order(Ordered.HIGHEST_PRECEDENCE)
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class LocalCorsFilter implements Filter {
 	
 	final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LocalCorsFilter.class);
@@ -39,7 +43,7 @@ public class LocalCorsFilter implements Filter {
 	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		HttpServletResponse response = (HttpServletResponse) res;
@@ -58,7 +62,7 @@ public class LocalCorsFilter implements Filter {
 	 * 参 考 ： @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void init(FilterConfig filterConfig) {
 	}
