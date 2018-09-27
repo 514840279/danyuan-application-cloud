@@ -32,14 +32,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysUserBase")
 public class SysUserBaseController {
-	
+
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysUserBaseController.class);
-	
+
 	//
 	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -53,13 +53,19 @@ public class SysUserBaseController {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();
 	}
-	
+
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo sysUserBaseInfo) {
 		logger.info("findAllBySearchText", SysUserBaseController.class);
 		return sysUserBaseService.findAllBySearchText(pageNumber, pageSize, sysUserBaseInfo);
 	}
-	
+
+	@RequestMapping(path = "/findOne", method = RequestMethod.POST)
+	public SysUserBaseInfo findOne(@RequestBody SysUserBaseInfo sysUserBaseInfo) {
+		logger.info("findOne", SysUserBaseController.class);
+		return sysUserBaseService.findOne(sysUserBaseInfo);
+	}
+
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysUserBaseInfo info) {
@@ -78,7 +84,7 @@ public class SysUserBaseController {
 			return "0";
 		}
 	}
-	
+
 	@RequestMapping(path = "/saveu", method = RequestMethod.POST)
 	@ResponseBody
 	public String saveu(@RequestBody SysUserBaseInfo info) {
@@ -91,7 +97,19 @@ public class SysUserBaseController {
 			return e.toString();
 		}
 	}
-	
+
+	@RequestMapping(path = "/savec", method = RequestMethod.POST)
+	@ResponseBody
+	public SysUserBaseInfo savec(@RequestBody SysUserBaseInfo info) {
+		logger.info("savec", SysUserBaseController.class);
+		try {
+			sysUserBaseService.savec(info.getUuid(), info.getUserName(), info.getEmail(), info.getPhone(), info.getOrganization(), info.getDepartment());
+			return sysUserBaseService.findOne(info);
+		} catch (Exception e) {
+			return new SysUserBaseInfo();
+		}
+	}
+
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String delete(@RequestBody SysUserBaseVo vo) {
@@ -103,7 +121,7 @@ public class SysUserBaseController {
 			return "0";
 		}
 	}
-	
+
 	/**
 	 * 加密密码
 	 */
@@ -112,7 +130,7 @@ public class SysUserBaseController {
 		password = new BCryptPasswordEncoder().encode(password);
 		userEntity.setPassword(password);
 	}
-	
+
 	@RequestMapping(path = "/checkUserName", method = RequestMethod.POST)
 	public Map<String, Boolean> checkUserName(String userName) {
 		logger.info("checkUserName", SysUserBaseController.class);
@@ -121,7 +139,7 @@ public class SysUserBaseController {
 		map.put("valid", boo);
 		return map;
 	}
-	
+
 	@RequestMapping(path = "/changePassword", method = RequestMethod.POST)
 	@ResponseBody
 	public String changePassword(@RequestBody SysUserBaseVo vo) {

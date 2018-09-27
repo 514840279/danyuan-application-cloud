@@ -1,7 +1,11 @@
 package org.danyuan.application.softm.roles.dao;
 
+import java.util.List;
+
 import org.danyuan.application.softm.roles.po.SysRolesInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +20,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("sysRolesDao")
 public interface SysRolesDao extends JpaRepository<SysRolesInfo, String> {
-	
+
+	@Query("SELECT d FROM SysRolesInfo d "
+			+ " WHERE  d.uuid IN ("
+			+ "		SELECT r.rolesId FROM SysUserRolesInfo r"
+			+ "			WHERE r.userId = :userId"
+			+ "			AND r.checked >0"
+			+ "	)")
+	List<SysRolesInfo> getRoleByUser(@Param("userId")String uuid);
+
 }

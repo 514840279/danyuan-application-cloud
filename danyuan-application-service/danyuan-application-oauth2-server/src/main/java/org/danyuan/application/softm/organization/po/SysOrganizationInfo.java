@@ -42,6 +42,15 @@ public class SysOrganizationInfo implements Serializable {
 	
 	@Column(name = "organization_name", columnDefinition = "varchar(50) COMMENT '部门名称'")
 	private String				organizationName;
+
+	@Column(name = "organization_address", columnDefinition = "varchar(300) COMMENT '组织机构地址'")
+	private String				organizationAddress;
+	
+	@Column(name = "organization_email", columnDefinition = "varchar(150) COMMENT '组织机构联系邮箱'")
+	private String				organizationEmail;
+	
+	@Column(name = "organization_phone", columnDefinition = "varchar(150) COMMENT '组织机构联系电话'")
+	private String				organizationPhone;
 	
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String				discription;															  // discription
@@ -49,9 +58,9 @@ public class SysOrganizationInfo implements Serializable {
 	
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				createTime;																  // create_time
-	                        // 插入时间
+	@org.hibernate.annotations.CreationTimestamp
+	private Date				createTime;																																																																																	 // create_time
+	// 插入时间
 	
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String				createUser;																  // create_user
@@ -59,9 +68,9 @@ public class SysOrganizationInfo implements Serializable {
 	
 	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				updateTime;																  // updata_time
-	                        // 更新时间
+	@org.hibernate.annotations.UpdateTimestamp
+	private Date				updateTime;																																																																																	 // updata_time
+	// 更新时间
 	
 	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
 	private String				updateUser;																  // updata_user
@@ -257,11 +266,59 @@ public class SysOrganizationInfo implements Serializable {
 	}
 	
 	/**
-	 * 方法名 ： toString
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @return
-	 * 参 考 ： @see java.lang.Object#toString()
-	 * 作 者 ： wang
+	 *  方法名 ： getOrganizationAddress <br />
+	 *  功    能 ： 返回变量 organizationAddress 的值  <br />
+	 *  @return: String
+	 */
+	public String getOrganizationAddress() {
+		return organizationAddress;
+	}
+	
+	/**
+	 *  方法名 ： setOrganizationAddress <br />
+	 *  功    能 ： 设置变量 organizationAddress 的值
+	 */
+	public void setOrganizationAddress(String organizationAddress) {
+		this.organizationAddress = organizationAddress;
+	}
+	
+	/**
+	 *  方法名 ： getOrganizationEmail <br />
+	 *  功    能 ： 返回变量 organizationEmail 的值  <br />
+	 *  @return: String
+	 */
+	public String getOrganizationEmail() {
+		return organizationEmail;
+	}
+	
+	/**
+	 *  方法名 ： setOrganizationEmail <br />
+	 *  功    能 ： 设置变量 organizationEmail 的值
+	 */
+	public void setOrganizationEmail(String organizationEmail) {
+		this.organizationEmail = organizationEmail;
+	}
+	
+	/**
+	 *  方法名 ： getOrganizationPhone <br />
+	 *  功    能 ： 返回变量 organizationPhone 的值  <br />
+	 *  @return: String
+	 */
+	public String getOrganizationPhone() {
+		return organizationPhone;
+	}
+	
+	/**
+	 *  方法名 ： setOrganizationPhone <br />
+	 *  功    能 ： 设置变量 organizationPhone 的值
+	 */
+	public void setOrganizationPhone(String organizationPhone) {
+		this.organizationPhone = organizationPhone;
+	}
+	
+	/**
+	 * 方法名 ： toString 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @return 参 考 ： @see
+	 * java.lang.Object#toString() 作 者 ： wang
 	 */
 	
 	@Override

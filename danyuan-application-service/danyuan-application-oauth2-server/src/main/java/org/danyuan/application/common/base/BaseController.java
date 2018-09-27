@@ -18,17 +18,17 @@ public interface BaseController<T> {
 	
 	public Page<T> page(Pagination<T> vo);
 	
-	public List<T> findAll(T info);
+	public List<T> findAll(T entity);
 	
-	public T findOne(T info);
+	public T findOne(T entity);
 	
-	public String save(T info);
+	public String save(T entity);
 	
 	public String save(Pagination<T> vo);
 	
 	public String delete(Pagination<T> vo);
 	
-	public String delete(T info);
+	public String delete(T entity);
 	
 	public String trunc();
 	

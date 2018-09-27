@@ -5,6 +5,9 @@ import java.util.List;
 import org.danyuan.application.softm.organization.dao.SysDepartmentDao;
 import org.danyuan.application.softm.organization.po.SysDepartmentInfo;
 import org.danyuan.application.softm.organization.service.SysDepartmentService;
+import org.danyuan.application.softm.roles.dao.SysRolesDao;
+import org.danyuan.application.softm.roles.po.SysRolesInfo;
+import org.danyuan.application.softm.roles.service.SysRolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -26,10 +29,15 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysDepartmentService")
 public class SysDepartmentServiceImpl implements SysDepartmentService {
-	
+
 	//
 	@Autowired
-	private SysDepartmentDao sysDepartmentDao;
+	private SysDepartmentDao	sysDepartmentDao;
+
+	@Autowired
+	private SysRolesDao			sysRolesDao;
+	@Autowired
+	private SysRolesService		sysRolesService;
 	
 	/**
 	 * 方法名 ： findAll
@@ -39,12 +47,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.admin.department.service.SysDepartmentService#findAll()
 	 * 作 者 ： Tenghui.Wang
 	 */
-	
+
 	@Override
 	public List<SysDepartmentInfo> findAll() {
 		return sysDepartmentDao.findAll();
 	}
-	
+
 	/**
 	 * 方法名 ： findByUuid
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -54,12 +62,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysDepartmentInfo findByUuid(String uuid) {
 		return sysDepartmentDao.findOne(uuid);
 	}
-	
+
 	/**
 	 * 方法名 ： findAllBySearchText
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -72,7 +80,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * int, tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysDepartmentInfo> findAllBySearchText(int pageNumber, int pageSize, SysDepartmentInfo info) {
 		Example<SysDepartmentInfo> example = Example.of(info);
@@ -81,7 +89,7 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 		Page<SysDepartmentInfo> sourceCodes = sysDepartmentDao.findAll(example, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -90,12 +98,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#save(tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void save(SysDepartmentInfo info) {
 		sysDepartmentDao.save(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -104,12 +112,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#delete(tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysDepartmentInfo info) {
 		sysDepartmentDao.delete(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -118,12 +126,21 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(List<SysDepartmentInfo> list) {
+		for (SysDepartmentInfo sysDepartmentInfo : list) {
+
+			SysRolesInfo probe = new SysRolesInfo();
+			probe.setDepartmentId(sysDepartmentInfo.getUuid());
+			Example<SysRolesInfo> example = Example.of(probe);
+
+			List<SysRolesInfo> listr = sysRolesDao.findAll(example);
+			sysRolesService.delete(listr);
+		}
 		sysDepartmentDao.delete(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -132,10 +149,10 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysDepartmentDao.deleteAll();
 	}
-	
+
 }
