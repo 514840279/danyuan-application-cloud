@@ -6,39 +6,24 @@
   "gitbook": "3.2.3",
   "output.name": "初学者.单元",
   "root": "./document",
+  "token":"hrkmkfebscm",
   "plugins": [
     "github", 
-    "-highlight", 
-	"prism", 
-    "prism-themes",
 	"chart",
     "-lunr",
 	"-search",
     "search-pro", 
-	"include-codeblock",
-	"ace",
 	"donate",
 	"favicon",
 	"-sharing",
 	"sharing-plus",
 	"expandable-chapters-small",
 	"sectionx",
-    "bilibili",
-    "multipart"
+    "bilibili"
+    
   ],
   "pluginsConfig": {
 
-	"prism": {
-		"css": [
-            "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-        ], 
-        "ignore": [
-            "mermaid",
-            "eval-js",
-            "chart",
-            "mp3"
-        ]
-	},
 	"theme-default": {
 		"showLevel": true
     },
@@ -85,5 +70,16 @@
 		"tag": "b"
 	}
 	
+  },"pdf": {
+    "pageNumbers": true, 
+    "fontFamily": "Arial",
+    "fontSize": 12,
+    "paperSize": "a4",
+    "margin": {
+      "right": 62,
+      "left": 62,
+      "top": 56,
+      "bottom": 56
+    }
   }
 }
