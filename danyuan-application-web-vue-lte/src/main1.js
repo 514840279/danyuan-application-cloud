@@ -1,20 +1,9 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-
 import Axios from 'axios';
-
-import './lib/jquery-vender.js'
-import 'bootstrap'
-import 'admin-lte'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'font-awesome/css/font-awesome.css'
-import 'admin-lte/dist/css/AdminLTE.min.css'
-import 'admin-lte/dist/css/skins/_all-skins.min.css'
-import 'admin-lte/dist/js/adminlte.min.js'
-import 'admin-lte/dist/js/demo.js'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
 
 var HOST = "http://localhost:81"
 // 全局参数设置
@@ -59,14 +48,27 @@ Vue.prototype.getUuid = function() {
 Axios.defaults.baseURL=HOST;
 Axios.defaults.headers.post['Content-Type']='application/json';
 
-
+/*
+router.beforeEach((to, from, next) => {
+  //这里判断用户是否登录，我例子中是验证本地存储是否有token
+  if (!localStorage.token) {
+    next({
+        path: '/loginPath',
+        query: { redirect: to.fullPath }
+    })
+  } else {
+      next()
+  }
+}) 
+*/
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  components: { 
+    App 
+  },
   template: '<App/>',
-  components: { App },
-
   //这里可以用created或mounted
   // created 模板渲染成html前
   // mounted 模板渲染成html后，
@@ -83,3 +85,4 @@ new Vue({
     }
   }
 })
+

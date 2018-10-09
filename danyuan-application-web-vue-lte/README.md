@@ -3,6 +3,23 @@
 
 > danyuan-application-web-vue-lte
 
+###################################################
+# cordova 安装
+
+npm config --global set registry http://registry.cnpmjs.org
+npm install -g cordova
+
+# 创建应用
+cordova create hello com.demo.hello hello
+cd hello
+cordova platform add android --save
+
+# dependencies
+cnpm install jquery --save
+cnpm i bootstrap@3 --save
+cnpm install font-awesome --save 
+cnpm install admin-lte --save
+
 ## Build Setup
 
 ``` bash
@@ -25,13 +42,3 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 
-###################################################
-# cordova 安装
-
-npm config --global set registry http://registry.cnpmjs.org
-npm install -g cordova
-
-# 创建应用
-cordova create hello com.demo.hello hello
-cd hello
-cordova platform add android --save

@@ -29,7 +29,7 @@
                   <li><router-link to='/userIndexPath'  ><i class='fa  fa-database'></i> 查询种类管理 </router-link></li>
                 </ul>
               </li>
-              
+              <li><router-link to='/loginPath'  ><i class='fa  fa-database'></i> 登录 </router-link></li>
             </ul>
         </section>
         <!-- /.sidebar -->
