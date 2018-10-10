@@ -23,10 +23,10 @@
     </div>
 </template>
 <script>
-import mainHeader from "./components/mainHeader"
-import mainFooter from "./components/mainFooter"
-import controlSidebar from "./components/controlSidebar"
-import mainSidebar from "./components/mainSidebar"
+import mainHeader from "@/components/mainHeader"
+import mainFooter from "@/components/mainFooter"
+import controlSidebar from "@/components/controlSidebar"
+import mainSidebar from "@/components/mainSidebar"
 
 export default {
     name: "test",

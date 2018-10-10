@@ -32,7 +32,7 @@
 <script>
 
 
-var authUrl = 'http://localhost:8800/oauth/token'
+var authUrl = 'http://localhost:8800/login'
 export default {
     name: "login",
     data:function(){
@@ -68,7 +68,7 @@ export default {
                 localStorage.token = response.data.token
                 localStorage.tokenExpired = response.data.tokenExpired
                 localStorage.userDisplayName = response.data.displayName
-                this.$router.push('hello')
+                this.$router.push('/')
             }, response => {
                 this.show = true
             })
@@ -85,11 +85,6 @@ export default {
 }
 </script>
 <style scoped>
-.full-windows{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-}
+
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <loginPath/>
+  <router-view/>
 </template>
 
 <script>
@@ -14,6 +14,10 @@ export default {
   },
   components:{
     loginPath
+  },
+  created:function(){
+    this.$router.push('/')
+    //this.$router.push('loginPath')
   }
 }
 

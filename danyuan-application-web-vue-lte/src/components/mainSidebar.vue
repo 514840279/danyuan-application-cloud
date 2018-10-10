@@ -15,7 +15,7 @@
             </div>
             </div>
 
-            <ul class="sidebar-menu" data-widget="tree">
+            <ul class="sidebar-menu tree" data-widget="tree">
               <li class="header">MAIN NAVIGATION</li>
               <!-- 1 -->
               <li class='treeview'>
@@ -29,7 +29,6 @@
                   <li><router-link to='/userIndexPath'  ><i class='fa  fa-database'></i> 查询种类管理 </router-link></li>
                 </ul>
               </li>
-              <li><router-link to='/loginPath'  ><i class='fa  fa-database'></i> 登录 </router-link></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -40,12 +39,11 @@
 export default {
     name: "test",
     created: function () {
-      this.$axios.post('/oauth2/sysMenuInfo/findzTreeByUser',"test")
-      .then(res =>{
-         // loadMenu(res.data);
-      }).catch(error=>{
+      //this.$axios.post('/oauth2/sysMenuInfo/findzTreeByUser',"test").then(res =>{
+        // loadMenu(res.data);
+      //}).catch(error=>{
 
-      })
+     // })
     },
     data:function(){
         return {
@@ -93,76 +91,7 @@ function  sidebar_menu_add_li(item) {
 
 function findError() {
 };
-function loadPage(url, id, name, paramter, flag_r) {
-  console.log(url)
-  url = "static/"+url;
-  $("#mainDiv").load(url, function (response, status, xhr) {
-    if (status == "success") {
-      if (response) {
-        try {
-          var result = jQuery.parseJSON(response);
-          if (result.code == 100) {
-            $("#mainDiv").html("");
-            alert(result.data);
-          }
-        } catch (e) {
-          return response;
-        }
-      }
-    } else {
-      $("#mainDiv").html("");
-      return "/404.html";
-    }
-  });
-}
 
-/**
- * Load a url into a page
- */
-var _old_load = jQuery.fn.load;
-jQuery.fn.load = function (url, params, callback) {
-  //update for HANZO, 2016/12/22
-  if (typeof url !== "string" && _old_load) { return _old_load.apply(this, arguments); }
-
-  var selector, type, response, self = this, off = url.indexOf(" ");
-  if (off > -1) {
-    selector = jQuery.trim(url.slice(off));
-    url = url.slice(0, off);
-  }
-  if (jQuery.isFunction(params)) {
-    callback = params;
-    params = undefined;
-  } else if (params && typeof params === "object") {
-    type = "POST";
-  }
-  if (self.length > 0) {
-    jQuery.ajax({
-      url: url,
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('X-Requested-With', {
-          toString: function () {
-            return '';
-          }
-        });
-      },
-      type: type || "GET",
-      dataType: "html",
-      data: params
-    }).done(function (responseText) {
-      response = arguments;
-
-      var reponseHtml = jQuery.parseHTML();
-      //  			console.log($(responseText).find(selector).toArray());
-      self.html(selector ? jQuery("<div>").append(jQuery.parseHTML(responseText)).find(selector) : responseText);
-    }).always(callback && function (jqXHR, status) {
-      self.each(function () {
-        callback.apply(this, response || [jqXHR.responseText, status, jqXHR]);
-      });
-    });
-  }
-
-  return this;
-};
 
 </script>
 <style scoped>

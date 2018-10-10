@@ -16,6 +16,7 @@ import 'admin-lte/dist/css/skins/_all-skins.min.css'
 import 'admin-lte/dist/js/adminlte.min.js'
 import 'admin-lte/dist/js/demo.js'
 
+
 var HOST = "http://localhost:81"
 // 全局参数设置
 Vue.prototype.$axios = Axios
