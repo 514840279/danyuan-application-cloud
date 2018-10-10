@@ -14,17 +14,20 @@ cordova create hello com.demo.hello hello
 cd hello
 cordova platform add android --save
 
-# dependencies
-cnpm install jquery --save
-cnpm i bootstrap@3 --save
-cnpm install font-awesome --save 
-cnpm install admin-lte --save
+
 
 ## Build Setup
 
 ``` bash
 # 1. install dependencies
 npm install
+
+# dependencies
+cnpm install jquery --save
+cnpm i bootstrap@3 --save
+cnpm install font-awesome --save 
+cnpm install admin-lte --save
+npm install vuex --save
 npm install --save vue-router
 npm install --save axios
 

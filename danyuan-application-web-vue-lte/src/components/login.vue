@@ -68,7 +68,8 @@ export default {
                 localStorage.token = response.data.token
                 localStorage.tokenExpired = response.data.tokenExpired
                 localStorage.userDisplayName = response.data.displayName
-                this.$router.push('/')
+                // this.$router.push('/')
+                t
             }, response => {
                 this.show = true
             })

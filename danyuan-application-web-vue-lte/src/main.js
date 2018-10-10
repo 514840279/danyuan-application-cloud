@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 
 import Axios from 'axios';
 
@@ -22,6 +23,7 @@ var HOST = "http://localhost:81"
 Vue.prototype.$axios = Axios
 Vue.prototype.baseURL = HOST;
 Vue.config.productionTip = false
+
 
 Vue.prototype.findError=function(result) {
   window.parent.window.alert(JSON.stringify(result));
@@ -65,6 +67,7 @@ Axios.defaults.headers.post['Content-Type']='application/json';
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 

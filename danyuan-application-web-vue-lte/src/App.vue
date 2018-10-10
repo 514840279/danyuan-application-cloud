@@ -4,7 +4,6 @@
 
 <script>
 
-import loginPath from "./components/login/login"
 
 export default {
   name: 'App',
@@ -13,7 +12,6 @@ export default {
     
   },
   components:{
-    loginPath
   },
   created:function(){
     this.$router.push('/')

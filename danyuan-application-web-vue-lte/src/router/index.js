@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import AddrIndex from '@/components/dbms/addrIndex'
 import TypeIndex from '@/components/dbms/typeIndex'
 import UserIndex from '@/components/dbms/userIndex'
-import LoginIndex from '@/components/login/login'
+import LoginIndex from '@/components/login'
 import Index from '@/components/index'
 
 Vue.use(Router)
@@ -27,12 +27,12 @@ export default new Router({
           path: 'typeIndexPath',
           name: 'typeIndex',
           component: TypeIndex
+        }, {
+          path: '/loginPath',
+          name: 'loginIndex',
+          component: LoginIndex
         }
       ]
-    }, {
-      path: '/loginPath',
-      name: 'loginIndex',
-      component: LoginIndex
     }
     
   ]
