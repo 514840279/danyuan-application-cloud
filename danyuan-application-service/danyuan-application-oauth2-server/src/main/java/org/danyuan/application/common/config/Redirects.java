@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class Redirects {
-
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
-
+	
 //	@RequestMapping(path = { "/index", "/", "/home" })
 //	public String index() {
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //		System.err.println(auth.getAuthorities().toString());
 //		return "index";// 如果是后台管理人员登录
 //	}
-
+	
 	@RequestMapping("/templates/{path1}/{path2}/{page}")
 	public String templates(@PathVariable("path1") String path1, @PathVariable("path2") String path2, @PathVariable("page") String page) {
 		return path1 + "/" + path2 + "/" + page;
 	}
-
+	
 }

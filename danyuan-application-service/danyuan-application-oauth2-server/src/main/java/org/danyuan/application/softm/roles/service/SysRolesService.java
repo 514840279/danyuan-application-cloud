@@ -41,6 +41,4 @@ public interface SysRolesService {
 	
 	List<SysRolesInfo> findAllRoleBySearchText(String userId);
 	
-	List<SysRolesInfo> getRoleByUser(String uuid);
-	
 }

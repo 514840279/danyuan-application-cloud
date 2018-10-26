@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
-		        .antMatchers("/dist/*/**", "/info", "/oauth/**").permitAll()
+		        .antMatchers("/dist/*/**", "/info", "/plugins/*/**", "/oauth/**").permitAll()
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated().and().formLogin()
 		        // 登录页

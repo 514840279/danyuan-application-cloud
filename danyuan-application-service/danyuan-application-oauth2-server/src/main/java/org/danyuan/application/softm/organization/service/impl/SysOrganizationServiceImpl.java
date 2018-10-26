@@ -2,11 +2,8 @@ package org.danyuan.application.softm.organization.service.impl;
 
 import java.util.List;
 
-import org.danyuan.application.softm.organization.dao.SysDepartmentDao;
 import org.danyuan.application.softm.organization.dao.SysOrganizationDao;
-import org.danyuan.application.softm.organization.po.SysDepartmentInfo;
 import org.danyuan.application.softm.organization.po.SysOrganizationInfo;
-import org.danyuan.application.softm.organization.service.SysDepartmentService;
 import org.danyuan.application.softm.organization.service.SysOrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -29,16 +26,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysOrganizationService")
 public class SysOrganizationServiceImpl implements SysOrganizationService {
-
+	
 	//
 	@Autowired
-	private SysOrganizationDao		sysOrganizationDao;
-	@Autowired
-	private SysDepartmentDao		sysDepartmentDao;
+	private SysOrganizationDao sysOrganizationDao;
 	
-	@Autowired
-	private SysDepartmentService	sysDepartmentService;
-
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： 取全部数据
@@ -51,7 +43,7 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	public List<SysOrganizationInfo> findAll() {
 		return sysOrganizationDao.findAll();
 	}
-
+	
 	/**
 	 * 方法名 ： sysOrganizationAdd
 	 * 功 能 ： 数据录入
@@ -65,7 +57,7 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	public void sysOrganizationAdd(SysOrganizationInfo info) {
 		sysOrganizationDao.save(info);
 	}
-
+	
 	/**
 	 * 方法名 ： sysOrganizationDelete
 	 * 功 能 ： 删除一条数据
@@ -78,7 +70,7 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	public void sysOrganizationDelete(SysOrganizationInfo info) {
 		sysOrganizationDao.delete(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findSysOrganization
 	 * 功 能 ：找到一条数据
@@ -90,9 +82,9 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	@Override
 	public SysOrganizationInfo findSysOrganization(String info) {
 		return sysOrganizationDao.findOne(info);
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： sysOrganizationEdit
 	 * 功 能 ： 修改一条数据
@@ -104,9 +96,9 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	@Override
 	public void sysOrganizationEdit(SysOrganizationInfo info) {
 		sysOrganizationDao.save(info);
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： findByUuid
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -116,12 +108,12 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 * tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysOrganizationInfo findByUuid(String uuid) {
 		return sysOrganizationDao.findOne(uuid);
 	}
-
+	
 	/**
 	 * 方法名 ： findAllBySearchText
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -135,7 +127,7 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 * tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysOrganizationInfo> findAllBySearchText(int pageNumber, int pageSize, SysOrganizationInfo info) {
 		Example<SysOrganizationInfo> example = Example.of(info);
@@ -144,7 +136,7 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 		Page<SysOrganizationInfo> sourceCodes = sysOrganizationDao.findAll(example, request);
 		return sourceCodes;
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -153,12 +145,12 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 * tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService#save(tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void save(SysOrganizationInfo info) {
 		sysOrganizationDao.save(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -167,12 +159,12 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 * tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService#delete(tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysOrganizationInfo info) {
 		sysOrganizationDao.delete(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -181,20 +173,12 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 * tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(List<SysOrganizationInfo> list) {
-		for (SysOrganizationInfo sysOrganizationInfo : list) {
-			SysDepartmentInfo probe = new SysDepartmentInfo();
-			probe.setOrganizationId(sysOrganizationInfo.getUuid());
-			Example<SysDepartmentInfo> example = Example.of(probe);
-			List<SysDepartmentInfo> listr = sysDepartmentDao.findAll(example);
-			sysDepartmentService.delete(listr);
-		}
-		
 		sysOrganizationDao.delete(list);
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -203,10 +187,10 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 * tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		sysOrganizationDao.deleteAll();
 	}
-
+	
 }

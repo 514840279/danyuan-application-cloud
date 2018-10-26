@@ -23,19 +23,19 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("wth")// 客户端ID
 		        .secret("wth") // 客户端连接
-		        //		        .autoApprove("true") // 自动确认授权不展示页面
+		        .autoApprove("true") // 自动确认授权不展示页面
 		        .authorizedGrantTypes("password", "refresh_token", "authorization_code")// 设置验证方式
 		        .scopes("all").accessTokenValiditySeconds(10000) // token过期时间
 		        .refreshTokenValiditySeconds(10000); // refresh过期时间
 	}
-	
+
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore()).accessTokenConverter(jwtAccessTokenConverter()).authenticationManager(authenticationManager);
 		;
-		//		.userDetailsService(userService); // 配置userService 这样每次认证的时候会去检验用户是否锁定，有效等
+//		.userDetailsService(userService); // 配置userService 这样每次认证的时候会去检验用户是否锁定，有效等
 	}
-	
+
 	/**
 	 * 方法名 ： configure
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -49,7 +49,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("isAuthenticated()");
 	}
-	
+
 	@Bean
 	public TokenStore tokenStore() {
 		// 使用内存的tokenStore

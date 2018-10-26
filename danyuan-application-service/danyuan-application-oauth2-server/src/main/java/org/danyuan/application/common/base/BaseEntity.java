@@ -31,8 +31,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class BaseEntity {
 	@Id
-	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
+	@GenericGenerator(name = "idGenerator", strategy = " uuid")
+	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;
 
 	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")

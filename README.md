@@ -2,10 +2,6 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/issues)[![GitHub forks](https://img.shields.io/github/forks/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/network)[![GitHub stars](https://img.shields.io/github/stars/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/stargazers)[![GitHub license](https://img.shields.io/github/license/514840279/danyuan-application.svg?style=plastic)](https://github.com/514840279/danyuan-application/blob/master/LICENSE)[![Twitter](https://img.shields.io/twitter/url/https/github.com/514840279/danyuan-application.svg?style=social&style=plastic)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2F514840279%2Fdanyuan-application)
 
-## 展示与文档
-  1. 项目演示 A版：[danyuan.wang](http://www.danyuan.wang)
-  2. 文档： [document](https://doc.danyuan.wang/)
-  3. 交流:  [gitter.im](https://gitter.im/danyuan-application/初学者?utm_source=share-link&utm_medium=link&utm_campaign=share-link) [QQ群](http://shang.qq.com/wpa/qunwpa?idkey=845d4b1bf1bc4ae90f7efa2b742b54d3be148ff1d7641d68f8caef805ad1308d)
 ## 系统采用技术或开源框架：
 
 1. 前端模板：adminLTE

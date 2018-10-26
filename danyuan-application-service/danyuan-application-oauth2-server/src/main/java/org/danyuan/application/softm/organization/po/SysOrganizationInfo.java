@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 文件名 ： SysOrganizationInfo.java
@@ -25,60 +26,51 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "sys_organization_info")
 public class SysOrganizationInfo implements Serializable {
-
+	
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 	 */
 	private static final long	serialVersionUID	= 8259331104599223284L;
-
+	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String				uuid;
-
+	
 	@Column(name = "organization_code", columnDefinition = "varchar(36) COMMENT '组织机构代码'")
 	private String				organizationCode;
-
+	
 	@Column(name = "organization_name", columnDefinition = "varchar(50) COMMENT '部门名称'")
 	private String				organizationName;
 	
-	@Column(name = "organization_address", columnDefinition = "varchar(300) COMMENT '组织机构地址'")
-	private String				organizationAddress;
-
-	@Column(name = "organization_email", columnDefinition = "varchar(150) COMMENT '组织机构联系邮箱'")
-	private String				organizationEmail;
-
-	@Column(name = "organization_phone", columnDefinition = "varchar(150) COMMENT '组织机构联系电话'")
-	private String				organizationPhone;
-
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;								// discription
-	// 描述
-
+	private String				discription;															  // discription
+	                           // 描述
+	
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	private Date				createTime;									// create_time
-	// 插入时间
-
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date				createTime;																  // create_time
+	                        // 插入时间
+	
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;									// create_user
-	// 插入人
-
+	private String				createUser;																  // create_user
+	                          // 插入人
+	
 	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	private Date				updateTime;									// updata_time
-	// 更新时间
-
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date				updateTime;																  // updata_time
+	                        // 更新时间
+	
 	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;									// updata_user
-	// 更新人
-
+	private String				updateUser;																  // updata_user
+	                          // 更新人
+	
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;									// delete_flag
-	// 标记
-
+	private Integer				deleteFlag;																  // delete_flag
+	                           // 标记
+	
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -88,7 +80,7 @@ public class SysOrganizationInfo implements Serializable {
 	public String getUuid() {
 		return uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
@@ -96,7 +88,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： getOrganizationName
 	 * 功 能 ： 返回变量 organizationName 的值
@@ -106,7 +98,7 @@ public class SysOrganizationInfo implements Serializable {
 	public String getOrganizationName() {
 		return organizationName;
 	}
-
+	
 	/**
 	 * 方法名 ： getOrganizationCode
 	 * 功 能 ： 返回变量 organizationCode 的值
@@ -116,7 +108,7 @@ public class SysOrganizationInfo implements Serializable {
 	public String getOrganizationCode() {
 		return organizationCode;
 	}
-
+	
 	/**
 	 * 方法名 ： setOrganizationCode
 	 * 功 能 ： 设置变量 organizationCode 的值
@@ -124,7 +116,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setOrganizationCode(String organizationCode) {
 		this.organizationCode = organizationCode;
 	}
-
+	
 	/**
 	 * 方法名 ： setOrganizationName
 	 * 功 能 ： 设置变量 organizationName 的值
@@ -132,7 +124,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setOrganizationName(String organizationName) {
 		this.organizationName = organizationName;
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -143,7 +135,7 @@ public class SysOrganizationInfo implements Serializable {
 	public SysOrganizationInfo() {
 		super();
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -155,7 +147,7 @@ public class SysOrganizationInfo implements Serializable {
 		super();
 		this.uuid = uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： getDiscription
 	 * 功 能 ： 返回变量 discription 的值
@@ -165,7 +157,7 @@ public class SysOrganizationInfo implements Serializable {
 	public String getDiscription() {
 		return discription;
 	}
-
+	
 	/**
 	 * 方法名 ： setDiscription
 	 * 功 能 ： 设置变量 discription 的值
@@ -173,7 +165,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-
+	
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
@@ -183,7 +175,7 @@ public class SysOrganizationInfo implements Serializable {
 	public Date getCreateTime() {
 		return createTime;
 	}
-
+	
 	/**
 	 * 方法名 ： setCreateTime
 	 * 功 能 ： 设置变量 createTime 的值
@@ -191,7 +183,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
+	
 	/**
 	 * 方法名 ： getCreateUser
 	 * 功 能 ： 返回变量 createUser 的值
@@ -201,7 +193,7 @@ public class SysOrganizationInfo implements Serializable {
 	public String getCreateUser() {
 		return createUser;
 	}
-
+	
 	/**
 	 * 方法名 ： setCreateUser
 	 * 功 能 ： 设置变量 createUser 的值
@@ -209,7 +201,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-
+	
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
@@ -219,7 +211,7 @@ public class SysOrganizationInfo implements Serializable {
 	public Integer getDeleteFlag() {
 		return deleteFlag;
 	}
-
+	
 	/**
 	 * 方法名 ： setDeleteFlag
 	 * 功 能 ： 设置变量 deleteFlag 的值
@@ -227,7 +219,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-
+	
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
@@ -237,7 +229,7 @@ public class SysOrganizationInfo implements Serializable {
 	public Date getUpdateTime() {
 		return updateTime;
 	}
-
+	
 	/**
 	 * 方法名 ： setUpdateTime
 	 * 功 能 ： 设置变量 updateTime 的值
@@ -245,7 +237,7 @@ public class SysOrganizationInfo implements Serializable {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-
+	
 	/**
 	 * 方法名 ： getUpdateUser
 	 * 功 能 ： 返回变量 updateUser 的值
@@ -255,7 +247,7 @@ public class SysOrganizationInfo implements Serializable {
 	public String getUpdateUser() {
 		return updateUser;
 	}
-
+	
 	/**
 	 * 方法名 ： setUpdateUser
 	 * 功 能 ： 设置变量 updateUser 的值
@@ -263,69 +255,18 @@ public class SysOrganizationInfo implements Serializable {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-
+	
 	/**
-	 * 方法名 ： getOrganizationAddress <br />
-	 * 功 能 ： 返回变量 organizationAddress 的值 <br />
-	 * 
-	 * @return: String
+	 * 方法名 ： toString
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @return
+	 * 参 考 ： @see java.lang.Object#toString()
+	 * 作 者 ： wang
 	 */
-	public String getOrganizationAddress() {
-		return organizationAddress;
-	}
-
-	/**
-	 * 方法名 ： setOrganizationAddress <br />
-	 * 功 能 ： 设置变量 organizationAddress 的值
-	 */
-	public void setOrganizationAddress(String organizationAddress) {
-		this.organizationAddress = organizationAddress;
-	}
-
-	/**
-	 * 方法名 ： getOrganizationEmail <br />
-	 * 功 能 ： 返回变量 organizationEmail 的值 <br />
-	 * 
-	 * @return: String
-	 */
-	public String getOrganizationEmail() {
-		return organizationEmail;
-	}
-
-	/**
-	 * 方法名 ： setOrganizationEmail <br />
-	 * 功 能 ： 设置变量 organizationEmail 的值
-	 */
-	public void setOrganizationEmail(String organizationEmail) {
-		this.organizationEmail = organizationEmail;
-	}
-
-	/**
-	 * 方法名 ： getOrganizationPhone <br />
-	 * 功 能 ： 返回变量 organizationPhone 的值 <br />
-	 * 
-	 * @return: String
-	 */
-	public String getOrganizationPhone() {
-		return organizationPhone;
-	}
-
-	/**
-	 * 方法名 ： setOrganizationPhone <br />
-	 * 功 能 ： 设置变量 organizationPhone 的值
-	 */
-	public void setOrganizationPhone(String organizationPhone) {
-		this.organizationPhone = organizationPhone;
-	}
-
-	/**
-	 * 方法名 ： toString 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @return 参 考 ： @see
-	 * java.lang.Object#toString() 作 者 ： wang
-	 */
-
+	
 	@Override
 	public String toString() {
 		return "SysOrganizationInfo [uuid=" + uuid + ", organizationCode=" + organizationCode + ", organizationName=" + organizationName + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
 	}
-
+	
 }

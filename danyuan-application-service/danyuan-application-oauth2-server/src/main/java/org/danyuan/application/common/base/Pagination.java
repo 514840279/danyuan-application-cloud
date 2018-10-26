@@ -34,7 +34,7 @@ public class Pagination<T> {
 	public Direction order ;
 	List<T>			list;
 	public T		info;
-	public Map<String, Object>	map	= new HashMap<String, Object>();
+	public Map<String,String> map= new HashMap<String,String>();
 	
 	/**  
 	 *  方法名 ： getInfo 
@@ -197,14 +197,17 @@ public class Pagination<T> {
 			this.map = objmap.readValue(filter, Map.class);
 		}
 	}
-	
-	public Map<String, Object> getMap() {
+
+	public Map<String, String> getMap() {
 		return map;
 	}
 
 	@Override
 	public String toString() {
-		return "Pagination [pageNumber=" + pageNumber + ", pageSize=" + pageSize + ", uuid=" + uuid + ", searchText=" + searchText + ", username=" + username + ", sortName=" + sortName + ", filter=" + filter + ", sortOrder=" + sortOrder + ", order=" + order + ", list=" + list + ", info=" + info + ", map=" + map + "]";
+		return "Pagination [pageNumber=" + pageNumber + ", pageSize=" + pageSize + ", uuid=" + uuid + ", searchText="
+				+ searchText + ", username=" + username + ", sortName=" + sortName + ", filter=" + filter
+				+ ", sortOrder=" + sortOrder + ", order=" + order + ", list=" + list + ", info=" + info + ", map=" + map
+				+ "]";
 	}
 
 	

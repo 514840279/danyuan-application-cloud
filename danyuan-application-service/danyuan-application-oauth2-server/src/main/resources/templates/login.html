@@ -1,54 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>登录</title>
-<link href="/dist/css/login.css" type="text/css" rel="stylesheet" rev="stylesheet"/>
-<link rel="icon" type="image/png" href="/dist/css/logo.png" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="icon" type="image/x-icon" href="/dist/img/favicon_32x32.ico" />
+<link rel="shortcut icon"  type="image/x-icon" href="/dist/img/favicon_32x32.ico"/>
+<title>初学者</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<!-- Bootstrap 3.3.6 -->
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+<link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css"/>
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+<!-- Ionicons -->
+<link rel="stylesheet" href="/plugins/bootstrap/css/ionicons.min.css"/>
+<!-- Theme style -->
+<link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body class="denglu02">
-	<div class="dl">
-		<div class="biaoti">
-<!-- 		<img src="/dist/css/images/ico02.png" /> -->
-			<div style="font-size: 70px;color: red;">
-<!-- 			<img src="/dist/css/images/logo.png" alt="" style="height: 80px;"/> -->
-				统一认证
-			</div>
+<body class="hold-transition login-page">
+	<div class="login-box">
+		<div class="login-logo">
+			<!--     <a href="../../index2.html"><b>Admin</b>LTE</a> -->
 		</div>
-		<div class="log">
-			<ul class="xuzhi02">
-				 <li class="xz">统一认证</li>
-				 <li>1.</li>
-				 <li>2.</li>
-				 <li>3.</li>
-				 <li>4.</li>
-			</ul>
+		<!-- /.login-logo -->
+		<div class="login-box-body">
+			<p class="login-box-msg">登录用户</p>
+			<p class="login-box-msg">测试账号：
+			 	<span style="color: red">admin/admin</span> 	
+			 	<span style="color: green">user/user </span>	
+			 	<span style="color: blue">test/test</span>
+			</p>
 			<form action="/login" method="post">
-			  <ul class="deng02">
-			  
-				<li style=" width:100%; height:60px;">
-					<p style="float:left;font-size:18px; color:#666;line-height:30px; ">用户名:</p> 
-					<input name="username" class="i-text" type="text" errormsg="用户名至少6个字符,最多18个字符！" datatype="s6-18"  maxlength="100"  placeholder="填入账号" />
-				</li>
-				<div style="clear:both;"></div>
-		
-				<li style=" width:100%; height:60px;"> 
-					<p style="float:left;font-size:18px; color:#666;line-height:30px; ">密&nbsp;&nbsp;&nbsp;码:</p> 
-					<input name="password" class="i-text" type="password" errormsg="用户名至少6个字符,最多18个字符！" datatype="s6-18"  maxlength="100"  placeholder="填入密码" />
-				</li>
-				<div style="clear:both;"></div>
-<!-- 				<li style=" width:100%; height:60px;"> -->
-<!-- 					<p style="float:left;font-size:18px; color:#666;line-height:30px; ">验证码:</p>  -->
-<!-- 					<input id="username" class="i-text" type="text" errormsg="用户名至少6个字符,最多18个字符！" datatype="s6-18" ajaxurl="demo/valid.jsp" maxlength="100" value="输入账号"> -->
-<!-- 				</li> -->
-				<li style=" width:100%; height:60px;">
-					<button id="logonbtn" class="btn-login02"  type="submit" > 
-					<span>登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
-				  </button>
-				</li>
-			</ul>
+				<div class="form-group has-feedback">
+					<input type="text" class="form-control" placeholder="Full name" name="username" /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="password" class="form-control" placeholder="Password" name="password" /> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+				</div>
+				<div class="row">
+					<!-- /.col -->
+					<div class="col-xs-12">
+						<button type="submit" class="btn btn-primary btn-block btn-flat" id="submit">提交</button>
+					</div>
+
+<!-- 					<div class="col-xs-8" style="font-size: 28px;"> -->
+<!-- 						<a><i class="fa fa-qq"></i></a> <a><i class="fa fa-weixin"></i></a> <a><i class="fa fa-github"></i></a> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-xs-4" style="margin-top: 2px;"> -->
+<!-- 						<a href="/register.html"> -->
+<!-- 							<button type="button" class="btn btn-primary btn-block btn-flat">注册</button> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+
+					<!-- /.col -->
+				</div>
 			</form>
+
 		</div>
+		<!-- /.login-box-body -->
 	</div>
+	<!-- /.login-box -->
+
+	<!-- jQuery 2.2.3 -->
+		<script type="text/javascript" src="/plugins/jQuery/jquery.min.js"></script>
+<!-- 	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script> -->
+	<!-- Bootstrap 3.3.6 -->
+<!-- 	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+		<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$("#submit").bind("mousedown",function(e){
+			if(e.keyCode == 13){
+		        //模拟点击登陆按钮，触发上面的 Click 事件
+		      $(this).submit();
+		    }
+		});
+	</script>
 </body>
 </html>

@@ -26,4 +26,4 @@
 	</g>
 <defs id="SvgjsDefs1006"></defs><g id="svg-ghost" transform="matrix(1,0,0,1,0,0)"></g></svg>
 
-[import](../../danyuan-application-service/danyuan-application-serve-provider/danyuan-application-crawler-server/src/main/resources/application.yml)
+[import](../../danyuan-application-service/danyuan-application-crawler-server/src/main/resources/application.yml)

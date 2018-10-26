@@ -10,27 +10,23 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-
 /**
  * 文件名 ： CorsFilter.java
  * 包 名 ： tk.ainiyue.danyuan.application.common.filter
  * 描 述 ： 跨域允许过滤器
- * 机能名称：corsFilter
+ * 机能名称：
  * 技能ID ：
  * 作 者 ： wang
  * 时 间 ： 2017年9月27日 上午7:29:09
  * 版 本 ： V1.0
  */
 
-@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+//@Component
+//@Order(Ordered.HIGHEST_PRECEDENCE)
 public class LocalCorsFilter implements Filter {
-
+	
 	final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LocalCorsFilter.class);
-
+	
 	/**
 	 * 方法名 ： doFilter
 	 * 功 能 ： 修改头
@@ -54,7 +50,7 @@ public class LocalCorsFilter implements Filter {
 		System.out.println("*********************************过滤器被使用**************************");
 		chain.doFilter(req, res);
 	}
-
+	
 	/**
 	 * 方法名 ： init
 	 * 参 数 ： @param arg0
@@ -66,9 +62,9 @@ public class LocalCorsFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) {
 	}
-
+	
 	@Override
 	public void destroy() {
 	}
-
+	
 }
