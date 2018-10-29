@@ -18,14 +18,14 @@ $(function() {
 				}
 		};
 		// 重载
-		var url = "/sysDbmsTabsInfo/change";
+		var url = "/dbms/sysDbmsTabsInfo/change";
 		ajaxPost(url, param, successSaveSysTableInfo, 1000, findError);
 	});
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfo, null, findError);
+	ajaxPost('/dbms/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfo, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
+	ajaxPost('/dbms/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
 
 });
 

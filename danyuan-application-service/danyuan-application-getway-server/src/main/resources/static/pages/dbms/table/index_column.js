@@ -6,7 +6,7 @@ $(function() {
 		var param={
 				tableUuid:$('#db_upd_table_uuid').text()
 		}
-		loadPage('/sysColumnInfo/updBefor','add_column_tab_id','新加字段',param)
+		loadPage('/dbms/sysColumnInfo/updBefor','add_column_tab_id','新加字段',param)
 	});
 	// 编辑字段
 	$('#editold_column').click(function() {
@@ -20,7 +20,7 @@ $(function() {
 			// 由于日期转化错误 所以删除属性
 			param.createTime=undefined;
 			param.updateTime=undefined;
-			loadPage('/sysColumnInfo/updBefor','add_column_tab_id','修改字段',param,'reload')
+			loadPage('/dbms/sysColumnInfo/updBefor','add_column_tab_id','修改字段',param,'reload')
 		}
 	});
 	// 删除字段
@@ -39,7 +39,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysColumnInfo/deleteSysColumnInfo";
+						var url = "/dbms/sysColumnInfo/deleteSysColumnInfo";
 						ajaxPost(url, param, successDeleteSysColumnInfo, 1000, findError);
 					}
 				}
@@ -49,7 +49,7 @@ $(function() {
 
 	// bootstrap table 表列表
 	$('#db_colum_datagrid').bootstrapTable({
-		url : "/sysColumnInfo/findAll",
+		url : "/dbms/sysColumnInfo/findAll",
 		dataType : "json",
 		toolbar : '#db_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

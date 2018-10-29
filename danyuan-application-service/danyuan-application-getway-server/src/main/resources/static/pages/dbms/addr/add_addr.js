@@ -10,7 +10,7 @@ function submit_add_addr(){
 		driver : $("#add_addr_driver").val(),
 		discription : $("#add_addr_discription").val()
 	}
-	var url = "/sysDbmsTabsJdbcInfo/save";
+	var url = "/dbms/sysDbmsTabsJdbcInfo/save";
 	// 重载
 	ajaxPost(url, param, sucessAddSysDatabaseInfo, 1000, findError);
 }

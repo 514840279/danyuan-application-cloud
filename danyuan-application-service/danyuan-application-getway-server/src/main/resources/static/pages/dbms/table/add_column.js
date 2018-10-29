@@ -18,7 +18,7 @@ $(function() {
 			colsIndex : $('#upd_column_colsIndex').val(),
 		};
 		// 重载
-		var url = "/sysColumnInfo/saveSysColumnInfo";
+		var url = "/dbms/sysColumnInfo/saveSysColumnInfo";
 		ajaxPost(url, param, successSaveSysColumnInfo, 1000, findError);
 	});
 	

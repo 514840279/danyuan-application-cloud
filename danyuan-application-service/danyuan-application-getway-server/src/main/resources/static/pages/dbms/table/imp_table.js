@@ -2,11 +2,11 @@ var imp_table_typeName = "0";
 $(function() {
 	// 新建表
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, impSearchDatabaseInfo, null, findError);
+	ajaxPost('/dbms/sysDbmsTabsJdbcInfo/findAll', null, impSearchDatabaseInfo, null, findError);
 	
 	// bootstrap table
 	$('#imp_table_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsInfo/pagev",
+		url : "/dbms/sysDbmsTabsInfo/pagev",
 		dataType : "json",
 		toolbar : '#imp_table_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -69,7 +69,7 @@ $(function() {
 		callback : function(result) {
 				if (result) {
 					var data =$('#imp_table_datagrid').bootstrapTable('getAllSelections');
-					var url = "/sysDbmsTabsInfo/savev";
+					var url = "/dbms/sysDbmsTabsInfo/savev";
 					var param={list:data,username:username};
 					ajaxPost(url, param, addSysDbmsTabsInfoSuccess, 5000, findError);
 				}

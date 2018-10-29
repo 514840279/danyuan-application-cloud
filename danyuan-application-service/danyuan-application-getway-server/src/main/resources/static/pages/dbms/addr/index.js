@@ -3,7 +3,7 @@ $(function() {
 //		'/pages/dbms/addr/add_addr.html','add_addr_id','添加连接'
 		
 		// 获取屏幕宽度
-		url = "/sysDbmsTabsJdbcInfo/addBefor";
+		url = "/dbms/sysDbmsTabsJdbcInfo/addBefor";
     	
     	modals.openWin({
 	    	winId:"add_addr_id",
@@ -21,7 +21,7 @@ $(function() {
 		}else{
 //			loadPage('/sysDbmsTabsJdbcInfo/addBefor','add_addr_id','修改连接',,'reload')
 			// 获取屏幕宽度
-			url = "/sysDbmsTabsJdbcInfo/addBefor?uuid="+data[0].uuid;
+			url = "/dbms/sysDbmsTabsJdbcInfo/addBefor?uuid="+data[0].uuid;
 	    	
 	    	modals.openWin({
 		    	winId:"add_addr_id",
@@ -47,7 +47,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDbmsTabsJdbcInfo/delete";
+						var url = "/dbms/sysDbmsTabsJdbcInfo/delete";
 						ajaxPost(url, param, successDeleteSysDatabaseInfo, 1000, findError);
 					}
 				}
@@ -57,7 +57,7 @@ $(function() {
 
 	// bootstrap table
 	$('#db_addr_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsJdbcInfo/findAll",
+		url : "/dbms/sysDbmsTabsJdbcInfo/findAll",
 		dataType : "json",
 		toolbar : '#db_addr_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

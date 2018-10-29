@@ -1,6 +1,6 @@
 $(function() {
 	// search bar 数据
-	var url = '/zhcx/findAllType';
+	var url = '/dbms/zhcx/findAllType';
 	ajaxPost(url, {"username":username}, findAllType_Sucess, 1000, findError);
 	
 });
@@ -13,7 +13,7 @@ function findAllType_Sucess(result){
 		type.find("#type_text_id").text(value.typeName);
 		
 		// 调用表名查询
-		var url_table = '/zhcx/findAllTableByTypeUuid';
+		var url_table = '/dbms/zhcx/findAllTableByTypeUuid';
 		var param_table ={
 			info:{	
 				"username":username,
@@ -53,7 +53,7 @@ function findAllType_Sucess(result){
 						jQuery("#dbType").val(value.dbType);
 //						jQuery("#esName").val(value.esName);
 						jQuery("#zhcx_type").val("单表多条件查询");
-						jQuery("#zhlbform").attr("action",  "/zhcx/forwardZhlb");
+						jQuery("#zhlbform").attr("action",  "/dbms/zhcx/forwardZhlb");
 						jQuery("#zhlbform").submit();
 					})
 					type.css({"display":""});

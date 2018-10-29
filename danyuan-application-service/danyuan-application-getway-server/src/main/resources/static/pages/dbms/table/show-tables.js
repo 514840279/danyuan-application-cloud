@@ -7,7 +7,7 @@ $('#show_table_tableName').select2({
 $(function() {
 	// 加载数据选择框
 	// 数据库列表下拉
-	ajaxPost('/sysTableInfo/findAll', null, successSearchDatabaseInfo, null, findError);
+	ajaxPost('/dbms/sysTableInfo/findAll', null, successSearchDatabaseInfo, null, findError);
 	
 	$('.btn-success').click(function() {
 		
@@ -23,7 +23,7 @@ $(function() {
 				uuid:uuid,
 				
 		}
-		ajaxPost('/sysColumnInfo/findAll1', param, successSearchDatabaseTableInfo, null, findError);
+		ajaxPost('/dbms/sysColumnInfo/findAll1', param, successSearchDatabaseTableInfo, null, findError);
 		
 	})
 })
@@ -65,7 +65,7 @@ function reset() {
 	
 	// bootstrap table
 	$('#show_db_table_data_datagrid').bootstrapTable({
-	    url : "/sysTableInfo/findAllTableRow",
+	    url : "/dbms/sysTableInfo/findAllTableRow",
 	    dataType : "json",
 	    // toolbar : '#toolbar', // 工具按钮用哪个容器
 	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

@@ -11,7 +11,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysDbmsTabsColsInfo/savev";
+						var url = "/dbms/sysDbmsTabsColsInfo/savev";
 						var param={list:data,username:username};
 						ajaxPost(url, param, addSysColumnInfoSuccess, 5000, findError);
 					}
@@ -21,10 +21,10 @@ $(function() {
 	});
 	showClomnTable();
 	
-	var url = "/sysDbmsTabsJdbcInfo/findAll";
+	var url = "/dbms/sysDbmsTabsJdbcInfo/findAll";
 	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
 	
-	var url = "/sysDbmsTabsInfo/findAll";
+	var url = "/dbms/sysDbmsTabsInfo/findAll";
 	ajaxPost(url, null, addSelectedTabsSuccess, 5000, findError);
 });
 
@@ -63,7 +63,7 @@ function addSelectedAddrSuccess(result){
 		var param={
 				jdbcUuid:dbm_view_column_addrUuid
 		}
-		var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
+		var url = "/dbms/sysDbmsTabsInfo/findAllBySysTableInfo";
 		ajaxPost(url, param, addSelectedTabsSuccess, 5000, findError);
 	});
 }
@@ -72,7 +72,7 @@ dbm_view_column_addrUuid = null;
 function showClomnTable(){
 	// bootstrap table
 	$('#dbm_view_column_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsColsInfo/pagev",
+		url : "/dbms/sysDbmsTabsColsInfo/pagev",
 		dataType : "json",
 		toolbar : '#dbm_view_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

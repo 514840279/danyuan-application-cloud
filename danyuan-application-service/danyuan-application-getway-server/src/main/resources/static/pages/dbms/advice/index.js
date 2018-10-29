@@ -1,5 +1,5 @@
 $(function() {
-	var url = "/sysAdviceMess/findAll";
+	var url = "/dbms/sysAdviceMess/findAll";
 	ajaxPost(url, null, showAllAdvice);
 //	hljs.initHighlighting();
 });

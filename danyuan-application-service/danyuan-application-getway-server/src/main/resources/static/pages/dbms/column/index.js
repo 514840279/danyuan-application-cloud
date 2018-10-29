@@ -55,7 +55,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysDbmsTabsColsInfo/delete";
+						var url = "/dbms/sysDbmsTabsColsInfo/delete";
 						var param={list:data};
 						ajaxPost(url, param, addSysColumnInfoSuccess, 5000, findError);
 					}
@@ -74,7 +74,7 @@ $(function() {
 		d.colsAlign=$("#update_config_column_colsAlign").val();
 		d.colsValign=$("#update_config_column_colsValign").val();
 		d.colsSwitchable=$("#update_config_column_colsSwitchable").val();
-		var url ='/sysDbmsTabsColsInfo/save';
+		var url ='/dbms/sysDbmsTabsColsInfo/save';
 		d.createTime=null;
 		d.updateTime=null;
 		ajaxPost(url, d, addSysColumnInfoSuccess, 5000, findError);
@@ -84,10 +84,10 @@ $(function() {
 	showClomnTable();
 
 //	update_config_table_typeUuid
-	var url = "/sysDbmsTabsTypeInfo/findAll";
+	var url = "/dbms/sysDbmsTabsTypeInfo/findAll";
 	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
 	
-	var url = "/sysDbmsTabsJdbcInfo/findAll";
+	var url = "/dbms/sysDbmsTabsJdbcInfo/findAll";
 	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
 
 });
@@ -139,7 +139,7 @@ function searchtableNames(){
 			typeUuid:search_config_table_typeUuid,
 			addrUuid:search_config_table_addrUuid,
 	}
-	var url = "/sysDbmsTabsInfo/findAll";
+	var url = "/dbms/sysDbmsTabsInfo/findAll";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
 }
 
@@ -183,7 +183,7 @@ function addSelectedTableSuccess(result){
 function showClomnTable(){
 	// bootstrap table
 	$('#dbm_config_column_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsColsInfo/page",
+		url : "/dbms/sysDbmsTabsColsInfo/page",
 		dataType : "json",
 		toolbar : '#dbm_config_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

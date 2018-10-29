@@ -65,7 +65,7 @@ $(document).ready(function() {
 		}
 	
 	};
-	var url = "/sysMenuInfo/findzTreeRole";
+	var url = "/oauth2/sysMenuInfo/findzTreeRole";
 	
 	/** ** 加载页面 树 数据 *** */
 	// 获取 加载数据
@@ -115,7 +115,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
 	// 自身
 	param.push({id:{"roleId":_role_uuid,"menuId":treeNode.id},"checked":ifnottrue(treeNode.checked)});
 	
-	var url = "/sysRolesJurisdiction/saveAll";
+	var url = "/oauth2/sysRolesJurisdiction/saveAll";
 	console.log(param);
 	// 更新配置信息
 	ajaxPost(url, {"sysRolesJurisdictionInfolist":param}, successUpdateRoleMenu, 1000, findError);
@@ -175,7 +175,7 @@ function zTreeOnRename(event, treeId, treeNode, isCancel) {
 	uuid : treeNode.id,
 	name : treeNode.name
 	}
-	var url = "/sysMenuInfo/updateSysMenuInfoName";
+	var url = "/oauth2/sysMenuInfo/updateSysMenuInfoName";
 	// 重载
 	ajaxPost(url, param, successUpdateMenu, 1000, findError);
 };
@@ -300,7 +300,7 @@ function addMenusubmit() {
 	deleteFlag : $("#add_menu_deleteFlag").val(),
 	insertUser : $("#add_menu_insertUser").val()
 	}
-	var url = "/sysMenuInfo/addSysMenuInfo";
+	var url = "/oauth2/sysMenuInfo/addSysMenuInfo";
 	// 重载
 	ajaxPost(url, param, sucessAddMenu, 1000, findError);
 }
@@ -326,7 +326,7 @@ function updateTreeNode() {
 	var param = {
 		uuid : zTree.getSelectedNodes()[0].id
 	};
-	var url = "/sysMenuInfo/findSysMenuInfoByUuid";
+	var url = "/oauth2/sysMenuInfo/findSysMenuInfoByUuid";
 	ajaxPost(url, param, loadUpdateMenu, 1000, findError);
 }
 
@@ -367,7 +367,7 @@ function updatesubmitMenu() {
 	deleteFlag : $("#upd_menu_deleteFlag").val(),
 	updateUser : $("#upd_menu_updateUser").val()
 	}
-	var url = "/sysMenuInfo/addSysMenuInfo";
+	var url = "/oauth2/sysMenuInfo/addSysMenuInfo";
 	// 重载
 	ajaxPost(url, param, successUpdateMenu, 1000, findError);
 }
@@ -401,7 +401,7 @@ function removeTreeNode() {
 				uuid : zTree.getSelectedNodes()[0].id
 			}
 			// 重载
-			var url = "/sysMenuInfo/deleteSysMenuInfo";
+			var url = "/oauth2/sysMenuInfo/deleteSysMenuInfo";
 			ajaxPost(url, param, successdeleteMenu, 1000, findError);
 		}
 	}

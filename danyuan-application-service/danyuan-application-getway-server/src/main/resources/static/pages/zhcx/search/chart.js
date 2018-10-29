@@ -3,7 +3,7 @@ document.getElementById('map').oncontextmenu=function(){return false;};
 var legend_data = [];
 var series_categories=[];
 $(function() {
-	var url1 = "/sysDicUserIndexCode/chartList";
+	var url1 = "/dbms/sysDicUserIndexCode/chartList";
 	ajaxPost(url1,null,loadSelect);
 	
 	$("#addItem").bind("click",function(){
@@ -32,7 +32,7 @@ $(function() {
 			effect : "bubble",
 			text : "数据加载中。。。",
 			});
-		var url = '/graph/rel2';
+		var url = '/dbms/graph/rel2';
 		paramList = []
 		var item_p = $("#list_item");
 		item_p.find(".row_a").each(function(){
@@ -56,7 +56,7 @@ $(function() {
 		ajaxPost(url, param, gra);
 	})
 		// 单点请求
-	var url = '/graph/rel2';
+	var url = '/dbms/graph/rel2';
 	var param = {
 		"paramList" : paramList,
 		"pageSize" : 25
@@ -121,7 +121,7 @@ function loadChart(){
 	        }
 			var userIndex = param.data.type;
 			var value = param.data.name;
-			var url = '/graph/rel2';
+			var url = '/dbms/graph/rel2';
 			var paramList = [{
 				"userIndex" : userIndex,
 				"value" : value

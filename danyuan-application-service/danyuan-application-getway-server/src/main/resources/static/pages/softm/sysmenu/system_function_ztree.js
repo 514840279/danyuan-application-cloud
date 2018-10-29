@@ -59,7 +59,7 @@ $(document).ready(function() {
 		}
 	
 	};
-	var url = "/sysMenuInfo/findzTree";
+	var url = "/oauth2/sysMenuInfo/findzTree";
 	
 	/** ** 加载页面 树 数据 *** */
 	// 获取 加载数据
@@ -100,7 +100,7 @@ function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType) {
 		param.uuid = param.uuid + treeNodes[int].id + ",";
 	}
 	
-	var url = "/sysMenuInfo/onDropSysMenuInfo";
+	var url = "/oauth2/sysMenuInfo/onDropSysMenuInfo";
 	// 重载
 	ajaxPost(url, param, sucessOnDrop, 1000, findError);
 };
@@ -118,7 +118,7 @@ function zTreeOnRename(event, treeId, treeNode, isCancel) {
 		uuid : treeNode.id,
 		name : treeNode.name
 	}
-	var url = "/sysMenuInfo/updateSysMenuInfoName";
+	var url = "/oauth2/sysMenuInfo/updateSysMenuInfoName";
 	// 重载
 	ajaxPost(url, param, successUpdateMenu, 1000, findError);
 };
@@ -285,7 +285,7 @@ function addMenusubmit() {
 			insertUser : username,
 			homePage:$("#add_menu_homePage").val()
 		}
-		var url = "/sysMenuInfo/addSysMenuInfo";
+		var url = "/oauth2/sysMenuInfo/addSysMenuInfo";
 		console.log(param);
 		// 重载
 		ajaxPost(url, param, sucessAddMenu, 1000, findError);
@@ -313,7 +313,7 @@ function updateTreeNode() {
 	var param = {
 		uuid : zTree.getSelectedNodes()[0].id
 	};
-	var url = "/sysMenuInfo/findSysMenuInfoByUuid";
+	var url = "/oauth2/sysMenuInfo/findSysMenuInfoByUuid";
 	ajaxPost(url, param, loadUpdateMenu, 1000, findError);
 }
 
@@ -394,7 +394,7 @@ function updatesubmitMenu() {
 			updateUser : username,
 			homePage:$("#upd_menu_homePage").val()
 		}
-		var url = "/sysMenuInfo/addSysMenuInfo";
+		var url = "/oauth2/sysMenuInfo/addSysMenuInfo";
 		// 重载
 		ajaxPost(url, param, successUpdateMenu, 1000, findError);
 	}
@@ -429,7 +429,7 @@ function removeTreeNode() {
 				uuid : zTree.getSelectedNodes()[0].id
 			}
 			// 重载
-			var url = "/sysMenuInfo/deleteSysMenuInfo";
+			var url = "/oauth2/sysMenuInfo/deleteSysMenuInfo";
 			ajaxPost(url, param, successdeleteMenu, 1000, findError);
 		}
 	}

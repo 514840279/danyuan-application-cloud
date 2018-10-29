@@ -9,7 +9,7 @@ $(function() {
 	});
 	
 	// 列查询
-	var url_column = "/zhcx/findAllColumn";
+	var url_column = "/dbms/zhcx/findAllColumn";
 	var param_column={
 			info:{
 				"username":username,
@@ -173,7 +173,7 @@ function reset(id,tabsName,column,sysColumn) {
 //	});
 	// bootstrap table
 	$('#'+id).bootstrapTable({
-	    url : "/zhcx/findAllTableRow",
+	    url : "/dbms/zhcx/findAllTableRow",
 	    dataType : "json",
 	    // toolbar : '#toolbar', // 工具按钮用哪个容器
 //	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

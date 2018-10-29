@@ -11,7 +11,7 @@ $(function() {
 
 	// bootstrap table
 	$('#admin_system_datagrid').bootstrapTable({
-		url : "/sysSystem/sysSystemList",
+		url : "/oauth2/sysSystem/sysSystemList",
 		dataType : "json",
 		toolbar : '#system_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

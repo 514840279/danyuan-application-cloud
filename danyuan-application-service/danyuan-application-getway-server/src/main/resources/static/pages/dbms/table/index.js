@@ -37,7 +37,7 @@ $(function() {
 		}else{
 			var uuid =data[0].uuid;
 			// 获取屏幕宽度
-			url = "/sysDbmsTabsInfo/updBeforEdit?uuid="+uuid;
+			url = "/dbms/sysDbmsTabsInfo/updBeforEdit?uuid="+uuid;
 	    	
 	    	modals.openWin({
 		    	winId:"upd_tabs_id",
@@ -56,7 +56,7 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysDbmsTabsInfo/updBefor','upd_table_column_tab_id','修改表字段',data[0],'reload')
+			loadPage('/dbms/sysDbmsTabsInfo/updBefor','upd_table_column_tab_id','修改表字段',data[0],'reload')
 			
 		}
 	});
@@ -77,7 +77,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDbmsTabsInfo/delete";
+						var url = "/dbms/sysDbmsTabsInfo/delete";
 						ajaxPost(url, param, successDeleteSysTableInfo, 1000, findError);
 					}
 				}
@@ -100,7 +100,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDbmsTabsInfo/drop";
+						var url = "/dbms/sysDbmsTabsInfo/drop";
 						ajaxPost(url, param, successDeleteSysTableInfo, 1000, findError);
 					}
 				}
@@ -110,7 +110,7 @@ $(function() {
 
 	// bootstrap table
 	$('#db_table_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsInfo/page",
+		url : "/dbms/sysDbmsTabsInfo/page",
 		dataType : "json",
 		toolbar : '#db_table_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -171,9 +171,9 @@ $(function() {
 	});
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
+	ajaxPost('/dbms/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
+	ajaxPost('/dbms/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
 
 });
 function successDeleteSysTableInfo(reslut){

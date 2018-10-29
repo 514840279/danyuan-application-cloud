@@ -31,14 +31,14 @@ $(function() {
 	});
 	$('#deleteold_type').click(function() {
 		var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
-		var url = "/sysDbmsTabsTypeInfo/sysTableTypeDeleteAll";
+		var url = "/dbms/sysDbmsTabsTypeInfo/sysTableTypeDeleteAll";
 		var param={list:data};
 		ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
 	});
 	
 	$('#dbm_type_add_button').click(function() {
 		
-		var url = "/sysDbmsTabsTypeInfo/save";
+		var url = "/dbms/sysDbmsTabsTypeInfo/save";
 		var	sysTableTypeInfo={
 			uuid:$("#dbm_type_add_uuid").val(),
 			typeName:$("#dbm_type_add_typeName").val(),
@@ -56,7 +56,7 @@ $(function() {
 
 	// bootstrap table
 	$('#dbm_type_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsTypeInfo/findAllBySearchText",
+		url : "/dbms/sysDbmsTabsTypeInfo/findAllBySearchText",
 		dataType : "json",
 		toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

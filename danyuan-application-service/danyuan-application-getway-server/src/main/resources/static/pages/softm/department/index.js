@@ -1,6 +1,6 @@
 var select2_departmentName=null;
 $(function() {
-	var url = '/sysOrganization/sysOrganizationList';
+	var url = '/oauth2/sysOrganization/sysOrganizationList';
 	ajaxPost(url, null, sucessLoadSysOrganizationListSelect2, 1000, findError);
 	
 	$('#addnew_department').click(function() {
@@ -49,7 +49,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var submiturl = "/sysDepartment/sysDepartmentDelete";
+						var submiturl = "/oauth2/sysDepartment/sysDepartmentDelete";
 						ajaxPost(submiturl, {list:data}, addDepartmentSuccess, 5000, findError);
 					}
 				}
@@ -61,7 +61,7 @@ $(function() {
 	 
 	// bootstrap table
 	$('#admin_department_datagrid').bootstrapTable({
-		url : "/sysDepartment/findAllBySearchText",
+		url : "/oauth2/sysDepartment/findAllBySearchText",
 		dataType : "json",
 		toolbar : '#department_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -133,7 +133,7 @@ $(function() {
 function InitSubTable(index) { 
 	
     $("#admin_roles_datagrid").bootstrapTable({  
-        url:'/sysRoles/findAllBySearchText',  
+        url:'/oauth2/sysRoles/findAllBySearchText',  
         dataType : "json",
 		toolbar : '#roles_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -236,7 +236,7 @@ function InitSubTable(index) {
 		callback : function(result) {
 				if (result) {
 					var temp =$("#admin_roles_datagrid").bootstrapTable('getAllSelections');
-					var submiturl = "/sysRoles/delete";
+					var submiturl = "/oauth2/sysRoles/delete";
 					ajaxPost(submiturl, {list:temp}, addRolesSuccess, 5000, findError);
 				}
 			}
@@ -314,7 +314,7 @@ function saveRoles(){
 			roleName:$('#add_roles_roleName').val(),
 			discription:$('#add_roles_discription').val(),
 		};
-		var submiturl = "/sysRoles/save";
+		var submiturl = "/oauth2/sysRoles/save";
 		ajaxPost(submiturl, info, addRolesSuccess, null, findError);
 	}
 }
@@ -369,7 +369,7 @@ function saveDepartment(){
 			departmentName:$('#add_department_departmentName').val(),
 			discription: $('#add_department_departmentDiscription').val(),
 		};
-		var submiturl = "/sysDepartment/sysDepartmentAdd";
+		var submiturl = "/oauth2/sysDepartment/sysDepartmentAdd";
 		ajaxPost(submiturl, info, addDepartmentSuccess, null, findError);
 	}
 }
