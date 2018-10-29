@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.danyuan.application.softm.roles.po.SysRolesInfo;
 import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
-import org.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,8 +25,8 @@ import org.springframework.stereotype.Repository;
 @Repository("sysUserBaseDao")
 public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 	
-	@Query("   select t from  SysMenuInfo t where t.uuid in ( " + " select a.id.menuId from SysRolesJurisdictionInfo a where a.id.roleId in ( " + "   select b.rolesId  from SysUserRolesInfo b where   b.userId =:uuid" + " ) " + ") ")
-	List<SysMenuInfo> getRoleByUser(@Param("uuid") String uuid);
+	@Query("   select t from  SysRolesInfo t where t.uuid in ( " + " select a.rolesId from SysUserRolesInfo a where a.userId =:uuid) ")
+	List<SysRolesInfo> getRoleByUser(@Param("uuid") String uuid);
 	
 	/**
 	 * 方法名： saveu

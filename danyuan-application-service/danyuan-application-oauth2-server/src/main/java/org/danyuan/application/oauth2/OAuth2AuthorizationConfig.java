@@ -21,11 +21,13 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory().withClient("wth")// 客户端ID
+		clients.inMemory() // 使用in-memory存储客户端信息
+		        .withClient("wth")// 客户端ID
 		        .secret("wth") // 客户端连接
 		        .autoApprove("true") // 自动确认授权不展示页面
 		        .authorizedGrantTypes("password", "refresh_token", "authorization_code")// 设置验证方式
-		        .scopes("all").accessTokenValiditySeconds(10000) // token过期时间
+		        .scopes("all")// 允许的授权范围
+		        .accessTokenValiditySeconds(10000) // token过期时间
 		        .refreshTokenValiditySeconds(10000); // refresh过期时间
 	}
 
@@ -35,7 +37,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 		;
 //		.userDetailsService(userService); // 配置userService 这样每次认证的时候会去检验用户是否锁定，有效等
 	}
-
+	
 	/**
 	 * 方法名 ： configure
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)

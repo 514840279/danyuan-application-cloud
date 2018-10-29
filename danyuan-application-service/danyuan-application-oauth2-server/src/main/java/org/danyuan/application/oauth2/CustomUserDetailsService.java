@@ -3,9 +3,9 @@ package org.danyuan.application.oauth2;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.danyuan.application.softm.roles.po.SysRolesInfo;
 import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
 import org.danyuan.application.softm.roles.service.SysUserBaseService;
-import org.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Repository;
 public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired // 数据库服务类
 	private SysUserBaseService sysUserBaseService;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		SysUserBaseInfo user;
@@ -37,17 +37,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 			user = sysUserBaseService.findByName(userName);
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("user select fail");
-			
+
 		}
 		if (user == null) {
 			throw new UsernameNotFoundException("no user found");
 		} else {
 			try {
-				List<SysMenuInfo> menu = sysUserBaseService.getRoleByUser(user.getUuid());
+				List<SysRolesInfo> menu = sysUserBaseService.getRoleByUser(user.getUuid());
 				List<GrantedAuthority> gas = new ArrayList<>();
 				if (menu != null) {
-					for (SysMenuInfo sysMenuInfo : menu) {
-						gas.add(new SimpleGrantedAuthority(sysMenuInfo.getName()));
+					for (SysRolesInfo sysRolesInfo : menu) {
+						gas.add(new SimpleGrantedAuthority(sysRolesInfo.getRoleName()));
 					}
 				}
 //				gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new Authentication()));
@@ -58,5 +58,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 			}
 		}
 	}
-	
+
 }

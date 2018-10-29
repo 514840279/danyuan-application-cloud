@@ -1,6 +1,6 @@
 server:
   port: 8800
-  
+  context-path: /oauth2
 spring:
   application:
     name: danyuan-application-oauth2-server

@@ -1,9 +1,8 @@
 package org.danyuan.application.common.filter;
 
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
@@ -18,15 +17,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
+//@EnableWebSecurity
+@EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
+		http
+		        // Disable default security.
+		        .csrf().disable().authorizeRequests()
 		        //
-		        .antMatchers("/favicon.ico", "/*/**.js", "/dist/*/**", "/info", "/plugins/*/**", "/index?*", "/", "/login").permitAll().anyRequest().authenticated();
+		        .antMatchers("/favicon.ico", "/*/**.js", "/dist/*/**", "/info", "/plugins/*/**").permitAll().anyRequest().authenticated();
+
 	}
 	
 }
