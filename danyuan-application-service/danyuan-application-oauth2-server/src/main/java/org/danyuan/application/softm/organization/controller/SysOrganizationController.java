@@ -2,6 +2,7 @@ package org.danyuan.application.softm.organization.controller;
 
 import java.util.List;
 
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.softm.organization.po.SysOrganizationInfo;
 import org.danyuan.application.softm.organization.service.SysOrganizationService;
 import org.slf4j.Logger;
@@ -28,11 +29,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysOrganizationController {
 	//
 	private static final Logger		logger	= LoggerFactory.getLogger(SysOrganizationController.class);
-
+	
 	//
 	@Autowired
 	private SysOrganizationService	sysOrganizationService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能：查询所有数据
@@ -46,7 +47,7 @@ public class SysOrganizationController {
 		logger.info("sysOrganizationList", SysOrganizationController.class);
 		return sysOrganizationService.findAll();
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： 添加数据
@@ -67,7 +68,7 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-
+	
 	/**
 	 * 方法名： sysOrganizationDelete
 	 * 功 能： 删除
@@ -88,7 +89,19 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-
+	
+	@RequestMapping(path = "/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public String delete(@RequestBody Pagination<SysOrganizationInfo> vo) {
+		logger.info("delete", SysOrganizationController.class);
+		try {
+			sysOrganizationService.delete(vo.getList());
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
+	}
+	
 	/**
 	 * 方法名： findSysOrganization
 	 * 功 能：根据uuid查询一条数据
@@ -104,7 +117,7 @@ public class SysOrganizationController {
 		logger.info("findSysOrganization", SysOrganizationController.class);
 		return sysOrganizationService.findSysOrganization(info.getUuid());
 	}
-
+	
 	/**
 	 * 方法名： sysOrganizationEdit
 	 * 功 能： 修改数据
@@ -126,5 +139,5 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-
+	
 }
