@@ -18,19 +18,19 @@ import org.springframework.data.domain.Sort.Order;
  */
 public interface BaseService<T> {
 	
-	T findOne(T info);
+	T findOne(T entity);
 	
-	List<T> findAll(T info);
+	List<T> findAll(T entity);
 	
-	Page<T> page(int pageNumber, int pageSize, T info,Map<String,String> map, Order... order);
+	Page<T> page(int pageNumber, int pageSize, T entity, Map<String, String> map, Order... order);
 	
-	void save(T info);
+	void save(T entity);
 	
-	void save(List<T> list);
+	void save(List<T> entities);
 	
-	void delete(T info);
+	void delete(T entity);
 	
-	void delete(List<T> list);
+	void delete(List<T> entities);
 	
 	void trunc();
 }
