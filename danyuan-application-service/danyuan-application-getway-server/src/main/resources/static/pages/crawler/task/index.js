@@ -163,7 +163,7 @@ $(function() {
 	});
 	// bootstrap table
 	$('#dbm_config_table_datagrid').bootstrapTable({
-		url : "/task/page",
+		url : "/crawler/sysCrawlerTaskInfo/page",
 		dataType : "json",
 		toolbar : '#dbm_config_table_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -208,8 +208,8 @@ $(function() {
                 	 status:search_task_status,
                 	 appendixStatus:search_task_appendixStatus,
                 	 timingStart:search_task_timingStart,
-                 }
-                 //filter:params.filter
+                 },
+                 filter:params.filter
              }; 
              return param;
 		},

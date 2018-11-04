@@ -31,6 +31,27 @@ public class SysCrawlerTaskInfo {
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;
 	
+	@Column(name = "url_type", columnDefinition = " varchar(36) COMMENT '网站类型'")
+	private String	urlType;
+	
+	@Column(name = "url_name", columnDefinition = " varchar(100) COMMENT '网站名称'")
+	private String	urlName;
+	
+	@Column(name = "web_icon", columnDefinition = " varchar(1000) COMMENT '网站商标'")
+	private String	webIcon;
+	
+	@Column(name = "url", columnDefinition = " varchar(2000) COMMENT '链接地址' ")
+	private String	url;
+	
+	@Column(name = "request_data", columnDefinition = " varchar(2000) COMMENT '请求时间'")
+	private String	requestData;
+	
+	@Column(name = "request_type", columnDefinition = " int COMMENT '请求方式'")
+	private Integer	requestType;
+	
+	@Column(name = "charset", columnDefinition = " varchar(20) COMMENT '字符集'")
+	private String	charset;
+	
 	@Column(name = "task_name", columnDefinition = " varchar(50) COMMENT '主键'")
 	private String	taskName;
 	
@@ -350,6 +371,125 @@ public class SysCrawlerTaskInfo {
 	 */
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+	
+	/**  
+	 *  方法名 ： getUrlType 
+	 *  功    能 ： 返回变量 urlType 的值  
+	 *  @return: String 
+	 */
+	public String getUrlType() {
+		return urlType;
+	}
+	
+	/**  
+	 *  方法名 ： setUrlType 
+	 *  功    能 ： 设置变量 urlType 的值
+	 */
+	public void setUrlType(String urlType) {
+		this.urlType = urlType;
+	}
+	
+	/**  
+	 *  方法名 ： getUrlName 
+	 *  功    能 ： 返回变量 urlName 的值  
+	 *  @return: String 
+	 */
+	public String getUrlName() {
+		return urlName;
+	}
+	
+	/**  
+	 *  方法名 ： setUrlName 
+	 *  功    能 ： 设置变量 urlName 的值
+	 */
+	public void setUrlName(String urlName) {
+		this.urlName = urlName;
+	}
+	
+	/**  
+	 *  方法名 ： getWebIcon 
+	 *  功    能 ： 返回变量 webIcon 的值  
+	 *  @return: String 
+	 */
+	public String getWebIcon() {
+		return webIcon;
+	}
+	
+	/**  
+	 *  方法名 ： setWebIcon 
+	 *  功    能 ： 设置变量 webIcon 的值
+	 */
+	public void setWebIcon(String webIcon) {
+		this.webIcon = webIcon;
+	}
+	
+	/**  
+	 *  方法名 ： getUrl 
+	 *  功    能 ： 返回变量 url 的值  
+	 *  @return: String 
+	 */
+	public String getUrl() {
+		return url;
+	}
+	
+	/**  
+	 *  方法名 ： setUrl 
+	 *  功    能 ： 设置变量 url 的值
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	/**  
+	 *  方法名 ： getRequestData 
+	 *  功    能 ： 返回变量 requestData 的值  
+	 *  @return: String 
+	 */
+	public String getRequestData() {
+		return requestData;
+	}
+	
+	/**  
+	 *  方法名 ： setRequestData 
+	 *  功    能 ： 设置变量 requestData 的值
+	 */
+	public void setRequestData(String requestData) {
+		this.requestData = requestData;
+	}
+	
+	/**  
+	 *  方法名 ： getRequestType 
+	 *  功    能 ： 返回变量 requestType 的值  
+	 *  @return: Integer 
+	 */
+	public Integer getRequestType() {
+		return requestType;
+	}
+	
+	/**  
+	 *  方法名 ： setRequestType 
+	 *  功    能 ： 设置变量 requestType 的值
+	 */
+	public void setRequestType(Integer requestType) {
+		this.requestType = requestType;
+	}
+	
+	/**  
+	 *  方法名 ： getCharset 
+	 *  功    能 ： 返回变量 charset 的值  
+	 *  @return: String 
+	 */
+	public String getCharset() {
+		return charset;
+	}
+	
+	/**  
+	 *  方法名 ： setCharset 
+	 *  功    能 ： 设置变量 charset 的值
+	 */
+	public void setCharset(String charset) {
+		this.charset = charset;
 	}
 	
 }

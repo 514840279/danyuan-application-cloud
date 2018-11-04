@@ -117,7 +117,7 @@ $(function() {
 							"list":data,
 						};
 						// 重载
-						var url = "/sysDicName/delete";
+						var url = "/crawler/sysDicName/delete";
 						ajaxPost(url, param, successDelete, 1000, findError);
 					}
 				}
@@ -159,7 +159,7 @@ $(function() {
 					updateUser:username,
 			};
 			console.log(params);
-			ajaxPost("/sysDicName/save", params, successDelete, 10000, findError);
+			ajaxPost("/crawler/sysDicName/save", params, successDelete, 10000, findError);
 		}
 	});
 	
@@ -193,7 +193,7 @@ $(function() {
 							"list":data,
 						};
 						// 重载
-						var url = "/sysDicKeyList/delete";
+						var url = "/crawler/sysDicKeyList/delete";
 						ajaxPost(url, param, successDeletekey, 1000, findError);
 					}
 				}
@@ -235,7 +235,7 @@ $(function() {
 					createUser:username,
 					updateUser:username,
 			};
-			ajaxPost("/sysDicKeyList/save", params, successDeletekey, 10000, findError);
+			ajaxPost("/crawler/sysDicKeyList/save", params, successDeletekey, 10000, findError);
 		}
 	});
 	
@@ -243,7 +243,7 @@ $(function() {
 	
 	// bootstrap table
 	$('#admin_dicName_datagrid').bootstrapTable({
-	    url : "/sysDicName/page",
+	    url : "/crawler/sysDicName/page",
 	    dataType : "json",
 	    toolbar : '#dicName_toolbar', // 工具按钮用哪个容器
 	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -333,7 +333,7 @@ function buttonTypeFormatter(e,row,index){
 
 function InitSubRoleTable(row) { 
     $("#admin_dicKeyList_datagrid").bootstrapTable({  
-        url:'/sysDicKeyList/page',  
+        url:'/crawler/sysDicKeyList/page',  
         dataType : "json",
 		toolbar : '#dickey_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

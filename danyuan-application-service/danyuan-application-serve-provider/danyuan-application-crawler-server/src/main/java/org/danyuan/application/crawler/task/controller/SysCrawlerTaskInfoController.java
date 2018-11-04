@@ -39,7 +39,7 @@ public class SysCrawlerTaskInfoController {
 	*/
 	@RequestMapping("/page")
 	public Page<SysCrawlerTaskInfo> page(@RequestBody Pagination<SysCrawlerTaskInfo> vo) {
-		return sysCrawlerTaskInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order(""));
+		return sysCrawlerTaskInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order("createTime"));
 	}
 	
 	/** 

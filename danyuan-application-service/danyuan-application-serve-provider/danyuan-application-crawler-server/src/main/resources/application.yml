@@ -10,10 +10,12 @@ spring:
     password: 514840279@qq.com
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
+    database-platform: MYSQL
+    generate-ddl: true
     database: MYSQL
     show-sql: true
     hibernate:
-      ddl-auto: true
+      ddl-auto: update
       naming:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:

@@ -1,10 +1,5 @@
 /**
- * 文件名：SysPlantChartDimensionDao.java
- *
- * 版本信息：
- * 日期：2018年5月22日
- * Copyright 足下 Corporation 2018
- * 版权所有
+ * 文件名：SysPlantChartDimensionDao.java 版本信息： 日期：2018年5月22日 Copyright 足下 Corporation 2018 版权所有
  */
 package org.danyuan.application.dbms.chart.dao;
 
@@ -31,7 +26,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SysDbmsChartDimensionDao extends BaseDao<SysDbmsChartDimension> {
-
+	
 	/**
 	 * 方法名： findAllDime
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -40,9 +35,9 @@ public interface SysDbmsChartDimensionDao extends BaseDao<SysDbmsChartDimension>
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysPlantChartDimension t where t.groupUuid is null or t.groupUuid ='0' order by t.dimeOrder asc")
+	@Query("select t from SysDbmsChartDimension t where t.groupUuid is null or t.groupUuid ='0' order by t.dimeOrder asc")
 	List<SysDbmsChartDimension> findAllDime();
-
+	
 	/**
 	 * 方法名： changeGroup
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -54,7 +49,7 @@ public interface SysDbmsChartDimensionDao extends BaseDao<SysDbmsChartDimension>
 	 */
 	@Transactional
 	@Modifying
-	@Query("update SysPlantChartDimension t set t.groupUuid=:groupUuid where uuid=:uuid")
+	@Query("update SysDbmsChartDimension t set t.groupUuid=:groupUuid where uuid=:uuid")
 	void changeGroup(@Param("uuid") String uuid, @Param("groupUuid") String groupUuid);
 	
 }
