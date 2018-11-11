@@ -23,11 +23,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!--模板框架 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
 		<!-- JPA操作数据库. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,7 +63,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>danyuan-application-crawler-server</finalName>

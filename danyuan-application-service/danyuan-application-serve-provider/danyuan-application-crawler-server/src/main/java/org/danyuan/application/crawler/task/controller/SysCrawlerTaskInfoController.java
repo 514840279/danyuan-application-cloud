@@ -1,10 +1,13 @@
 package org.danyuan.application.crawler.task.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
 import org.danyuan.application.crawler.task.service.SysCrawlerTaskInfoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Order;
@@ -26,8 +29,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sysCrawlerTaskInfo")
 public class SysCrawlerTaskInfoController {
 	
+	private static final Logger	logger	= LoggerFactory.getLogger(SysCrawlerTaskInfoController.class);
+	
 	@Autowired
-	SysCrawlerTaskInfoService sysCrawlerTaskInfoService;
+	SysCrawlerTaskInfoService	sysCrawlerTaskInfoService;
 	
 	/** 
 	*  方法名 ： page
@@ -39,6 +44,9 @@ public class SysCrawlerTaskInfoController {
 	*/
 	@RequestMapping("/page")
 	public Page<SysCrawlerTaskInfo> page(@RequestBody Pagination<SysCrawlerTaskInfo> vo) {
+		if ("".equals(vo.getInfo().getTaskName())) {
+			vo.getInfo().setTaskName(null);
+		}
 		return sysCrawlerTaskInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order("createTime"));
 	}
 	
@@ -78,6 +86,10 @@ public class SysCrawlerTaskInfoController {
 	*/
 	@RequestMapping("/save")
 	public String save(@RequestBody SysCrawlerTaskInfo info) {
+		if (info.getUuid() == null || "".equals(info.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+			info.setDeleteFlag(0);
+		}
 		sysCrawlerTaskInfoService.save(info);
 		return "1";
 	}

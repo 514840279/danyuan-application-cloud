@@ -31,50 +31,52 @@ public class SysCrawlerTaskInfo {
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;
 	
+	@Column(name = "url", columnDefinition = " varchar(2000) COMMENT '链接地址' ")
+	private String	url;
+	
+	@Column(name = "task_name", columnDefinition = " varchar(50) COMMENT '主键'")
+	private String	taskName;
+	
 	@Column(name = "url_type", columnDefinition = " varchar(36) COMMENT '网站类型'")
 	private String	urlType;
 	
 	@Column(name = "url_name", columnDefinition = " varchar(100) COMMENT '网站名称'")
 	private String	urlName;
 	
+	@Column(name = "charset", columnDefinition = " varchar(20) COMMENT '字符集'")
+	private String	charset;
+	
 	@Column(name = "web_icon", columnDefinition = " varchar(1000) COMMENT '网站商标'")
 	private String	webIcon;
-	
-	@Column(name = "url", columnDefinition = " varchar(2000) COMMENT '链接地址' ")
-	private String	url;
 	
 	@Column(name = "request_data", columnDefinition = " varchar(2000) COMMENT '请求时间'")
 	private String	requestData;
 	
-	@Column(name = "request_type", columnDefinition = " int COMMENT '请求方式'")
-	private Integer	requestType;
+	@Column(name = "request_type", columnDefinition = " varchar(50)  COMMENT '请求方式'")
+	private String	requestType;
 	
-	@Column(name = "charset", columnDefinition = " varchar(20) COMMENT '字符集'")
-	private String	charset;
-	
-	@Column(name = "task_name", columnDefinition = " varchar(50) COMMENT '主键'")
-	private String	taskName;
-	
-	@Column(name = "start_time", columnDefinition = " timestamp COMMENT ' 任务执行开始时间' ")
+	@Column(name = "start_time", insertable = false, columnDefinition = " timestamp COMMENT ' 任务执行开始时间' ")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date	startTime;
 	
-	@Column(name = "last_excute_time", columnDefinition = " timestamp COMMENT '最近一次执行时间'")
+	@Column(name = "last_excute_time", insertable = false, columnDefinition = " timestamp COMMENT '最近一次执行时间'")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date	lastExcuteTime;
 	
-	@Column(name = "surplus_num", columnDefinition = " int COMMENT '预计剩余采集数量'")
-	private Integer	surplusNum;
+	@Column(name = "surplus_num", columnDefinition = " int default 0  COMMENT '预计剩余采集数量'")
+	private Integer	surplusNum	= 0;
 	
-	@Column(name = "success_num", columnDefinition = " int COMMENT '完成数量'")
-	private Integer	successNum;
+	@Column(name = "success_num", columnDefinition = " int default 0  COMMENT '完成数量'")
+	private Integer	successNum	= 0;
 	
-	@Column(name = "task_flag", columnDefinition = " int COMMENT '采集通用标识' ")
-	private Integer	taskFlag;
+	@Column(name = "task_flag", columnDefinition = " int default 0  COMMENT '采集通用标识' ")
+	private Integer	taskFlag	= 0;
 	
-	@Column(name = "error_num", columnDefinition = " int COMMENT '采集出错数量'")
-	private Integer	errorNum;
+	@Column(name = "error_num", columnDefinition = " int default 0  COMMENT '采集出错数量'")
+	private Integer	errorNum	= 0;
 	
-	@Column(name = "excute_flag", columnDefinition = " int COMMENT '执行状态'")
-	private Integer	excuteFlag;
+	@Column(name = "excute_flag", columnDefinition = " int default 0 COMMENT '执行状态'")
+	private Integer	excuteFlag	= 0;
 	
 	@Column(name = "excute_batch", columnDefinition = " varchar(500) COMMENT '执行的命令'")
 	private String	excuteBatch;
@@ -99,7 +101,7 @@ public class SysCrawlerTaskInfo {
 	private String	updateUser;	 // updata_user 更新人
 	
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer	deleteFlag;
+	private Integer	deleteFlag	= 0;
 	
 	/**  
 	 *  方法名 ： getUuid 
@@ -463,7 +465,7 @@ public class SysCrawlerTaskInfo {
 	 *  功    能 ： 返回变量 requestType 的值  
 	 *  @return: Integer 
 	 */
-	public Integer getRequestType() {
+	public String getRequestType() {
 		return requestType;
 	}
 	
@@ -471,7 +473,7 @@ public class SysCrawlerTaskInfo {
 	 *  方法名 ： setRequestType 
 	 *  功    能 ： 设置变量 requestType 的值
 	 */
-	public void setRequestType(Integer requestType) {
+	public void setRequestType(String requestType) {
 		this.requestType = requestType;
 	}
 	
