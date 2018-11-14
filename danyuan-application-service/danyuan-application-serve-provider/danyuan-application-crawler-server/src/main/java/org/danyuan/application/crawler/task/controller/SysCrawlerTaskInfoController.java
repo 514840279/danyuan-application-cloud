@@ -63,6 +63,11 @@ public class SysCrawlerTaskInfoController {
 		return sysCrawlerTaskInfoService.findAll(info);
 	}
 	
+	@RequestMapping("/findUrlType")
+	public List<String> findUrlType() {
+		return sysCrawlerTaskInfoService.findUrlType();
+	}
+	
 	/** 
 	*  方法名 ： findOne
 	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  

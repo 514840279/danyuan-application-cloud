@@ -170,7 +170,7 @@ $(function() {
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'middle',visible:false},
 			{title : '任务名称',field : 'taskName',align : 'center',sortable : true,valign : 'middle'},
-			{title : '网站名称',field : 'urlName',align : 'center',sortable : true,valign : 'middle',width:120,formatter:urlPathformatter},
+			{title : '网站类型',field : 'urlType',align : 'center',sortable : true,valign : 'middle',width:120,formatter:urlPathformatter},
 			{title : '网站图标',field : 'webIcon',align : 'center',sortable : true,valign : 'middle',width:60,formatter:imgShowFormatter},
 			{title : '网址',field : 'url',sortable : true,align : 'center',valign : 'middle', sortable: true,visible:false},
 			{title : '请求数据',field : 'requestData',sortable : true,align : 'center',valign : 'middle',visible:false},

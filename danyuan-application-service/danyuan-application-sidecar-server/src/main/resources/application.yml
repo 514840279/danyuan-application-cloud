@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: danyuan-application-sidecar-server
+    
 eureka:
   client:
     enabled: true

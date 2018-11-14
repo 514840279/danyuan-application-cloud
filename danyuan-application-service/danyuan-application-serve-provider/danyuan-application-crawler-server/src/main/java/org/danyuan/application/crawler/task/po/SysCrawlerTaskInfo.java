@@ -40,9 +40,6 @@ public class SysCrawlerTaskInfo {
 	@Column(name = "url_type", columnDefinition = " varchar(36) COMMENT '网站类型'")
 	private String	urlType;
 	
-	@Column(name = "url_name", columnDefinition = " varchar(100) COMMENT '网站名称'")
-	private String	urlName;
-	
 	@Column(name = "charset", columnDefinition = " varchar(20) COMMENT '字符集'")
 	private String	charset;
 	
@@ -390,23 +387,6 @@ public class SysCrawlerTaskInfo {
 	 */
 	public void setUrlType(String urlType) {
 		this.urlType = urlType;
-	}
-	
-	/**  
-	 *  方法名 ： getUrlName 
-	 *  功    能 ： 返回变量 urlName 的值  
-	 *  @return: String 
-	 */
-	public String getUrlName() {
-		return urlName;
-	}
-	
-	/**  
-	 *  方法名 ： setUrlName 
-	 *  功    能 ： 设置变量 urlName 的值
-	 */
-	public void setUrlName(String urlName) {
-		this.urlName = urlName;
 	}
 	
 	/**  

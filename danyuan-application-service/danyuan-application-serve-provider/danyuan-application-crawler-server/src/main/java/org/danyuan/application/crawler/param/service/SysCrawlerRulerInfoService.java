@@ -11,7 +11,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
@@ -77,8 +76,9 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	@Override
 	public Page<SysCrawlerRulerInfo> page(int pageNumber, int pageSize, SysCrawlerRulerInfo entity, Map<String, String> map, Order... order) {
 		Example<SysCrawlerRulerInfo> example = Example.of(entity);
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
+		Sort sort = new Sort(order);
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		
 		return sysCrawlerRulerInfoDao.findAll(example, request);
 	}
 	

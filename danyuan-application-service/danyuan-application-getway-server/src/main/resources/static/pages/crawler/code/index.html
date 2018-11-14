@@ -13,12 +13,12 @@
 	<!-- 头部设计 -->
 	<section class="content-header">
 		<h1>
-			任务管理<small>爬虫管理</small>
+			规则管理<small>爬虫管理</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
 			<li><a href="#">爬虫管理 </a></li>
-			<li class="active">任务管理</li>
+			<li class="active">规则管理</li>
 		</ol>
 	</section>
 
@@ -26,7 +26,7 @@
 	<section class="content">
 		<div class="box">
 			<div class="box-header with-border">
-				<h3 class="box-title">组织设置</h3>
+				<h3 class="box-title">规则设置</h3>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -41,48 +41,30 @@
 				<div class="row">
 					<div class=" col-md-6">
 						<div class=" col-md-12 form-group">
-							<label class="col-sm-3 control-label text-right">名称:</label>
+							<label class="col-sm-3 control-label text-right">网站类别:</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="search_task_taskName" name="taskName" placeholder="网站名称" />
+								<select style="width: 100%;" id="search_task_urlType"></select>
 							</div>
 						</div>
 					</div>
 					<div class=" col-md-6">
 						<div class=" col-md-12 form-group">
-							<label class="col-sm-3 control-label text-right">状态:</label>
+							<label class="col-sm-3 control-label text-right">网站名:</label>
 							<div class="col-sm-9">
-								<select style="width: 100%;" id="search_task_excuteFlag">
-								</select>
+								<select style="width: 100%;" id="search_task_taskName"></select>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<div id="dbm_config_table_toolbar">
-					<div class="btn-group">
-						<button type="button" class="btn btn-default" id="addnew_config_table" title="新增">
-							<i class="fa fa-plus"></i> 新增
-						</button>
-						<button type="button" class="btn btn-default" id="deleteold_config_table" title="删除">
-							<i class="glyphicon glyphicon-trash"></i> 删除
-						</button>
-					</div>
-
-					<div class="btn-group">
-						<button type="button" class="btn btn-default" id="start_config_table" title="启动">
-							<i class="glyphicon glyphicon-play"></i> 启动
-						</button>
-						<button type="button" class="btn btn-default" id="stop_config_table" title="停止">
-							<i class="glyphicon glyphicon-pause"></i> 停止
-						</button>
-					</div>
+				<div class="col-xs-12">
+	
+					<table class="table table-striped table-bordered" id="crawler_rule_group_config_table_datagrid" data-toggle="crawler_rule_group_config_table_datagrid"></table>
 				</div>
-				<table class="table table-striped table-bordered" id="dbm_config_table_datagrid" data-toggle="dbm_config_table_datagrid"></table>
 			</div>
 		</div>
 	</section>
 	<!-- 	<script type="text/javascript" src="/pages/crawler/task/rule.js"></script> -->
-	<script type="text/javascript" src="/pages/crawler/task/index.js"></script>
+	<script type="text/javascript" src="/pages/crawler/rule/index.js"></script>
 
 </body>
 </html>

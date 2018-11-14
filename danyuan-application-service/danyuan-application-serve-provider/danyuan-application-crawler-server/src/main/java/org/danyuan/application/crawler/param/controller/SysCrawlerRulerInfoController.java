@@ -7,6 +7,7 @@ import org.danyuan.application.crawler.param.po.SysCrawlerRulerInfo;
 import org.danyuan.application.crawler.param.service.SysCrawlerRulerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class SysCrawlerRulerInfoController {
 	*/
 	@RequestMapping("/page")
 	public Page<SysCrawlerRulerInfo> page(@RequestBody Pagination<SysCrawlerRulerInfo> vo) {
-		return sysCrawlerRulerInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order(null));
+		return sysCrawlerRulerInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order(Direction.DESC, "createTime"));
 	}
 	
 	/** 

@@ -39,7 +39,7 @@ public class SysCrawlerRulerColumInfoController {
 	*/
 	@RequestMapping("/page")
 	public Page<SysCrawlerRulerColumInfo> page(@RequestBody Pagination<SysCrawlerRulerColumInfo> vo) {
-		return sysCrawlerRulerColumInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order(""));
+		return sysCrawlerRulerColumInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), new Order("createTime"));
 	}
 	
 	/** 

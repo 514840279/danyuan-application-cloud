@@ -8,11 +8,12 @@ import org.springframework.cloud.netflix.sidecar.EnableSidecar;
 /**
  * Hello world!
  */
-@EnableSidecar
-@EnableEurekaClient
 @SpringBootApplication
+@EnableEurekaClient
+@EnableSidecar
 public class SidecarApp {
 	public static void main(String[] args) {
 		SpringApplication.run(SidecarApp.class, args);
 	}
+	
 }

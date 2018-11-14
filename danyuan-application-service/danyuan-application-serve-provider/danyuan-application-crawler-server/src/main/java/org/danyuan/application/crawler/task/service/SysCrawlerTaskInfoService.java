@@ -146,4 +146,28 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 		sysCrawlerTaskInfoDao.deleteAllInBatch();
 	}
 	
+	/**  
+	*  方法名： findUrlType  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<SysCrawlerTaskInfo>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	public List<String> findUrlType() {
+		return sysCrawlerTaskInfoDao.findUrlType();
+	}
+	
+	/**  
+	*  方法名： findTaskName  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	public List<String> findTaskName() {
+		return sysCrawlerTaskInfoDao.findTaskName();
+	}
+	
 }
