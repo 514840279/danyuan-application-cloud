@@ -1,6 +1,7 @@
 package org.danyuan.application.softm.organization.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.danyuan.application.softm.organization.dao.SysDepartmentDao;
 import org.danyuan.application.softm.organization.po.SysDepartmentInfo;
@@ -26,11 +27,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysDepartmentService")
 public class SysDepartmentServiceImpl implements SysDepartmentService {
-	
+
 	//
 	@Autowired
 	private SysDepartmentDao sysDepartmentDao;
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -39,12 +40,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.admin.department.service.SysDepartmentService#findAll()
 	 * 作 者 ： Tenghui.Wang
 	 */
-	
+
 	@Override
 	public List<SysDepartmentInfo> findAll() {
 		return sysDepartmentDao.findAll();
 	}
-	
+
 	/**
 	 * 方法名 ： findByUuid
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -54,12 +55,16 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysDepartmentInfo findByUuid(String uuid) {
-		return sysDepartmentDao.findOne(uuid);
+		Optional<SysDepartmentInfo> t = sysDepartmentDao.findById(uuid);
+		if (t.isPresent()) {
+			return t.get();
+		}
+		return null;
 	}
-	
+
 	/**
 	 * 方法名 ： findAllBySearchText
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -72,16 +77,16 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * int, tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysDepartmentInfo> findAllBySearchText(int pageNumber, int pageSize, SysDepartmentInfo info) {
 		Example<SysDepartmentInfo> example = Example.of(info);
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysDepartmentInfo> sourceCodes = sysDepartmentDao.findAll(example, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -90,12 +95,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#save(tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void save(SysDepartmentInfo info) {
 		sysDepartmentDao.save(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -104,12 +109,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#delete(tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysDepartmentInfo info) {
 		sysDepartmentDao.delete(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -118,12 +123,12 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(List<SysDepartmentInfo> list) {
-		sysDepartmentDao.delete(list);
+		sysDepartmentDao.deleteAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -132,10 +137,10 @@ public class SysDepartmentServiceImpl implements SysDepartmentService {
 	 * tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysDepartmentDao.deleteAll();
 	}
-	
+
 }

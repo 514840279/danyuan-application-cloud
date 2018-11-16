@@ -5,11 +5,7 @@ package org.danyuan.application.common.dic.service;
 
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.dic.dao.SysDicKeyListDao;
@@ -55,7 +51,11 @@ public class SysDicNameService implements BaseService<SysDicName> {
 	@Override
 	public SysDicName findOne(SysDicName info) {
 		Example<SysDicName> example = Example.of(info);
-		return sysDicNameDao.findOne(example);
+		Optional<SysDicName> t = sysDicNameDao.findOne(example);
+		if (t.isPresent()) {
+			info = t.get();
+		}
+		return info;
 	}
 
 	/**
@@ -87,19 +87,14 @@ public class SysDicNameService implements BaseService<SysDicName> {
 	 */
 
 	@Override
-	public Page<SysDicName> page(int pageNumber, int pageSize, SysDicName info, Map<String, String> map, Order... order) {
-		// Example<SysDicName> example = Example.of(info);
-		Sort sort = new Sort(order);
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		return sysDicNameDao.findAll(new Specification<SysDicName>() {
-
-			@Override
-			public Predicate toPredicate(Root<SysDicName> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if (info.getName() != null) {
-					return cb.like(root.get("name").as(String.class), "%" + info.getName() + "%");
-				} else {
-					return null;
-				}
+	public Page<SysDicName> page(int pageNumber, int pageSize, SysDicName info, Map<String, String> map, List<Order> order) {
+		Sort sort = Sort.by(order);
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+		return sysDicNameDao.findAll((Specification<SysDicName>) (root, query, cb) -> {
+			if (info.getName() != null) {
+				return cb.like(root.get("name").as(String.class), "%" + info.getName() + "%");
+			} else {
+				return null;
 			}
 		}, request);
 	}
@@ -126,8 +121,8 @@ public class SysDicNameService implements BaseService<SysDicName> {
 	 */
 
 	@Override
-	public void save(List<SysDicName> list) {
-		sysDicNameDao.save(list);
+	public void saveAll(List<SysDicName> list) {
+		sysDicNameDao.saveAll(list);
 	}
 
 	/**
@@ -152,8 +147,8 @@ public class SysDicNameService implements BaseService<SysDicName> {
 	 */
 
 	@Override
-	public void delete(List<SysDicName> list) {
-		sysDicNameDao.delete(list);
+	public void deleteAll(List<SysDicName> list) {
+		sysDicNameDao.deleteAll(list);
 	}
 
 	/**
@@ -201,15 +196,19 @@ public class SysDicNameService implements BaseService<SysDicName> {
 	 */
 	public List<SysDicKeyList> findkeyList(SysDicName info) {
 		Example<SysDicName> example = Example.of(info);
-		info = sysDicNameDao.findOne(example);
+		Optional<SysDicName> reinfo = sysDicNameDao.findOne(example);
+		if (reinfo.isPresent()) {
+			info = reinfo.get();
+			SysDicKeyList key = new SysDicKeyList();
+			key.setNameUuid(info.getUuid());
 
-		SysDicKeyList key = new SysDicKeyList();
-		key.setNameUuid(info.getUuid());
-
-		Example<SysDicKeyList> ke = Example.of(key);
-		Order[] order = { new Order(Direction.ASC, "keyOrder"), new Order(Direction.ASC, "createTime") };
-		Sort sort = new Sort(order);
-		return sysDicKeyListDao.findAll(ke, sort);
+			Example<SysDicKeyList> ke = Example.of(key);
+			Order[] order = { new Order(Direction.ASC, "keyOrder"), new Order(Direction.ASC, "createTime") };
+			Sort sort = Sort.by(order);
+			return sysDicKeyListDao.findAll(ke, sort);
+		} else {
+			return null;
+		}
 	}
 
 }

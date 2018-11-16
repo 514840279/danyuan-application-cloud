@@ -35,12 +35,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysComnLogsService {
-	
+
 	@Autowired
-	SysComnLogsDao	sysComnLogsDao;
+	SysComnLogsDao	sysComnLoggersDao;
 	@Autowired
 	VSysComnLogsDao	vSysComnLogsDao;
-	
+
 	/**
 	 * @param vo
 	 * 方法名： findAllError
@@ -52,9 +52,14 @@ public class SysComnLogsService {
 	 */
 	public Page<SysComnLogs> findAllError(SysComnLogsVo vo) {
 		// Example<SysComnLogs> example = Example.of(vo.getInfo());
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(vo.getPageNumber() - 1, vo.getPageSize(), sort);
-		Page<SysComnLogs> sourceCodes = sysComnLogsDao.findAll(new Specification<SysComnLogs>() {
+		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
+		Page<SysComnLogs> sourceCodes = sysComnLoggersDao.findAll(new Specification<SysComnLogs>() {
+			/**
+			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+			 */
+			private static final long serialVersionUID = 1L;
+			
 			@Override
 			public Predicate toPredicate(Root<SysComnLogs> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<>();
@@ -64,7 +69,7 @@ public class SysComnLogsService {
 		}, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名： findAllLongtime
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -75,9 +80,14 @@ public class SysComnLogsService {
 	 * @throws
 	 */
 	public Page<SysComnLogs> findAllLongtime(SysComnLogsVo vo) {
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(vo.getPageNumber() - 1, vo.getPageSize(), sort);
-		Page<SysComnLogs> sourceCodes = sysComnLogsDao.findAll(new Specification<SysComnLogs>() {
+		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
+		Page<SysComnLogs> sourceCodes = sysComnLoggersDao.findAll(new Specification<SysComnLogs>() {
+			/**
+			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+			 */
+			private static final long serialVersionUID = 1L;
+			
 			@Override
 			public Predicate toPredicate(Root<SysComnLogs> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<>();
@@ -89,7 +99,7 @@ public class SysComnLogsService {
 		}, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名： findAllZhcx
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -101,12 +111,12 @@ public class SysComnLogsService {
 	 */
 	public Page<VSysComnLogs> findAllZhcx(SysComnLogsVo vo) {
 		Example<VSysComnLogs> example = Example.of(new VSysComnLogs());
-		Sort sort = new Sort(new Order(Direction.DESC, "date1"), new Order(Direction.DESC, "time1"));
-		PageRequest request = new PageRequest(vo.getPageNumber() - 1, vo.getPageSize(), sort);
+		Sort sort = Sort.by(new Order(Direction.DESC, "date1"), new Order(Direction.DESC, "time1"));
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<VSysComnLogs> sourceCodes = vSysComnLogsDao.findAll(example, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -118,10 +128,15 @@ public class SysComnLogsService {
 	 */
 	public Page<SysComnLogs> findAll(SysComnLogsVo vo) {
 		// Example<SysComnLogs> example = Example.of(vo.getInfo());
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(vo.getPageNumber() - 1, vo.getPageSize(), sort);
-		Page<SysComnLogs> sourceCodes = sysComnLogsDao.findAll(new Specification<SysComnLogs>() {
-			
+		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
+		Page<SysComnLogs> sourceCodes = sysComnLoggersDao.findAll(new Specification<SysComnLogs>() {
+
+			/**
+			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public Predicate toPredicate(Root<SysComnLogs> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<>();

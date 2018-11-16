@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * 时 间 ： 2018年4月9日 下午3:10:53
  * 版 本 ： V1.0
  */
-@Repository
+@Repository(value = "sysComnLogsDao")
 public interface SysComnLogsDao extends BaseDao<SysComnLogs> {
 
 }

@@ -10,6 +10,7 @@ package org.danyuan.application.common.dic.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.dic.dao.SysDicKeyListDao;
@@ -50,7 +51,11 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	@Override
 	public SysDicKeyList findOne(SysDicKeyList info) {
 		Example<SysDicKeyList> example = Example.of(info);
-		return sysDicKeyListDao.findOne(example);
+		Optional<SysDicKeyList> t = sysDicKeyListDao.findOne(example);
+		if (t.isPresent()) {
+			info = t.get();
+		}
+		return info;
 	}
 
 	/**
@@ -82,10 +87,10 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 */
 
 	@Override
-	public Page<SysDicKeyList> page(int pageNumber, int pageSize, SysDicKeyList info, Map<String, String> map, Order... order) {
+	public Page<SysDicKeyList> page(int pageNumber, int pageSize, SysDicKeyList info, Map<String, String> map, List<Order> order) {
 		Example<SysDicKeyList> example = Example.of(info);
-		Sort sort = new Sort(order);
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(order);
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysDicKeyList> page = sysDicKeyListDao.findAll(example, request);
 		return page;
 	}
@@ -112,8 +117,8 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 */
 
 	@Override
-	public void save(List<SysDicKeyList> list) {
-		sysDicKeyListDao.save(list);
+	public void saveAll(List<SysDicKeyList> list) {
+		sysDicKeyListDao.saveAll(list);
 	}
 
 	/**
@@ -138,7 +143,7 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 */
 
 	@Override
-	public void delete(List<SysDicKeyList> list) {
+	public void deleteAll(List<SysDicKeyList> list) {
 		sysDicKeyListDao.deleteInBatch(list);
 	}
 

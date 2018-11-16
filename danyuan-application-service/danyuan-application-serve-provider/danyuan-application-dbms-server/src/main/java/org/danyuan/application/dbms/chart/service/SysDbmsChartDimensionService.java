@@ -10,6 +10,7 @@ package org.danyuan.application.dbms.chart.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.dbms.chart.dao.SysDbmsChartDimensionDao;
@@ -35,10 +36,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDimension> {
-
+	
 	@Autowired
 	SysDbmsChartDimensionDao sysDbmsChartDimensionDao;
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -51,9 +52,13 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	@Override
 	public SysDbmsChartDimension findOne(SysDbmsChartDimension info) {
 		Example<SysDbmsChartDimension> example = Example.of(info);
-		return sysDbmsChartDimensionDao.findOne(example);
+		Optional<SysDbmsChartDimension> dimension = sysDbmsChartDimensionDao.findOne(example);
+		if (dimension.isPresent()) {
+			return dimension.get();
+		}
+		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -62,15 +67,15 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public List<SysDbmsChartDimension> findAll(SysDbmsChartDimension info) {
 		Example<SysDbmsChartDimension> example = Example.of(info);
 		Order order = new Order(Direction.ASC, "dimeOrder");
-		Sort sort = new Sort(order);
+		Sort sort = Sort.by(order);
 		return sysDbmsChartDimensionDao.findAll(example, sort);
 	}
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -83,15 +88,15 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
-	public Page<SysDbmsChartDimension> page(int pageNumber, int pageSize, SysDbmsChartDimension info, Map<String, String> map, Order... order) {
+	public Page<SysDbmsChartDimension> page(int pageNumber, int pageSize, SysDbmsChartDimension info, Map<String, String> map, List<Order> order) {
 		Example<SysDbmsChartDimension> example = Example.of(info);
-		Sort sort = new Sort(order);
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(order);
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		return sysDbmsChartDimensionDao.findAll(example, request);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -99,13 +104,13 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void save(SysDbmsChartDimension info) {
 		sysDbmsChartDimensionDao.save(info);
-		
-	}
 
+	}
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -113,12 +118,12 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
-	@Override
-	public void save(List<SysDbmsChartDimension> list) {
-		sysDbmsChartDimensionDao.save(list);
-	}
 
+	@Override
+	public void saveAll(List<SysDbmsChartDimension> list) {
+		sysDbmsChartDimensionDao.saveAll(list);
+	}
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -126,12 +131,12 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysDbmsChartDimension info) {
 		sysDbmsChartDimensionDao.delete(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -139,12 +144,12 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
-	@Override
-	public void delete(List<SysDbmsChartDimension> list) {
-		sysDbmsChartDimensionDao.delete(list);
-	}
 
+	@Override
+	public void deleteAll(List<SysDbmsChartDimension> list) {
+		sysDbmsChartDimensionDao.deleteAll(list);
+	}
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -152,12 +157,12 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysDbmsChartDimensionDao.deleteAllInBatch();
 	}
-
+	
 	/**
 	 * 方法名： updBefor
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -170,7 +175,7 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	public SysDbmsChartDimension updBefor(SysDbmsChartDimension task) {
 		return null;
 	}
-
+	
 	/**
 	 * 方法名： findAllDime
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -186,7 +191,7 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 		// Sort sort = new Sort(order);
 		return sysDbmsChartDimensionDao.findAllDime();
 	}
-
+	
 	/**
 	 * 方法名： changeGroup
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -198,5 +203,5 @@ public class SysDbmsChartDimensionService implements BaseService<SysDbmsChartDim
 	public void changeGroup(SysDbmsChartDimension info) {
 		sysDbmsChartDimensionDao.changeGroup(info.getUuid(), info.getGroupUuid());
 	}
-	
+
 }

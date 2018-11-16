@@ -1,6 +1,7 @@
 package org.danyuan.application.softm.sysmenu.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.danyuan.application.softm.sysmenu.dao.SysSystemDao;
 import org.danyuan.application.softm.sysmenu.po.SysSystemInfo;
@@ -26,10 +27,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysSystemService")
 public class SysSystemServiceImpl implements SysSystemService {
-	
+
 	@Autowired
 	private SysSystemDao sysSystemDao;
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -37,12 +38,12 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * 参 考 ： @see tk.ainiyue.admin.sysmenu.service.SysmenuService#findAll()
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<SysSystemInfo> findAll() {
 		return sysSystemDao.findAll();
 	}
-
+	
 	/**
 	 * 方法名 ： findByUuid
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -52,12 +53,16 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * tk.ainiyue.danyuan.application.softm.system.service.SysSystemService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysSystemInfo findByUuid(String uuid) {
-		return sysSystemDao.findOne(uuid);
+		Optional<SysSystemInfo> info = sysSystemDao.findById(uuid);
+		if (info.isPresent()) {
+			return info.get();
+		}
+		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findAllBySearchText
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -70,16 +75,16 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * int, tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysSystemInfo> findAllBySearchText(int pageNumber, int pageSize, SysSystemInfo info) {
 		Example<SysSystemInfo> example = Example.of(info);
-		Sort sort = new Sort(new Order(Direction.DESC, "insertDatetime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(new Order(Direction.DESC, "insertDatetime"));
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysSystemInfo> sourceCodes = sysSystemDao.findAll(example, request);
 		return sourceCodes;
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -88,12 +93,12 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * tk.ainiyue.danyuan.application.softm.system.service.SysSystemService#save(tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void save(SysSystemInfo info) {
 		sysSystemDao.save(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -102,12 +107,12 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * tk.ainiyue.danyuan.application.softm.system.service.SysSystemService#delete(tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysSystemInfo info) {
 		sysSystemDao.delete(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -116,12 +121,12 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * tk.ainiyue.danyuan.application.softm.system.service.SysSystemService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(List<SysSystemInfo> list) {
-		sysSystemDao.delete(list);
+		sysSystemDao.deleteAll(list);
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -130,10 +135,10 @@ public class SysSystemServiceImpl implements SysSystemService {
 	 * tk.ainiyue.danyuan.application.softm.system.service.SysSystemService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysSystemDao.deleteAll();
 	}
-	
+
 }

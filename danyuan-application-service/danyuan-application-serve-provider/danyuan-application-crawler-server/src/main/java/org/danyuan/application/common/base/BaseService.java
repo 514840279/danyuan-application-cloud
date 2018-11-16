@@ -22,15 +22,15 @@ public interface BaseService<T> {
 	
 	List<T> findAll(T entity);
 	
-	Page<T> page(int pageNumber, int pageSize, T entity, Map<String, String> map, Order... order);
+	Page<T> page(int pageNumber, int pageSize, T entity, Map<String, String> map, List<Order> order);
 	
 	void save(T entity);
 	
-	void save(List<T> entities);
+	void saveAll(List<T> entities);
 	
 	void delete(T entity);
 	
-	void delete(List<T> entities);
+	void deleteAll(List<T> entities);
 	
 	void trunc();
 }

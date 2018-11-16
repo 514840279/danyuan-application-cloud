@@ -8,6 +8,7 @@
  */
 package org.danyuan.application.common.dic.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,13 +43,13 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/sysDicKeyList")
 @Api(value = "/SysDicKeyList", description = "字典数据")
 public class SysDicKeyListController {
-
+	
 	//
 	private static final Logger		logger	= LoggerFactory.getLogger(SysDicKeyListController.class);
 	//
 	@Autowired
 	private SysDicKeyListService	sysDicKeyListService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -67,9 +68,11 @@ public class SysDicKeyListController {
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDicKeyList());
 		}
-		return sysDicKeyListService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), order);
+		List<Order> orders = new ArrayList<>();
+		orders.add(order);
+		return sysDicKeyListService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), orders);
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -83,7 +86,7 @@ public class SysDicKeyListController {
 		logger.info("findAll", SysDicKeyListController.class);
 		return sysDicKeyListService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -97,7 +100,7 @@ public class SysDicKeyListController {
 		logger.info("findOne", SysDicKeyListController.class);
 		return sysDicKeyListService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -115,7 +118,7 @@ public class SysDicKeyListController {
 		sysDicKeyListService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -127,10 +130,10 @@ public class SysDicKeyListController {
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	public String save(Pagination<SysDicKeyList> vo) {
 		logger.info("save", SysDicKeyListController.class);
-		sysDicKeyListService.save(vo.getList());
+		sysDicKeyListService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -142,10 +145,10 @@ public class SysDicKeyListController {
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody Pagination<SysDicKeyList> vo) {
 		logger.info("delete", SysDicKeyListController.class);
-		sysDicKeyListService.delete(vo.getList());
+		sysDicKeyListService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -160,7 +163,7 @@ public class SysDicKeyListController {
 		sysDicKeyListService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -174,5 +177,5 @@ public class SysDicKeyListController {
 		sysDicKeyListService.trunc();
 		return "1";
 	}
-
+	
 }

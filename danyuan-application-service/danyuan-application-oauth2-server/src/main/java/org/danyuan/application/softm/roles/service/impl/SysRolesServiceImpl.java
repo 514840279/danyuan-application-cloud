@@ -1,6 +1,7 @@
 package org.danyuan.application.softm.roles.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.danyuan.application.softm.roles.dao.SysRolesDao;
 import org.danyuan.application.softm.roles.dao.SysUserRolesDao;
@@ -62,7 +63,11 @@ public class SysRolesServiceImpl implements SysRolesService {
 
 	@Override
 	public SysRolesInfo findByUuid(String uuid) {
-		return sysRolesDao.findOne(uuid);
+		Optional<SysRolesInfo> t = sysRolesDao.findById(uuid);
+		if (t.isPresent()) {
+			return t.get();
+		}
+		return null;
 	}
 
 	/**
@@ -81,8 +86,8 @@ public class SysRolesServiceImpl implements SysRolesService {
 	@Override
 	public Page<SysRolesInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesInfo info) {
 		Example<SysRolesInfo> example = Example.of(info);
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysRolesInfo> sourceCodes = sysRolesDao.findAll(example, request);
 		return sourceCodes;
 	}
@@ -126,7 +131,7 @@ public class SysRolesServiceImpl implements SysRolesService {
 
 	@Override
 	public void delete(List<SysRolesInfo> list) {
-		sysRolesDao.delete(list);
+		sysRolesDao.deleteAll(list);
 	}
 
 	/**
@@ -151,9 +156,9 @@ public class SysRolesServiceImpl implements SysRolesService {
 			info.setUserId(userId);
 			info.setRolesId(sysRolesInfo.getUuid());
 			Example<SysUserRolesInfo> e = Example.of(info);
-			info = sysUserRolesDao.findOne(e);
-			if (info != null) {
-				sysRolesInfo.setChecked(info.getChecked());
+			Optional<SysUserRolesInfo> t = sysUserRolesDao.findOne(e);
+			if (!t.isPresent()) {
+				sysRolesInfo.setChecked(t.get().getChecked());
 			}
 		}
 

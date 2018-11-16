@@ -2,6 +2,7 @@ package org.danyuan.application.softm.roles.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.danyuan.application.softm.roles.dao.SysRolesDao;
 import org.danyuan.application.softm.roles.dao.SysUserBaseDao;
@@ -61,8 +62,11 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		SysUserBaseInfo info = new SysUserBaseInfo();
 		info.setUserName(userName);
 		Example<SysUserBaseInfo> example = Example.of(info);
-		SysUserBaseInfo sourceCodes = sysUserBaseDao.findOne(example);
-		return sourceCodes;
+		Optional<SysUserBaseInfo> sourceCodes = sysUserBaseDao.findOne(example);
+		if (sourceCodes.isPresent()) {
+			return sourceCodes.get();
+		}
+		return null;
 	}
 
 	/**
@@ -88,8 +92,11 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public SysUserBaseInfo findByUuid(String uuid) {
-
-		return sysUserBaseDao.findOne(uuid);
+		Optional<SysUserBaseInfo> tBaseInfo = sysUserBaseDao.findById(uuid);
+		if (tBaseInfo.isPresent()) {
+			return tBaseInfo.get();
+		}
+		return null;
 	}
 
 	/**
@@ -107,8 +114,8 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		// Page<SysColumnInfo> list =
 		// sysColumnDao.findAllByTableUuid(tableUuid);
 		Example<SysUserBaseInfo> example = Example.of(info);
-		Sort sort = new Sort(new Order(Direction.ASC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(new Order(Direction.ASC, "createTime"));
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysUserBaseInfo> sourceCodes = sysUserBaseDao.findAll(example, request);
 		return sourceCodes;
 	}
@@ -141,7 +148,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 			}
 			userRoleList.add(userRolesInfo);
 		}
-		sysUserRolesDao.save(userRoleList);
+		sysUserRolesDao.saveAll(userRoleList);
 	}
 
 	/**
@@ -152,7 +159,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public void delete(SysUserBaseVo vo) {
-		sysUserBaseDao.delete(vo.getList());
+		sysUserBaseDao.deleteAll(vo.getList());
 
 	}
 
@@ -164,7 +171,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public void delete(List<SysUserBaseInfo> list) {
-		sysUserBaseDao.delete(list);
+		sysUserBaseDao.deleteAll(list);
 
 	}
 
@@ -241,7 +248,11 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	@Override
 	public SysUserBaseInfo findOne(SysUserBaseInfo sysUserBaseInfo) {
 		Example<SysUserBaseInfo> example = Example.of(sysUserBaseInfo);
-		return sysUserBaseDao.findOne(example);
+		Optional<SysUserBaseInfo> baseInfo = sysUserBaseDao.findOne(example);
+		if (baseInfo.isPresent()) {
+			return baseInfo.get();
+		}
+		return null;
 	}
 
 	/**

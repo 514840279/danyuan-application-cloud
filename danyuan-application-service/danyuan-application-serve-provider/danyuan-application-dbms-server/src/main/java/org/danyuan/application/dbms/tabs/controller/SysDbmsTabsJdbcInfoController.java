@@ -32,10 +32,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class SysDbmsTabsJdbcInfoController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsJdbcInfoController.class);
-
+	
 	@Autowired
 	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -49,7 +49,7 @@ public class SysDbmsTabsJdbcInfoController {
 		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
 		return sysDbmsTabsJdbcInfoService.findAll();
 	}
-
+	
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsJdbcInfo sysDbmsTabsJdbcInfo) {
 		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
@@ -59,7 +59,7 @@ public class SysDbmsTabsJdbcInfoController {
 		sysDbmsTabsJdbcInfoService.save(sysDbmsTabsJdbcInfo);
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		SysDbmsTabsJdbcInfo info = new SysDbmsTabsJdbcInfo();
@@ -72,13 +72,13 @@ public class SysDbmsTabsJdbcInfoController {
 		view.addObject("SysDbmsTabsJdbcInfo", info);
 		return view;
 	}
-
+	
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
 		logger.error(vo.getList().get(0).toString());
 		logger.info("delete", SysDbmsTabsJdbcInfoController.class);
-		sysDbmsTabsJdbcInfoService.delete(vo.getList());
+		sysDbmsTabsJdbcInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 }

@@ -8,6 +8,7 @@
  */
 package org.danyuan.application.dbms.chart.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,7 +60,9 @@ public class SysDbmsChartDimensionDataController {
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsChartDimensionData());
 		}
-		return sysDbmsChartDimensionDataService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), order);
+		List<Order> orders = new ArrayList<>();
+		orders.add(order);
+		return sysDbmsChartDimensionDataService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), orders);
 
 	}
 
@@ -116,7 +119,7 @@ public class SysDbmsChartDimensionDataController {
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	public String save(@RequestBody Pagination<SysDbmsChartDimensionData> vo) {
 		logger.info("save", SysDbmsChartDimensionDataController.class);
-		sysDbmsChartDimensionDataService.save(vo.getList());
+		sysDbmsChartDimensionDataService.saveAll(vo.getList());
 		return "1";
 	}
 
@@ -133,7 +136,7 @@ public class SysDbmsChartDimensionDataController {
 			System.err.println(data.toString());
 		}
 		logger.info("delete", SysDbmsChartDimensionDataController.class);
-		sysDbmsChartDimensionDataService.delete(vo.getList());
+		sysDbmsChartDimensionDataService.deleteAll(vo.getList());
 		return "1";
 	}
 

@@ -2,13 +2,14 @@ server:
   port: 8800
   context-path: /oauth2
 spring:
+  main:    allow-bean-definition-overriding: true
   application:
     name: danyuan-application-oauth2-server
   datasource:
-    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
     username: root
     password: 514840279@qq.com
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: MYSQL
     show-sql: true
@@ -49,11 +50,12 @@ logging:
    
 eureka:
   client:
-    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
     serviceUrl:
       defaultZone: http://wth:wth@localhost:8761/eureka/
-      
   instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    hostname: localhost
+    preferIpAddress: true
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
           

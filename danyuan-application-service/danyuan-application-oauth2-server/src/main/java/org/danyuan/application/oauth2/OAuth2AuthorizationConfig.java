@@ -34,7 +34,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore()).accessTokenConverter(jwtAccessTokenConverter()).authenticationManager(authenticationManager);
-		;
+		
 //		.userDetailsService(userService); // 配置userService 这样每次认证的时候会去检验用户是否锁定，有效等
 	}
 	

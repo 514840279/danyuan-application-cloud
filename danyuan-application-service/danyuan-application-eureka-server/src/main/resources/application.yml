@@ -2,19 +2,24 @@
 server:
   port: 8761
 
+
 spring:
   application:
     name: danyuan-application-crawler-server
 security:
   user:
     name: wth
-    password: wth  
+    password: wth
  
 eureka:
   instance:
-    hostname: discovery         # 指定该Eureka实例的主机名
+    hostname: localhost         # 指定该Eureka实例的主机名
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://wth:wth@${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    waitTimeInMsWhenSyncEmpty: 0  
+      
+     

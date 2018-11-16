@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
  * 时 间 ： 2018年5月16日 上午9:33:16
  * 版 本 ： V1.0
  */
-@Repository
+@Repository(value = "sysDicKeyListDao")
 public interface SysDicKeyListDao extends BaseDao<SysDicKeyList> {
 	
 }

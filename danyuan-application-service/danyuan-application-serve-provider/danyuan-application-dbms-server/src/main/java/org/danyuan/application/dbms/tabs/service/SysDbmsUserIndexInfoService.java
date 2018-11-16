@@ -53,8 +53,8 @@ public class SysDbmsUserIndexInfoService {
 	 */
 	public Page<SysDbmsUserIndexInfo> page(int pageNumber, int pageSize, SysDbmsUserIndexInfo col) {
 		Example<SysDbmsUserIndexInfo> example = Example.of(col);
-		Sort sort = new Sort(new Order(Direction.ASC, "userOrder"), new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(new Order(Direction.ASC, "userOrder"), new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysDbmsUserIndexInfo> sourceCodes = sysDbmsUserIndexInfoDao.findAll(example, request);
 		return sourceCodes;
 	}
@@ -80,7 +80,7 @@ public class SysDbmsUserIndexInfoService {
 	 * @throws
 	 */
 	public void delete(List<SysDbmsUserIndexInfo> list) {
-		sysDbmsUserIndexInfoDao.delete(list);
+		sysDbmsUserIndexInfoDao.deleteAll(list);
 	}
 
 	/**

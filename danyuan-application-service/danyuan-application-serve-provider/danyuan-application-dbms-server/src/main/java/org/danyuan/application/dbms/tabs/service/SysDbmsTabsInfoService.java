@@ -2,6 +2,7 @@ package org.danyuan.application.dbms.tabs.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.danyuan.application.common.base.BaseService;
@@ -114,7 +115,11 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	@Override
 	public SysDbmsTabsInfo findOne(SysDbmsTabsInfo info) {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
-		return sysDbmsTabsInfoDao.findOne(example);
+		Optional<SysDbmsTabsInfo> info2 = sysDbmsTabsInfoDao.findOne(example);
+		if (info2.isPresent()) {
+			return info2.get();
+		}
+		return null;
 	}
 	
 	public void savev(SysDbmsTabsInfo info) {
@@ -135,10 +140,10 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	 */
 	
 	@Override
-	public Page<SysDbmsTabsInfo> page(int pageNumber, int pageSize, SysDbmsTabsInfo info, Map<String, String> map, Order... order) {
+	public Page<SysDbmsTabsInfo> page(int pageNumber, int pageSize, SysDbmsTabsInfo info, Map<String, String> map, List<Order> order) {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
-		Sort sort = new Sort(order);
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(order);
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysDbmsTabsInfo> page = sysDbmsTabsInfoDao.findAll(example, request);
 		return page;
 	}
@@ -152,7 +157,7 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	 */
 	
 	@Override
-	public void save(List<SysDbmsTabsInfo> list) {
+	public void saveAll(List<SysDbmsTabsInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -196,7 +201,7 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	}
 	
 	@Override
-	public void delete(List<SysDbmsTabsInfo> list) {
+	public void deleteAll(List<SysDbmsTabsInfo> list) {
 		for (SysDbmsTabsInfo info : list) {
 			sysDbmsTabsColsInfoDao.deleteByTabsUuid(info.getUuid());
 			sysDbmsTabsInfoDao.delete(info);

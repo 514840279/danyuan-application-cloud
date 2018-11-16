@@ -1,6 +1,7 @@
 package org.danyuan.application.softm.organization.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.danyuan.application.softm.organization.dao.SysOrganizationDao;
 import org.danyuan.application.softm.organization.po.SysOrganizationInfo;
@@ -81,7 +82,11 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	 */
 	@Override
 	public SysOrganizationInfo findSysOrganization(String info) {
-		return sysOrganizationDao.findOne(info);
+		Optional<SysOrganizationInfo> t = sysOrganizationDao.findById(info);
+		if (t.isPresent()) {
+			return t.get();
+		}
+		return null;
 		
 	}
 	
@@ -111,7 +116,11 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	
 	@Override
 	public SysOrganizationInfo findByUuid(String uuid) {
-		return sysOrganizationDao.findOne(uuid);
+		Optional<SysOrganizationInfo> t = sysOrganizationDao.findById(uuid);
+		if (t.isPresent()) {
+			return t.get();
+		}
+		return null;
 	}
 	
 	/**
@@ -131,8 +140,8 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	@Override
 	public Page<SysOrganizationInfo> findAllBySearchText(int pageNumber, int pageSize, SysOrganizationInfo info) {
 		Example<SysOrganizationInfo> example = Example.of(info);
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysOrganizationInfo> sourceCodes = sysOrganizationDao.findAll(example, request);
 		return sourceCodes;
 	}
@@ -176,7 +185,7 @@ public class SysOrganizationServiceImpl implements SysOrganizationService {
 	
 	@Override
 	public void delete(List<SysOrganizationInfo> list) {
-		sysOrganizationDao.delete(list);
+		sysOrganizationDao.deleteAll(list);
 	}
 	
 	/**

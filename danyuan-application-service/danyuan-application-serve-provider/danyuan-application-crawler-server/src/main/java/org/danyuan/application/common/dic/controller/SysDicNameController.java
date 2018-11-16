@@ -8,6 +8,7 @@
  */
 package org.danyuan.application.common.dic.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +51,7 @@ public class SysDicNameController {
 	//
 	@Autowired
 	private SysDicNameService	sysDicNameService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -69,9 +70,11 @@ public class SysDicNameController {
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDicName());
 		}
-		return sysDicNameService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), order);
+		List<Order> orders = new ArrayList<>();
+		orders.add(order);
+		return sysDicNameService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), orders);
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -85,7 +88,7 @@ public class SysDicNameController {
 		logger.info("page", SysDicNameController.class);
 		return sysDicNameService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -99,7 +102,7 @@ public class SysDicNameController {
 		logger.info("findOne", SysDicNameController.class);
 		return sysDicNameService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -117,7 +120,7 @@ public class SysDicNameController {
 		sysDicNameService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -129,10 +132,10 @@ public class SysDicNameController {
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	public String save(Pagination<SysDicName> vo) {
 		logger.info("save", SysDicNameController.class);
-		sysDicNameService.save(vo.getList());
+		sysDicNameService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -144,10 +147,10 @@ public class SysDicNameController {
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody Pagination<SysDicName> vo) {
 		logger.info("delete", SysDicNameController.class);
-		sysDicNameService.delete(vo.getList());
+		sysDicNameService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -159,11 +162,11 @@ public class SysDicNameController {
 	@RequestMapping(path = "/deleteAll", method = RequestMethod.POST)
 	public String delete(SysDicName info) {
 		logger.info("delete", SysDicNameController.class);
-
+		
 		sysDicNameService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -177,7 +180,7 @@ public class SysDicNameController {
 		sysDicNameService.trunc();
 		return "1";
 	}
-
+	
 	@ApiOperation(value = "检查代码重复", notes = "")
 	@RequestMapping(path = "/checkCode", method = RequestMethod.POST)
 	public Map<String, Boolean> checkCode(String code) {
@@ -187,7 +190,7 @@ public class SysDicNameController {
 		map.put("valid", boo);
 		return map;
 	}
-
+	
 	@ApiOperation(value = "根据代码查列表值", notes = "")
 	@RequestMapping(path = "/findkeyList", method = RequestMethod.POST)
 	public List<SysDicKeyList> findkeyList(@RequestBody SysDicName info) {
@@ -195,5 +198,5 @@ public class SysDicNameController {
 		List<SysDicKeyList> list = sysDicNameService.findkeyList(info);
 		return list;
 	}
-	
+
 }

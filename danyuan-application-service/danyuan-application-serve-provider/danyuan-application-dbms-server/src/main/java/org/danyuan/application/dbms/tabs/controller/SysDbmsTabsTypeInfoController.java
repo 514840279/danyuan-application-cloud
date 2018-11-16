@@ -33,7 +33,7 @@ public class SysDbmsTabsTypeInfoController {
 	//
 	@Autowired
 	private SysDbmsTabsTypeInfoService	sysDbmsTabsTypeInfoService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -47,7 +47,7 @@ public class SysDbmsTabsTypeInfoController {
 		logger.info("findAll", SysDbmsTabsTypeInfoController.class);
 		return sysDbmsTabsTypeInfoService.findAll();
 	}
-
+	
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(@RequestBody SysDbmsTabsTypeInfoVo vo) {
 		logger.info("findAllBySearchText", SysDbmsTabsTypeInfoController.class);
@@ -57,19 +57,19 @@ public class SysDbmsTabsTypeInfoController {
 		}
 		return sysDbmsTabsTypeInfoService.findAllBySearchText(vo.getPageNumber(), vo.getPageSize(), info);
 	}
-
+	
 	@RequestMapping(path = "/sysTableTypeDeleteAll", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysTableTypeDeleteAll(@RequestBody SysDbmsTabsTypeInfoVo vo) {
 		logger.info("sysTableTypeDeleteAll", SysDbmsTabsTypeInfoController.class);
 		try {
-			sysDbmsTabsTypeInfoService.delete(vo.getList());
+			sysDbmsTabsTypeInfoService.deleteAll(vo.getList());
 			return "1";
 		} catch (Exception e) {
 			return "0";
 		}
 	}
-
+	
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysDbmsTabsTypeInfo info) {
@@ -78,5 +78,5 @@ public class SysDbmsTabsTypeInfoController {
 		sysDbmsTabsTypeInfoService.save(info);
 		return "1";
 	}
-
+	
 }

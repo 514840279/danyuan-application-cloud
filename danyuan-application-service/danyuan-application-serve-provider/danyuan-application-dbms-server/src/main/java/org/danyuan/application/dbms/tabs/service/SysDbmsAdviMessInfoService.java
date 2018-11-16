@@ -79,7 +79,7 @@ public class SysDbmsAdviMessInfoService implements BaseService<SysDbmsAdviMessIn
 	 */
 	
 	@Override
-	public void save(List<SysDbmsAdviMessInfo> list) {
+	public void saveAll(List<SysDbmsAdviMessInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -107,7 +107,7 @@ public class SysDbmsAdviMessInfoService implements BaseService<SysDbmsAdviMessIn
 	 */
 	
 	@Override
-	public void delete(List<SysDbmsAdviMessInfo> list) {
+	public void deleteAll(List<SysDbmsAdviMessInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -127,7 +127,7 @@ public class SysDbmsAdviMessInfoService implements BaseService<SysDbmsAdviMessIn
 	}
 	
 	@Override
-	public Page<SysDbmsAdviMessInfo> page(int pageNumber, int pageSize, SysDbmsAdviMessInfo info, Map<String, String> map, Order... order) {
+	public Page<SysDbmsAdviMessInfo> page(int pageNumber, int pageSize, SysDbmsAdviMessInfo info, Map<String, String> map, List<Order> order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

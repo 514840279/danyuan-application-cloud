@@ -20,7 +20,7 @@ import org.danyuan.application.dbms.tabs.service.ZhcxAdviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.data.domain.Example;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -49,18 +49,18 @@ public class LogsClearScheduled {
 	SysDbmsAdviMessInfoDao					sysDbmsAdviMessInfoDao;
 	@Autowired
 	SysDbmsTabsInfoDao						sysDbmsTabsInfoDao;
-
+	
 	private static final SimpleDateFormat	dateFormat	= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	long									nd			= 1000 * 60 * 60 * 24;
 	long									nh			= 1000 * 60 * 60;
-
+	
 	@Scheduled(cron = "1 0 0 * * *")
 	// @Scheduled(fixedDelay = 1000)
 	public void delete() {
 		String sql = "DELETE FROM sys_comn_logs WHERE TIMESTAMPDIFF(DAY,create_time,NOW())>30";
 		jdbcTemplate.update(sql);
 	}
-
+	
 	// @Scheduled(cron = "0 30 18 1 * *")
 	// @Scheduled(fixedDelay = 10000000)
 	public void zhcxConfix() throws ClassNotFoundException {
@@ -80,13 +80,13 @@ public class LogsClearScheduled {
 				List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 				// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
 				ZhcxAdviceService.startConfixTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
-
+				
 				// }
 			}
 		}
 		System.err.println("本次处理配置表信息执行完毕！");
 	}
-
+	
 	private Map<String, DataSource> getMultiDatasource() throws ClassNotFoundException {
 		List<SysDbmsTabsJdbcInfo> list = sysDbmsTabsJdbcInfoDao.findAll();
 		Map<String, DataSource> map = new HashMap<>();
@@ -110,7 +110,7 @@ public class LogsClearScheduled {
 					break;
 			}
 			DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
-
+			
 			map.put(sysZhcxAddr.getUuid(), dataSource);
 		}
 		return map;

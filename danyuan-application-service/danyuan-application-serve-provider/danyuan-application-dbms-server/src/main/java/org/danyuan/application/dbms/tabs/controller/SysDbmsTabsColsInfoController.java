@@ -1,5 +1,6 @@
 package org.danyuan.application.dbms.tabs.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,16 +43,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class SysDbmsTabsColsInfoController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsColsInfoController.class);
-
+	
 	//
 	@Autowired
 	private SysDbmsTabsColsInfoService	sysDbmsTabsColsInfoService;
 	@Autowired
 	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
-
+	
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -64,7 +66,7 @@ public class SysDbmsTabsColsInfoController {
 		logger.info("findAll", SysDbmsTabsColsInfoController.class);
 		return sysDbmsTabsColsInfoService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
 	}
-
+	
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDbmsTabsColsInfo> page(@RequestBody Pagination<SysDbmsTabsColsInfo> vo) {
 		logger.info("page", SysDbmsTabsColsInfoController.class);
@@ -75,16 +77,18 @@ public class SysDbmsTabsColsInfoController {
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsTabsColsInfo());
 		}
-		return sysDbmsTabsColsInfoService.page(vo.getPageNumber().intValue(), vo.getPageSize().intValue(), vo.getInfo(), vo.getMap(), order);
+		List<Sort.Order> orders = new ArrayList<>();
+		orders.add(order);
+		return sysDbmsTabsColsInfoService.page(vo.getPageNumber().intValue(), vo.getPageSize().intValue(), vo.getInfo(), vo.getMap(), orders);
 	}
-
+	
 	@RequestMapping(path = "/pagev", method = RequestMethod.POST)
 	public List<Map<String, Object>> pagev(@RequestBody Pagination<SysDbmsTabsColsInfo> vo) {
 		logger.info("pagev", SysDbmsTabsColsInfoController.class);
 		SysDbmsTabsInfo tabs = new SysDbmsTabsInfo();
 		tabs.setUuid(vo.getInfo().getTabsUuid());
 		tabs = sysDbmsTabsInfoService.findOne(tabs);
-
+		
 		// SysDbmsTabsJdbcInfo jdbc = new SysDbmsTabsJdbcInfo();
 		// jdbc.setUuid(tabs.getJdbcUuid());
 		// jdbc = sysDbmsTabsJdbcInfoService.findOne(jdbc);
@@ -101,25 +105,25 @@ public class SysDbmsTabsColsInfoController {
 		pageSql.append(" FROM  `information_schema`.`COLUMNS` t  ");
 		pageSql.append(" WHERE CONCAT(t.`TABLE_SCHEMA`,'.',t.`TABLE_NAME`) = '" + tabs.getTabsName() + "'  ");
 		pageSql.append(" ORDER BY t.`ORDINAL_POSITION`  ");
-
+		
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
 		return list;
-
+		
 	}
-
+	
 	@RequestMapping(path = "/findAll1", method = RequestMethod.POST)
 	public Page<SysDbmsTabsColsInfo> findAll1(@RequestBody SysDbmsTabsColsInfoVo vo) {
 		logger.info("findAll", SysDbmsTabsColsInfoController.class);
 		return sysDbmsTabsColsInfoService.findAllByTableUuid(vo.getPageNumber(), vo.getPageSize(), vo.getSearchText(), vo.getUuid());
 	}
-
+	
 	@RequestMapping(path = "/findAllBySysDbmsTabsColsInfo", method = RequestMethod.POST)
 	public List<SysDbmsTabsColsInfo> findAllBySysDbmsTabsColsInfo(@RequestBody SysDbmsTabsColsInfo info) {
 		logger.info("findAll", SysDbmsTabsColsInfoController.class);
 		return sysDbmsTabsColsInfoService.findAllBySysDbmsTabsColsInfo(info);
 	}
-
+	
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(@ModelAttribute SysDbmsTabsColsInfo info) {
 		System.out.println(info.toString());
@@ -128,30 +132,30 @@ public class SysDbmsTabsColsInfoController {
 		view.addObject("SysDbmsTabsColsInfo", info);
 		return view;
 	}
-
+	
 	@RequestMapping(path = "/saveSysDbmsTabsColsInfo", method = RequestMethod.POST)
 	public Page<SysDbmsTabsColsInfo> saveSysDbmsTabsColsInfo(@RequestBody SysDbmsTabsColsInfo info) {
 		logger.info("saveSysDbmsTabsColsInfo", SysDbmsTabsColsInfoController.class);
 		sysDbmsTabsColsInfoService.change(info);
 		return sysDbmsTabsColsInfoService.findAllByTableUuid(1, 10, "", info.getTabsUuid());
-
+		
 	}
-
+	
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsColsInfo info) {
 		logger.info("saveSysDbmsTabsColsInfo", SysDbmsTabsColsInfoController.class);
 		sysDbmsTabsColsInfoService.save(info);
 		return "1";
-
+		
 	}
-
+	
 	@RequestMapping(path = "/saveSysColumnVo", method = RequestMethod.POST)
 	public Page<SysDbmsTabsColsInfo> saveSysColumnVo(@RequestBody SysDbmsTabsColsInfoVo vo) {
 		logger.info("saveSysColumnVo", SysDbmsTabsColsInfoController.class);
-		sysDbmsTabsColsInfoService.save(vo.getList());
+		sysDbmsTabsColsInfoService.saveAll(vo.getList());
 		return sysDbmsTabsColsInfoService.findAllByTableUuid(1, 20, "", vo.getList().get(0).getTabsUuid());
 	}
-
+	
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String savev(@RequestBody SysDbmsTabsColsInfoVo vo) {
 		logger.info("savev", SysDbmsTabsColsInfoController.class);
@@ -170,13 +174,13 @@ public class SysDbmsTabsColsInfoController {
 		}
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsTabsColsInfoVo vo) {
 		logger.info("delete", SysDbmsTabsColsInfoController.class);
-		sysDbmsTabsColsInfoService.delete(vo.getList());
+		sysDbmsTabsColsInfoService.deleteAll(vo.getList());
 		return "1";
-
+		
 	}
-
+	
 }

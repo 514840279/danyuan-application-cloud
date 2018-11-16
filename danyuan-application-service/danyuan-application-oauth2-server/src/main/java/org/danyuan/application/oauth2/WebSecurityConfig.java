@@ -1,5 +1,6 @@
 package org.danyuan.application.oauth2;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	CustomUserDetailsService customUserDetailsService;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -39,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
 	// @Override
@@ -58,15 +62,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        // 登录页
 		        .loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll();
 	}
-	
-	/**
-	 * 自定义UserDetailsService，从数据库中读取用户信息
-	 *
-	 * @return
-	 */
-	@Bean
-	public CustomUserDetailsService customUserDetailsService() {
-		return new CustomUserDetailsService();
-	}
-	
+
 }

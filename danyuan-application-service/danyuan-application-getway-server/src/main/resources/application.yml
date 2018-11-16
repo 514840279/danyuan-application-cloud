@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: danyuan-application-getway-server
+    name: danyuan-application-getway-server  main:    allow-bean-definition-overriding: true
 eureka:
   client:
     enabled: true
