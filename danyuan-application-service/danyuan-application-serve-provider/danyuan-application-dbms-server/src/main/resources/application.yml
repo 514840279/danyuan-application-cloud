@@ -7,7 +7,8 @@ spring:
     url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
     username: root
     password: 514840279@qq.com
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver  
   jpa:
     database: MYSQL
     show-sql: true
@@ -33,7 +34,7 @@ spring:
     enabled: true
     mode: HTML5
     encoding: UTF-8
-    content-type: text/html; charset=utf-8      main:    allow-bean-definition-overriding: true#  data:#    elasticsearch:#      cluster-name: my-application#      cluster-nodes: 192.168.0.11:9300
+    content-type: text/html; charset=utf-8    #  main:#    allow-bean-definition-overriding: true#  data:#    elasticsearch:#      cluster-name: my-application#      cluster-nodes: 192.168.0.11:9300
 
 logging:
   level:

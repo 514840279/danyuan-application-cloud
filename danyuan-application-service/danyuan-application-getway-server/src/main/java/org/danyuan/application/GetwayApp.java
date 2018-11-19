@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 时 间 ： 2016年7月20日 下午8:24:37
  * 版 本 ： V1.0
  */
-@EnableZuulProxy
 @SpringBootApplication
+@EnableZuulProxy
 public class GetwayApp {
 	
 	public static void main(String[] args) throws Exception {

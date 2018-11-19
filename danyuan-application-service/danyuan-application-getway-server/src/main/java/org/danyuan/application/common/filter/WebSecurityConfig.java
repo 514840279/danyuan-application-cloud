@@ -38,9 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		        // Disable default security.
 		        .csrf().disable().authorizeRequests()
-		        //.csrfTokenRepository(csrfTokenRepository())
+		        // .csrfTokenRepository(csrfTokenRepository())
 		        //
-		        //.and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class).authorizeRequests()
+		        // .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class).authorizeRequests()
 		        //
 		        .antMatchers("/favicon.ico", "/*/**.js", "/dist/*/**", "/info", "/plugins/*/**").permitAll()
 		        //

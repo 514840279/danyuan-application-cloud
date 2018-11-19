@@ -1,5 +1,6 @@
 package org.danyuan.application.oauth2;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	CustomUserDetailsService customUserDetailsService;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -39,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
 	// @Override
@@ -52,21 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
-		        .antMatchers("/dist/*/**", "/info", "/plugins/*/**", "/oauth/**", "/").permitAll()
+		        .antMatchers("/dist/*/**", "/info", "/plugins/*/**", "/oauth/**", "/login**", "/oauth/authorize**").permitAll()//
+		        .requestMatchers().permitAll().regexMatchers("^/(?:oauth/authorize|(?!(?:oauth|actuator|management|users)/)).*").permitAll()
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated().and().formLogin()
 		        // 登录页
-		        .loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll();
+		        .loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll().and().httpBasic();
 	}
-	
-	/**
-	 * 自定义UserDetailsService，从数据库中读取用户信息
-	 *
-	 * @return
-	 */
-	@Bean
-	public CustomUserDetailsService customUserDetailsService() {
-		return new CustomUserDetailsService();
-	}
-	
+
 }
