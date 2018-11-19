@@ -1,9 +1,22 @@
 package org.danyuan.application.common.filter;
 
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
  * 文件名 ： WebSecurityConfig.java
@@ -25,9 +38,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		        // Disable default security.
 		        .csrf().disable().authorizeRequests()
+		        //.csrfTokenRepository(csrfTokenRepository())
 		        //
-		        .antMatchers("/favicon.ico", "/*/**.js", "/dist/*/**", "/info", "/plugins/*/**").permitAll().anyRequest().authenticated();
-
+		        //.and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class).authorizeRequests()
+		        //
+		        .antMatchers("/favicon.ico", "/*/**.js", "/dist/*/**", "/info", "/plugins/*/**").permitAll()
+		        //
+		        .anyRequest().authenticated();
+		
+	}
+	
+	private Filter csrfHeaderFilter() {
+		return new OncePerRequestFilter() {
+			@Override
+			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+				CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+				if (csrf != null) {
+					Cookie cookie = new Cookie("XSRF-TOKEN", csrf.getToken());
+					cookie.setPath("/");
+					response.addCookie(cookie);
+				}
+				filterChain.doFilter(request, response);
+			}
+		};
+	}
+	
+	private CsrfTokenRepository csrfTokenRepository() {
+		HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+		repository.setHeaderName("X-XSRF-TOKEN");
+		return repository;
 	}
 	
 }

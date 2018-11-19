@@ -28,7 +28,9 @@ spring:
     mode: HTML5
     encoding: UTF-8
     content-type: text/html; charset=utf-8    
-
+management:  security:    enabled: true
+    roles:    - ADMIN
+    - TEST
 #security:
 #  user:
 #    password: 123

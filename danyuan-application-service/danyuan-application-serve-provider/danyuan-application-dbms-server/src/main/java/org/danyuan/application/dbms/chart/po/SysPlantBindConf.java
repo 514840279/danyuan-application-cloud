@@ -39,7 +39,7 @@ public class SysPlantBindConf implements Serializable {
 	@Column(name = "cols_order")
 	private Integer				colsOrder;
 	
-	@Column(name = "statue", columnDefinition = " int default '1' COMMENT '1客户手动添加字段没有字段名称，0系统默认字段不允许修该字段名称'")
+	@Column(name = "statue", columnDefinition = " int default 1 COMMENT '1客户手动添加字段没有字段名称，0系统默认字段不允许修该字段名称'")
 	private Integer				statue;
 	
 	// 允许图表统计的纬度字段
@@ -76,17 +76,17 @@ public class SysPlantBindConf implements Serializable {
 	@Column(name = "width", columnDefinition = " int default 0 COMMENT '宽度设置'")
 	private Integer				width;
 	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	@Column(name = "discription", columnDefinition = " varchar(200) COMMENT '资源功能描述'")
 	private String				discription;
 	
 	// 数据库未使用
-	@Column(name = "chaxun", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	@Column(name = "chaxun", columnDefinition = " varchar(200) COMMENT '资源功能描述'")
 	private String				chaxun;
 	
 	// 是否支持排序
-	@Column(name = "sortable", columnDefinition = "number COMMENT '支持排序'")
+	@Column(name = "sortable", columnDefinition = " int COMMENT '支持排序'")
 	private String				sortable;
-
+	
 	public SysPlantBindConf() {
 	}
 	
