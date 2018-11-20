@@ -21,9 +21,7 @@
 		</developer>
 	</developers>
 	<modules>
-
 		<module>danyuan-application-eureka-server</module>
-
 		<module>danyuan-application-oauth2-server</module>
 		<module>danyuan-application-getway-server</module>
 		<module>danyuan-application-sidecar-server</module>
@@ -36,7 +34,7 @@
 		<java.version>1.8</java.version>
 		<docker.image.prefix>danyuan</docker.image.prefix>
 		<elasticsearch.version>5.2.2</elasticsearch.version>
-		<spring-cloud.version>Finchley.SR2 </spring-cloud.version>
+		<spring-cloud.version>Finchley.SR2</spring-cloud.version>
 	</properties>
 
 	<!-- Inherit defaults from Spring Boot -->

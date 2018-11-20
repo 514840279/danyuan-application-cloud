@@ -5,11 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -24,15 +22,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
+//@EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	CustomUserDetailsService customUserDetailsService;
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	CustomUserDetailsService	customUserDetailsService;
+	@Autowired
+	PasswordEncoder				passwordEncoder;
 	
 	@Override
 	@Bean
@@ -42,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder);
 	}
 	
 	// @Override
@@ -55,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
-		        .antMatchers("/dist/*/**", "/info", "/plugins/*/**", "/oauth/**", "/login**", "/oauth/authorize**").permitAll()//
-		        .requestMatchers().permitAll().regexMatchers("^/(?:oauth/authorize|(?!(?:oauth|actuator|management|users)/)).*").permitAll()
+		        .antMatchers("/dist/*/**", "/plugins/*/**", "/oauth/**", "/actuator/**", "/user", "/eureka/**").permitAll()//
+		        // .requestMatchers().permitAll().regexMatchers("^/(?:oauth/authorize|(?!(?:oauth|actuator|management|users)/)).*").permitAll()
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated().and().formLogin()
 		        // 登录页

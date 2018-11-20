@@ -23,19 +23,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	TokenStore				tokenStore;
 	@Autowired
 	JwtAccessTokenConverter	jwtAccessTokenConverter;
-
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.requestMatchers().regexMatchers("^/(?:oauth/authorize|(?!(?:oauth|actuator|management|users)/)).*").and()//
+		http
+		        // .requestMatchers().regexMatchers("^/(?:oauth/authorize|(?!(?:oauth|actuator|management|users)/)).*").and()//
 		        .requestMatchers().antMatchers("/api/**").and().authorizeRequests().antMatchers("/api/**").authenticated();
 		// http.addFilterBefore(authenticationFilter(), BasicAuthenticationFilter.class);
 	}
-
+	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore);
 	}
-	
+
 	// @Bean
 	public Filter authenticationFilter() {
 		// 这里配置的 URL 就是认证服务认证后回调的地址

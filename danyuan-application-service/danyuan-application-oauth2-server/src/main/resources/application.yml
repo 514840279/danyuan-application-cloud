@@ -1,6 +1,6 @@
 server:
   port: 8800
-  contextPath: /oauth2
+  servlet:    context-path: /oauth2
 spring:
   application:
     name: danyuan-application-oauth2-server
@@ -27,7 +27,8 @@ spring:
     enabled: true
     mode: HTML5
     encoding: UTF-8
-    content-type: text/html; charset=utf-8    
+    servlet:      content-type: text/html; charset=utf-8    
+
 
 #security:
 #  user:
@@ -55,7 +56,6 @@ eureka:
     serviceUrl:
       defaultZone: http://wth:wth@localhost:8761/eureka/
   instance:
-    hostname: localhost
-    preferIpAddress: true
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
           

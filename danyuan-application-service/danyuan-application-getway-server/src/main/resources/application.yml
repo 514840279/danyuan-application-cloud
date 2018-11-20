@@ -20,22 +20,22 @@ security:
     sso:
       loginPath: /index   # 登录回调路径
     client:
-      access-token-uri: http://localhost:8800/oauth/token
-      user-authorization-uri: http://localhost:8800/oauth/authorize
+      access-token-uri: http://localhost:8800/oauth2/oauth/token
+      user-authorization-uri: http://localhost:8800/oauth2/oauth/authorize
       client-id: wth
       client-secret: wth
-      pre-established-redirect-uri: http://localhost:82/index
+      #pre-established-redirect-uri: http://localhost:82/index
       #grant-type: password
       #scope: read
       #tokenName: oauth_token
       #authenticationScheme: query
       #clientAuthenticationScheme: form
     resource:
-      userInfoUri: http://localhost:8800/user
-    jwt:
-      key-uri: http://localhost:8800/oauth/token_key
+      userInfoUri: http://localhost:8800/oauth2/user
+      jwt:
+        key-uri: http://localhost:8800/oauth2/oauth/token_key
     authorization:
-      check-token-access: http://localhost:8800/oauth/check_token
+      check-token-access: http://localhost:8800/oauth2/oauth/check_token
 #  basic:
 #    enabled: false
 #      user-info-uri: http://localhost:8800/user
