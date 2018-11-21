@@ -28,7 +28,7 @@ spring:
     mode: HTML5
     encoding: UTF-8
     servlet:      content-type: text/html; charset=utf-8    
-
+       
 
 #security:
 #  user:
@@ -56,6 +56,8 @@ eureka:
     serviceUrl:
       defaultZone: http://wth:wth@localhost:8761/eureka/
   instance:
+    status-page-url-path: ${server.servlet.context-path}/actuator/info
+    health-check-url-path: ${server.servlet.context-path}/actuator/health
     prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}${server.servlet.context-path}
           

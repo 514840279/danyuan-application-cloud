@@ -21,7 +21,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 	TokenStore						tokenStore;
 	@Autowired
 	JwtAccessTokenConverter			jwtAccessTokenConverter;
-
+	
 	@Autowired
 	PasswordEncoder					passwordEncoder;
 	
@@ -34,16 +34,16 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 		        .autoApprove("true") // 自动确认授权不展示页面
 		        .authorizedGrantTypes("password", "refresh_token", "authorization_code")// 设置验证方式
 		        .scopes("all")// 允许的授权范围
-		        .redirectUris("http://localhost:82/index")//
+		        .redirectUris("http://localhost:82/index", "http://192.168.31.87:82/index")//
 		        .accessTokenValiditySeconds(10000) // token过期时间
 		        .refreshTokenValiditySeconds(10000); // refresh过期时间
 	}
-
+	
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore).accessTokenConverter(jwtAccessTokenConverter).authenticationManager(authenticationManager);
 		
-//		.userDetailsService(userService); // 配置userService 这样每次认证的时候会去检验用户是否锁定，有效等
+		//		.userDetailsService(userService); // 配置userService 这样每次认证的时候会去检验用户是否锁定，有效等
 	}
 	
 	/**
@@ -59,5 +59,5 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("isAuthenticated()");
 	}
-
+	
 }
