@@ -14,7 +14,7 @@ class CrawlerService():
     # 爬虫采集程序
     def crawler(self,searchUrl,keyword,plant):
         # 通用数据库连接 全局接口
-        conn = Conn_mysql(host='localhost', port=3306, user='root', passwd='514840279@qq.com', db='flasktest')
+        conn = Conn_mysql()
         # 使用自定义获取源码脚本获取 网页
         source = HtmlSource()
         html = source.get_html(url_p=searchUrl,type_p='rg')

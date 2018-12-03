@@ -1,6 +1,7 @@
 package org.danyuan.application.crawler.param.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.param.po.SysCrawlerRulerColumInfo;
@@ -77,8 +78,11 @@ public class SysCrawlerRulerColumInfoController {
 	 */
 	@RequestMapping("/save")
 	public String save(@RequestBody SysCrawlerRulerColumInfo info) {
+		if (info.getUuid() == null) {
+			info.setUuid(UUID.randomUUID().toString());
+		}
 		sysCrawlerRulerColumInfoService.save(info);
-		return null;
+		return "1";
 	}
 
 	/**
@@ -106,7 +110,7 @@ public class SysCrawlerRulerColumInfoController {
 	@RequestMapping("/deleteAll")
 	public String delete(@RequestBody Pagination<SysCrawlerRulerColumInfo> vo) {
 		sysCrawlerRulerColumInfoService.deleteAll(vo.getList());
-		return null;
+		return "1";
 	}
 
 	/**

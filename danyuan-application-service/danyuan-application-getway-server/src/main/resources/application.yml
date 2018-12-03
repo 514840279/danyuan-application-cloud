@@ -2,7 +2,8 @@ server:
   port: 82
 spring:
   application:
-    name: danyuan-application-getway-server  devtools:    restart:      enabled: false          
+    name: danyuan-application-getway-server  devtools:    restart:      enabled: false
+  thymeleaf:    cache: false          
 eureka:
   client:
     enabled: true

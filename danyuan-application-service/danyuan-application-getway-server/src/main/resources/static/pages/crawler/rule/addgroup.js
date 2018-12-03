@@ -12,6 +12,7 @@ $(function() {
 				taskUuid:group_param.taskUuid,
 				type:group_param.groupType,
 				name:$("#add_ruler_group_name").val(),
+				ruler:$("#add_ruler_group_ruler").val(),
 				parentUuid:group_param.parrentId
 		}
 		var url="/crawler/sysCrawlerRulerInfo/save";
@@ -78,7 +79,7 @@ function init(){
 	    tags: true,
 	    placeholder: "请选择",
 	}).on('select2:select', function (evt) {
-		group_param.groupType = evt.params.data.text;
+		group_param.groupType = evt.params.data.id;
 		if(group_param.groupType == "请选择"){
 			group_param.groupType = null;
 		}

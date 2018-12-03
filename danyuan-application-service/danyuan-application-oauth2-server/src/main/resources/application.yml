@@ -9,7 +9,7 @@ spring:
     username: root
     password: 514840279@qq.com
     #driver-class-name: com.mysql.cj.jdbc.Driver
-    driver-class-name: com.mysql.jdbc.Driver    
+    driver-class-name: com.mysql.jdbc.Driver
   jpa:
     database: MYSQL
     show-sql: true

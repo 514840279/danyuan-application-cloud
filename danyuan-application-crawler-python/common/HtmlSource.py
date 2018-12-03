@@ -22,13 +22,13 @@ class HtmlSource:
         # 获取网页源码
         try:
             # get的方法
-            if (type_p == 'rg'):
+            if (type_p == 'requestGet'):
                     html = requests.get(url=url_p, timeout=timeout_p, headers=headers_p)
                     txt = str(html.text.encode(html.encoding), encoding=chartset_p)
                     html.close()
 
             # post的方法
-            if (type_p == 'rp'):
+            if (type_p == 'requestPost'):
                     html = requests.post(url=url_p, timeout=timeout_p, headers=headers_p)
                     txt = str(html.text.encode(html.encoding), encoding=chartset_p)
                     html.close()
@@ -40,7 +40,7 @@ class HtmlSource:
                     txt = bs_4(res_addr.text, "lxml")
 
             # urllib的方法
-            if (type_p == 'ul'):
+            if (type_p == 'urllib'):
                     html = urllib.request.urlopen(url=url_p)
                     txt = html.read().decode(chartset_p, "ignore")
                     html.close()

@@ -3,63 +3,99 @@ $(function() {
 	init();
 
 });
-
+var add_ruler_process=null;
 function init(){
 	var url ="/crawler/sysDicName/findkeyList";
-	ajaxPost(url,{code:"crawler_request_web_mode"},loadRequestWay)
+	ajaxPost(url,{code:"crawler_ruler_cloumn_type"},loadProcess)
 	
-	$("#submit_add_task_id").bind("click",function(){
-		submit_add_addr();
+	$("#submit_add_ruler_id").bind("click",function(){
+		submit_add_ruler();
 	})
 	
 }
 
-function loadRequestWay(result){
+function loadProcess(result){
 	data=[{id:'请选择',text:'请选择'}];
 	$.each(result,function(index,value){
-		data.push({id:value.keyword,text:value.keyValue});
+		data.push({id:value.keyValue,text:value.keyword});
 	})
 	
-	$('#add_task_requestType').select2({
+	$('#add_ruler_process').select2({
 	    tags: true,
 	    data:data
 	});
-	$('#add_task_requestType').on('select2:select', function (evt) {
-		add_task_requestType = evt.params.data.id;
+	$('#add_ruler_process').on('select2:select', function (evt) {
+		add_ruler_process = evt.params.data.id;
+		switch(add_ruler_process){
+			case('lxml'):
+			case('none'):
+			case('dict'):
+			case('rdict'):
+			case('arrayToString'):
+				$("#add_ruler_param_start_id").css({"display":"none"});
+				$("#add_ruler_param_end_id").css({"display":"none"});
+				$("#add_ruler_param_str_id").css({"display":"none"});
+				$("#add_ruler_param_new_id").css({"display":"none"});
+				break;
+			case("strSub"):
+				$("#add_ruler_param_start_id").css({"display":""});
+				$("#add_ruler_param_end_id").css({"display":""});
+				$("#add_ruler_param_str_id").css({"display":"none"});
+				$("#add_ruler_param_new_id").css({"display":"none"});
+				break;
+			case("strSplit"):
+			case("strAppendAfter"):
+			case("strAppendbefor"):
+				$("#add_ruler_param_start_id").css({"display":"none"});
+				$("#add_ruler_param_end_id").css({"display":"none"});
+				$("#add_ruler_param_str_id").css({"display":""});
+				$("#add_ruler_param_new_id").css({"display":"none"});
+				break;
+			case("strReplace"):
+				$("#add_ruler_param_start_id").css({"display":"none"});
+				$("#add_ruler_param_end_id").css({"display":"none"});
+				$("#add_ruler_param_str_id").css({"display":""});
+				$("#add_ruler_param_new_id").css({"display":""});
+				break;
+			case("arraySingle"):
+				$("#add_ruler_param_start_id").css({"display":""});
+				$("#add_ruler_param_end_id").css({"display":"none"});
+				$("#add_ruler_param_str_id").css({"display":"none"});
+				$("#add_ruler_param_new_id").css({"display":"none"});
+				break;
+			default:
+				add_ruler_process=null;
+				return;
+		}
 	});
-	
+}
 
-	if (taskdata.url !=null){
-    	$("#add_task_url").val(taskdata.url);
-    	$("#add_task_taskName").val(taskdata.taskName);
-    	$("#add_task_urlType").val(taskdata.urlType);
-    	$("#add_task_urlName").val(taskdata.urlName);
-    	$("#add_task_charset").val(taskdata.charset);
-    	$("#add_task_webIcon").val(taskdata.webIcon);
-    	$("#add_task_requestData").val(taskdata.requestData);
-    	add_task_requestType = taskdata.requestType;
-    	$("#add_task_requestType").val(taskdata.requestType).trigger("change");
+
+function submit_add_ruler(){
+	var rows = $('#crawler_rule_group_config_table_datagrid').bootstrapTable("getAllSelections");
+	if(rows.length==1){
+		var param={
+				rulerUuid:rows[0].uuid,
+				columName:$("#add_ruler_name").val(),
+				ruler:$("#add_ruler_xpath").val(),
+				type:add_ruler_process,
+				start:$("#add_ruler_param_start").val(),
+				end:$("#add_ruler_param_end").val(),
+				param:$("#add_ruler_param_str").val(),
+				paramNew:$("#add_ruler_param_new").val()
+		}
+		
+		var url = "/crawler/sysCrawlerRulerColumInfo/save";
+		ajaxPost(url, param, successAddRulerSuccess);
+		
+	}else{
+		alert("需要选择一个组")
 	}
 }
 
-
-function submit_add_addr(){
-	
-	taskdata.url = $("#add_task_url").val();
-	taskdata.taskName = $("#add_task_taskName").val();
-	taskdata.urlType = $("#add_task_urlType").val();
-	taskdata.urlName = $("#add_task_urlName").val();
-	taskdata.charset = $("#add_task_charset").val();
-	taskdata.webIcon = $("#add_task_webIcon").val();
-	taskdata.requestData = $("#add_task_requestData").val();
-	taskdata.requestType = add_task_requestType;
-	var url = "/crawler/sysCrawlerTaskInfo/save";
-	ajaxPost(url, taskdata, successAddTaskSuccess);
-}
-
-function successAddTaskSuccess(result){
-	$('#dbm_config_table_datagrid').bootstrapTable('refresh');
-	$("#add_config_table").modal("hide");
+function successAddRulerSuccess(result){
+	$('#crawler_rule_config_table_datagrid').bootstrapTable('refresh');
+	$("#add_rule_modal").modal("hide");
 }
 
 

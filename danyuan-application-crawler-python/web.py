@@ -7,6 +7,8 @@ from flask import Flask, Response,render_template
 # 引入 模块
 from controller.Search import dosearch as search_blueprinit
 from controller.Crawler import crawler as crawler_blueprinit
+from controller.Navigation import navigation as navigation_blueprinit
+from controller.StartController import start as start_blueprinit
 # BASE_DIR建立一个基础路径，用于静态文件static，templates的调用
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -15,6 +17,8 @@ app=Flask(__name__,template_folder='templates',static_folder='static')
 # 使用 蓝图 注册不同模块
 app.register_blueprint(crawler_blueprinit,url_prefix='/crawler')
 app.register_blueprint(search_blueprinit,url_prefix='/search')
+app.register_blueprint(navigation_blueprinit,url_prefix='/nivigation')
+app.register_blueprint(start_blueprinit,url_prefix='/start')
 
 
 # 当访问 "/"，"/index"，"/home","incex.hltml" 默认跳转到 "/index.hmtl" 模板中渲染首页
@@ -27,6 +31,9 @@ def findhell():
     return render_template('index.html', name=result) # 采用模板方式解析页面
 
 
+if __name__ == '__main__':
+    uuid='68103c87-e974-46e2-bf54-a3c1b817ab41'
+    print(uuid)
 
 # 提供健康检查用接口
 @app.route("/health")

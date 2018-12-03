@@ -90,13 +90,28 @@ function bindClick(){
 	
 	// 删除点击事件
 	$("#del_crawler_rule_config_btn").bind("click",function(){
-		
+		var rows = $('#crawler_rule_config_table_datagrid').bootstrapTable("getAllSelections");
+		if(rows.length >= 1){
+			bootbox.setLocale("zh_CN");
+			bootbox.confirm({
+			message : "确定要删除选定行",
+			title : "系统提示",
+			callback : function(result) {
+					if (result) {
+						var submiturl = "/crawler/sysCrawlerRulerColumInfo/deleteAll";
+						ajaxPost(submiturl, {list:rows}, refreshRuleTable, 5000, findError);
+					}
+				}
+			});
+			
+		}
 	})
 }
 function refreshGroupTable(){
-
 	$('#crawler_rule_group_config_table_datagrid').bootstrapTable('refresh');
-
+}
+function refreshRuleTable(){
+	$('#crawler_rule_config_table_datagrid').bootstrapTable('refresh');
 }
 // 下拉框 网站类型 加载
 function loadUrlType(result){
@@ -246,10 +261,13 @@ function loadRule(row){
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'top',visible:false},
-			{title : '规则名称',field : 'name',align : 'center',sortable : true,valign : 'top'},
+			{title : '规则名称',field : 'columName',align : 'center',sortable : true,valign : 'top'},
 			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
-			{title : '规则内容',field : 'context',sortable : true,align : 'center',valign : 'top'},
-			{title : '规则状态',field : 'status',sortable : true,align : 'center',valign : 'top'},
+			{title : '规则内容',field : 'ruler',sortable : true,align : 'center',valign : 'top'},
+			{title : '开始位置',field : 'start',sortable : true,align : 'center',valign : 'top'},
+			{title : '结束位置',field : 'end',sortable : true,align : 'center',valign : 'top'},
+			{title : '拼接字符（需要替换的、分割符）',field : 'param',sortable : true,align : 'center',valign : 'top'},
+			{title : '替换成',field : 'paramNew',sortable : true,align : 'center',valign : 'top'},
 			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
 		],
 		responseHandler: function(result){  // 成功时执行

@@ -73,7 +73,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/crawler/sysCrawlerTaskInfo/startAll";
+						var url = "/python/start/run";
 						var param={list:data};
 						ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
 					}
