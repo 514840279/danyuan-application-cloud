@@ -1,71 +1,138 @@
-
+var group_param={
+	urlType:null,
+	taskUuid:null,
+	groupType:null,
+	parrentId:null,
+}
 $(function() {
 	init();
-
+	// 绑定添加事件
+	$("#submit_add_group_id").bind("click",function(){
+		var param={
+				taskUuid:group_param.taskUuid,
+				type:group_param.groupType,
+				name:$("#add_ruler_group_name").val(),
+				parentUuid:group_param.parrentId
+		}
+		var url="/crawler/sysCrawlerRulerInfo/save";
+		ajaxPost(url,param,successedSaveRulerGroup)
+	})
 });
 
+function successedSaveRulerGroup(result){
+	$("#add_rule_group_table").modal('hide');
+	$('#crawler_rule_group_config_table_datagrid').bootstrapTable('refresh');
+}
+
 function init(){
-	var url ="/crawler/sysDicName/findkeyList";
-	ajaxPost(url,{code:"crawler_request_web_mode"},loadRequestWay)
-	
-	$("#submit_add_task_id").bind("click",function(){
-		submit_add_addr();
-	})
-	
-}
-
-function loadRequestWay(result){
-	data=[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
-		data.push({id:value.keyword,text:value.keyValue});
-	})
-	
-	$('#add_task_requestType').select2({
+	// select 初始化
+	group_param.urlType = null;
+	var url = "/crawler/sysCrawlerTaskInfo/findUrlType";
+	ajaxPost(url,{},addloadUrlType);
+	$("#add_search_task_urlType").select2({
 	    tags: true,
-	    data:data
-	});
-	$('#add_task_requestType').on('select2:select', function (evt) {
-		add_task_requestType = evt.params.data.id;
+	    placeholder: "请选择",
+	}).on('select2:select', function (evt) {
+		group_param.urlType = evt.params.data.id;
+		if(add_search_task_urlType == "请选择"){
+			group_param.urlType = null;
+		}
+		var url = "/crawler/sysCrawlerTaskInfo/findAll";
+		ajaxPost(url,{urlType:group_param.urlType},addloadParrentId);
 	});
 	
+	// select 初始化 任务
+	group_param.taskUuid=null;
+	var url = "/crawler/sysCrawlerTaskInfo/findAll";
+	ajaxPost(url,{urlType:group_param.urlType},addloadTaskName);
+	$("#add_search_task_taskUuid").select2({
+	    tags: true,
+	    placeholder: "请选择",
+	}).on('select2:select', function (evt) {
+		group_param.taskUuid = evt.params.data.id;
+		if(group_param.taskUuid == "请选择"){
+			group_param.taskUuid = null;
+		}
+		var url = "/crawler/sysCrawlerRulerInfo/findAll";
+		ajaxPost(url,{urlType:group_param.urlType,taskUuid:group_param.taskUuid},addloadParrentId);
 
-	if (taskdata.url !=null){
-    	$("#add_task_url").val(taskdata.url);
-    	$("#add_task_taskName").val(taskdata.taskName);
-    	$("#add_task_urlType").val(taskdata.urlType);
-    	$("#add_task_urlName").val(taskdata.urlName);
-    	$("#add_task_charset").val(taskdata.charset);
-    	$("#add_task_webIcon").val(taskdata.webIcon);
-    	$("#add_task_requestData").val(taskdata.requestData);
-    	add_task_requestType = taskdata.requestType;
-    	$("#add_task_requestType").val(taskdata.requestType).trigger("change");
-	}
-}
-
-
-function submit_add_addr(){
+	});
 	
-	taskdata.url = $("#add_task_url").val();
-	taskdata.taskName = $("#add_task_taskName").val();
-	taskdata.urlType = $("#add_task_urlType").val();
-	taskdata.urlName = $("#add_task_urlName").val();
-	taskdata.charset = $("#add_task_charset").val();
-	taskdata.webIcon = $("#add_task_webIcon").val();
-	taskdata.requestData = $("#add_task_requestData").val();
-	taskdata.requestType = add_task_requestType;
-	var url = "/crawler/sysCrawlerTaskInfo/save";
-	ajaxPost(url, taskdata, successAddTaskSuccess);
+	// select 初始化 上一次层
+	$("#add_ruler_parrentId").select2({
+	    tags: true,
+	    placeholder: "请选择",
+	}).on('select2:select', function (evt) {
+		group_param.parrentId = evt.params.data.id;
+		if(group_param.parrentId == "请选择"){
+			group_param.parrentId = null;
+		}
+		
+	});
+	
+	// select 初始化 组类型
+	group_param.groupType=null;
+	var url = "/crawler/sysDicName/findkeyList";
+	ajaxPost(url,{code:"crawler_group_type"},addloadGroupType);
+	$("#add_ruler_groupType").select2({
+	    tags: true,
+	    placeholder: "请选择",
+	}).on('select2:select', function (evt) {
+		group_param.groupType = evt.params.data.text;
+		if(group_param.groupType == "请选择"){
+			group_param.groupType = null;
+		}
+	});
+	
 }
 
-function successAddTaskSuccess(result){
-	$('#dbm_config_table_datagrid').bootstrapTable('refresh');
-	$("#add_config_table").modal("hide");
+// 下拉框数据加载
+function addloadGroupType(result){
+	var data = [{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.keyValue,text:value.keyword});
+	})
+	$("#add_ruler_groupType").empty();
+	$("#add_ruler_groupType").select2({
+	    data: data
+	});
 }
 
 
+//下拉框 网站类型 加载
+function addloadUrlType(result){
+	var data = [{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value,text:value});
+	})
+	$("#add_search_task_urlType").empty();
+	$("#add_search_task_urlType").select2({
+	    data: data
+	});
+}
 
+//任务名称 加载
+function addloadTaskName(result){
+	var data = [{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.taskName});
+	});
+	$("#add_search_task_taskUuid").empty();
+	$("#add_search_task_taskUuid").select2({
+	    data: data
+	});
+}
 
-
+function addloadParrentId(result){
+	var data = [{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.name});
+	});
+	$("#add_ruler_parrentId").empty();
+	$("#add_ruler_parrentId").select2({
+	    data: data
+	});
+}
 
 
 

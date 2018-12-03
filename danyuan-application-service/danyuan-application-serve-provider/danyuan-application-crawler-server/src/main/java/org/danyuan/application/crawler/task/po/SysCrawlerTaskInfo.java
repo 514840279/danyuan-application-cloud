@@ -61,19 +61,19 @@ public class SysCrawlerTaskInfo {
 	private Date	lastExcuteTime;
 	
 	@Column(name = "surplus_num", columnDefinition = " int default 0  COMMENT '预计剩余采集数量'")
-	private Integer	surplusNum	= 0;
+	private Integer	surplusNum;
 	
 	@Column(name = "success_num", columnDefinition = " int default 0  COMMENT '完成数量'")
-	private Integer	successNum	= 0;
+	private Integer	successNum;
 	
 	@Column(name = "task_flag", columnDefinition = " int default 0  COMMENT '采集通用标识' ")
-	private Integer	taskFlag	= 0;
+	private Integer	taskFlag;
 	
 	@Column(name = "error_num", columnDefinition = " int default 0  COMMENT '采集出错数量'")
-	private Integer	errorNum	= 0;
+	private Integer	errorNum;
 	
 	@Column(name = "excute_flag", columnDefinition = " int default 0 COMMENT '执行状态'")
-	private Integer	excuteFlag	= 0;
+	private Integer	excuteFlag;
 	
 	@Column(name = "excute_batch", columnDefinition = " varchar(500) COMMENT '执行的命令'")
 	private String	excuteBatch;

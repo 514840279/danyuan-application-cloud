@@ -1,6 +1,7 @@
 package org.danyuan.application.crawler.param.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.param.po.SysCrawlerRulerInfo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -24,10 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysCrawlerRulerInfo")
 public class SysCrawlerRulerInfoController {
-
+	
 	@Autowired
 	SysCrawlerRulerInfoService sysCrawlerRulerInfoService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -40,7 +42,7 @@ public class SysCrawlerRulerInfoController {
 	public Page<SysCrawlerRulerInfo> page(@RequestBody Pagination<SysCrawlerRulerInfo> vo) {
 		return sysCrawlerRulerInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), vo.getOrders());
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -49,12 +51,12 @@ public class SysCrawlerRulerInfoController {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseController#findAll(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	@RequestMapping("/findAll")
+	@RequestMapping(value = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysCrawlerRulerInfo> findAll(@RequestBody SysCrawlerRulerInfo info) {
-
+		
 		return sysCrawlerRulerInfoService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -67,7 +69,7 @@ public class SysCrawlerRulerInfoController {
 	public SysCrawlerRulerInfo findOne(@RequestBody SysCrawlerRulerInfo info) {
 		return sysCrawlerRulerInfoService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -78,10 +80,14 @@ public class SysCrawlerRulerInfoController {
 	 */
 	@RequestMapping("/save")
 	public String save(@RequestBody SysCrawlerRulerInfo info) {
+		if (info.getUuid() == null || info.getUuid().equals("")) {
+			info.setUuid(UUID.randomUUID().toString());
+			
+		}
 		sysCrawlerRulerInfoService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -95,7 +101,7 @@ public class SysCrawlerRulerInfoController {
 		sysCrawlerRulerInfoService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -109,7 +115,7 @@ public class SysCrawlerRulerInfoController {
 		sysCrawlerRulerInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -123,7 +129,7 @@ public class SysCrawlerRulerInfoController {
 		sysCrawlerRulerInfoService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -136,5 +142,5 @@ public class SysCrawlerRulerInfoController {
 		sysCrawlerRulerInfoService.trunc();
 		return "1";
 	}
-
+	
 }
