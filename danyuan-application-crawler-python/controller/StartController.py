@@ -12,5 +12,5 @@ def run():
     params = request.json
     startService = StartService()
     for item in params['list']:
-        startService.run(item)
-    return Response("1", mimetype='application/json')  # 采用json方式发送数据
+        data = startService.run(item)
+    return Response(json.dumps(data), mimetype='application/json')  # 采用json方式发送数据

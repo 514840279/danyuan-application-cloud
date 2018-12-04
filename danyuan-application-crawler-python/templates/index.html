@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/static/plugins/bootstrap/css/bootstrap.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/dist/css/style.css"/>
+
+<style>
+.search-input {
+    height: 45px;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 10px;
+    position: relative;
+}
+
+.search-input input {
+    border: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    width: 500px;
+    height: 45px;
+    font-size: 18px;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+.search-btn {
+    height: 45px;
+    width: 100px;
+    border: 1px solid mediumseagreen;
+    background-color: mediumseagreen;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+}
+
+.search-btn {
+    cursor: pointer
+}
+
+.search-select {
+    position: absolute;
+    top: 45px;
+    width: 500px;
+    box-sizing: border-box;
+    z-index: 999;
+}
+
+.search-select li {
+    border: 1px solid #d4d4d4;
+    ;
+    border-top: none;
+    border-bottom: none;
+    background-color: #fff;
+    width: 100%
+}
+
+.search-select-option {
+    box-sizing: border-box;
+    padding: 7px 10px;
+}
+
+.selectback {
+    background-color: #eee !important;
+    cursor: pointer
+}
+
+input::-ms-clear {
+    display: none
+}
+
+.search-reset {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    display: block;
+    line-height: 21px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    right: 110px;
+    top: 12px
+}
+
+.search-select-list {
+    transition: all 0.5s
+}
+
+.itemfade-enter,
+.itemfade-leave-active {
+    opacity: 0;
+}
+
+.itemfade-leave-active {
+    position: absolute;
+}
+
+.selectback {
+    background-color: #eee !important;
+    cursor: pointer
+}
+.search-select ul{margin:0;text-align: left; }
+
+</style>
+</head>
+<body>
+<div id="app_content">
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" id="start_run">run</a>
+        </div>
+    </div>
+</div>
+
+    <!-- jQuery 2.2.3 -->
+    <script type="text/javascript" src="/static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<!-- Bootstrap 3.3.6 -->
+    <script type="text/javascript" src="/static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- bootbox  -->
+    <script type="text/javascript" src="/static/plugins/jQuery/bootbox.min.js"></script>
+    <!-- 自定义组建  -->
+    <script type="text/javascript" src="/static/plugins/jQuery/ajax.js"></script>
+	<script type="text/javascript" src="/static/plugins/jQuery/alert.js"></script>
+    <!-- 自定义脚本 -->
+    <script type="text/javascript" src="/static/pages/index.js"></script>
+</body>
+</html>
