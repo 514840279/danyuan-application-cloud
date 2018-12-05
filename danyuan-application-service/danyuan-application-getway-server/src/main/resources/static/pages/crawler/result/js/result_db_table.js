@@ -17,7 +17,7 @@ $('#result_db_table').select2({
 });
 
 $(function(){
-	var url = '/sysDatabaseInfo/findAll';
+	var url = '/dbms/sysDbmsTabsJdbcInfo/findAll';
 	ajaxPost(url, null, sucessLoadDatabaseSelect2, 1000, findError);
 	
 	
@@ -47,7 +47,7 @@ $('#result_db_addr_select').on('select2:select', function (evt) {
 });
 var _typeUuid=null;
 function loadTableSelect(){
-	var url = '/sysTableInfo/findAllBySysTableInfo';
+	var url = '/dbms/sysDbmsTabsInfo/findAll';
     var param = {
     		databaseUuid:_databaseid,
     		typeUuid:_typeUuid,
@@ -58,7 +58,7 @@ function loadTableSelect(){
 function sucessLoadTableSelect2(result){
 	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.tableName});
+		data.push({id:value.uuid,text:value.tabsName});
 	});
 	$('#result_db_table').select2({data:data});
 }
@@ -67,10 +67,10 @@ function sucessLoadTableSelect2(result){
 
 $('#result_db_table').on('select2:select', function (evt) {
 	var id = evt.params.data.id;
-	var url = '/sysColumnInfo/findAllBySysColumnInfo';
+	var url = '/dbms/sysDbmsTabsColsInfo/findAllBySysDbmsTabsColsInfo';
     var param = {
-    		tableUuid:id,
-    };;
+		tabsUuid:id
+    };
     _result_config_table_uuid = id;
 	ajaxPost(url, param, sucessLoadTableColumnSelect2, 1000, findError);
 });

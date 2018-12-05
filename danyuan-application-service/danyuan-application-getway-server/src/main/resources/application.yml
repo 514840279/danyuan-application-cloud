@@ -19,7 +19,8 @@ eureka:
 security:  
   oauth2:
     sso:
-      loginPath: /index   # 登录回调路径
+      # 登录回调路径
+      loginPath: /index
     client:
       access-token-uri: http://localhost:8800/oauth2/oauth/token
       user-authorization-uri: http://localhost:8800/oauth2/oauth/authorize

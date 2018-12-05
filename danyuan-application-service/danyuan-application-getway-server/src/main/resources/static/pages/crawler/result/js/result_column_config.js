@@ -53,14 +53,14 @@ $(function(){
         var param ={
         		list:[],
         };
-        var url = '/sysColumnInfo/saveSysColumnVo';
+        var url = '/dbms/sysDbmsTabsColsInfo/saveSysColumnVo';
         var list_data_el = $("#result_config_column  option"); 
         
 		$.each(list_data_el,function(index,value){
 			var data = value.text;
 			param.list.push({
 				uuid:getUuid(),
-				tableUuid:_result_config_table_uuid,
+				tabsUuid:_result_config_table_uuid,
 				colsLength:255,
 				colsDesc:data,
 				colsName:data,
@@ -68,6 +68,7 @@ $(function(){
 				colsOrder:index+4,
 			});
 		})
+		console.log(param.list);
 		ajaxPost(url, param, sucessLoadResultConfigRelitationSelect2, 1000, findError);
 	})
 	

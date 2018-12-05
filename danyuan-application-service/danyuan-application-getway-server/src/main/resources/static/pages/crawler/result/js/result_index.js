@@ -2,7 +2,7 @@ $(function() {
     $("#result-tab").tabs({
    	 data: [{
             id: 'result_ruler_model',
-            text: '选择模板',
+            text: '选择规则组',
             url: "pages/crawler/result/result_ruler_model.html"
         },{
             id: 'result_db_tables',
@@ -35,7 +35,7 @@ function loadResultConfig(){
 		return;
 	}
 	// 请求数据
-	var url = '/sysSeedResultRulerInfo/findAllBySysSeedResultRulerInfo';
+	var url = '/crawler/sysCrawlerResultRulerInfo/findAll';
 	var param={
 		rulerUuid:_result_config_ruler_uuid,
 		tableUuid:_result_config_table_uuid,
