@@ -1,9 +1,4 @@
-var group_param={
-	urlType:null,
-	taskUuid:null,
-	groupType:null,
-	parrentId:null,
-}
+
 $(function() {
 	init();
 	// 绑定添加事件

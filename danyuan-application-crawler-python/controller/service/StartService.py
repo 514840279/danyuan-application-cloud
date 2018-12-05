@@ -23,7 +23,7 @@ class StartService():
         groupsql = '''
                     select * from sys_crawler_ruler_info r
                     where r.task_uuid='%s'
-                    and r.parent_uuid is null
+                    and (r.parent_uuid is null or r.parent_uuid ='')
                 ''' % task['uuid']
         conn = Conn_mysql(db='application')
         res, groupdata = conn.read_sql(groupsql)

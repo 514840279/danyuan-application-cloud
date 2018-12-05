@@ -1,3 +1,35 @@
+window.operateEvents = {
+	// 修改
+	'click #clickA ': function (e, value, row, index) {
+		// 打开modal
+		modals.openWin({
+	    	winId:"add_rule_group_table",
+	    	title:'添加规则组',
+	    	width:'800px',
+	    	url:"/pages/crawler/rule/addgroup.html"
+	    });
+		
+		// 反填数据
+		setTimeout(function(){
+			$("#add_ruler_group_ruler").val(row.ruler);
+			$("#add_ruler_group_name").val(row.name);
+			group_param.taskUuid = row.taskUuid;
+			$("#add_search_task_taskUuid").select2().val(row.taskUuid).trigger("change");
+			group_param.groupType= row.type;
+			$("#add_ruler_groupType").select2().val(row.type).trigger("change"); 
+			group_param.parrentId= row.parentUuid;
+			$("#add_ruler_parrentId").select2().val(row.parentUuid).trigger("change");  
+		}, 300);
+		
+	
+	},
+	'click #clickB ': function (e, value, row, index) {
+	},
+	'click #clickC ': function (e, value, row, index) {
+	},
+	'click #clickD ': function (e, value, row, index) {
+	}
+}
 $(function() {
 	init();
 });
@@ -193,24 +225,29 @@ function loadRuleGroup(){
 			{title : '规则名称',field : 'name',align : 'center',sortable : true,valign : 'top'},
 			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
 			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
+			{title : '操作', align : 'center',valign : 'top', events: operateEvents,formatter : function(value, row, index) {
+				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑' ></i> ";
+				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-remove' title='删除'></i> ";
+				return A + B;
+			}},
 		],
 		responseHandler: function(result){  // 成功时执行
 			console.log(result)
 			return {data:result};
 		}, 
 		onClickRow:function(row,index){
-			$("#crawler_rule_config_table_datagrid").bootstrapTable("destroy");
+//			$("#crawler_rule_config_table_datagrid").bootstrapTable("destroy");
 		    if(!index[0].children[0].children[0].checked){
 		    	loadRule(row);
-		    	$("#show_crawler_rule_group_config").attr("class","col-lg-4 col-xs-4");
 		    }
+		    $("#show_crawler_rule_group_config").attr("class","col-lg-4 col-xs-4");
 	    },
 	});
 }
 
 // 初始化 规则 
 function loadRule(row){
-	
+	$("#crawler_rule_config_table_datagrid").bootstrapTable("destroy");
 	// bootstrap table
 	$('#crawler_rule_config_table_datagrid').bootstrapTable({
 		url : "/crawler/sysCrawlerRulerColumInfo/page",

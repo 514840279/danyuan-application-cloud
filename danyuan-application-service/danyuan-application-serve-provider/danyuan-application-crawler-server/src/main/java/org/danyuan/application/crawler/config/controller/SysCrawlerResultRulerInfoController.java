@@ -5,6 +5,7 @@ import java.util.List;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.config.po.SysCrawlerResultRulerInfo;
 import org.danyuan.application.crawler.config.service.SysCrawlerResultRulerInfoService;
+import org.danyuan.application.crawler.config.vo.SysCrawlerResultRulerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -93,6 +94,19 @@ public class SysCrawlerResultRulerInfoController {
 	public String save(@RequestBody Pagination<SysCrawlerResultRulerInfo> vo) {
 		sysCrawlerResultRulerInfo.saveAll(vo.getList());
 		return "1";
+	}
+	
+	/**
+	 * 方法名 ： saveResultRulerInfo
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseController#save(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
+	@RequestMapping("/saveResultRulerInfo")
+	public List<SysCrawlerResultRulerInfo> saveResultRulerInfo(@RequestBody SysCrawlerResultRulerVo vo) {
+		return sysCrawlerResultRulerInfo.saveResultRulerInfo(vo);
 	}
 	
 	/**

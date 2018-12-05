@@ -5,7 +5,7 @@ $(function(){
 	})
 	
 	$('#result_make_sure_ok_div_btn').bind('click',function(){
-		var url = '/crawler/sysCrawlerResultRulerInfo/saveSysSeedResultRulerInfo';
+		var url = '/crawler/sysCrawlerResultRulerInfo/saveResultRulerInfo';
 		var param={
 			tableUuid:_result_config_table_uuid,
 			rulerUuid:_result_config_ruler_uuid,
