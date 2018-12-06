@@ -46,7 +46,42 @@ class StartService():
             rows= rule.html_content_analysis_allPage(html_text=html,group_ruler=group['ruler'], column=columndata)
 
         ## 动态入库参数数据提取 ##########
-        print(rows)
+        mapconfigsql = '''
+            select r.*,t.tabs_name from sys_crawler_result_ruler_info r
+            inner join sys_dbms_tabs_info t on r.table_uuid = t.uuid
+            where ruler_uuid='%s'
+        ''' % group['uuid']
+        conconn = Conn_mysql(db='application')
+        res, condata = conconn.read_sql(mapconfigsql)
+        print(condata)
+        # 拼装入库语句
+        insertsql ='''insert into %s (''' % condata[0]['tabs_name']
+
+        for i in range(len(condata)):
+            if(i>0):
+                insertsql = insertsql+','
+            insertsql=insertsql +  condata[i]['cols_name']
+        insertsql = insertsql+") values("
+
+        instconn = Conn_mysql(db='application')
+        for item in rows:
+            insertsqlval = "'"
+            for i in range(len(condata)):
+                if(i>0):
+                    insertsqlval= insertsqlval+"','"
+                for data in item:
+                    if(data[0] == condata[i]['ruler_colum_name']):
+                        val = data[1]
+                        if(type(val).__name__=='list' and len(val) == 0):
+                            pass
+                        elif (type(val).__name__=='list' and len(val)>0):
+                            insertsqlval = insertsqlval + str(val).replace("'", "").replace("[", "").replace("]", "")
+                        elif (type(val).__name__ == 'string'):
+                            insertsqlval = insertsqlval + val.replace("'", "")
+            insertsqlval=insertsqlval+"'"
+            insettemsql = insertsql + insertsqlval +")"
+            print(insettemsql)
+            instconn.write_sql(insettemsql)
         return rows
 
     def __init__(self):
