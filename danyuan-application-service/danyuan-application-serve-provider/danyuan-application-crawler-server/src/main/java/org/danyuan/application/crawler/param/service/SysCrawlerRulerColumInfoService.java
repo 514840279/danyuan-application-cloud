@@ -133,14 +133,14 @@ public class SysCrawlerRulerColumInfoService implements BaseService<SysCrawlerRu
 		sysCrawlerRulerColumInfoDao.deleteAllInBatch();
 	}
 	
-	/** 
-	*  方法名 ： findAll
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
+	/**
+	 * 方法名 ： findAll
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
 	
 	@Override
 	public List<SysCrawlerRulerColumInfo> findAll(Pagination<SysCrawlerRulerColumInfo> vo) {
@@ -148,14 +148,14 @@ public class SysCrawlerRulerColumInfoService implements BaseService<SysCrawlerRu
 		return null;
 	}
 	
-	/** 
-	*  方法名 ： page
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
+	/**
+	 * 方法名 ： page
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
 	
 	@Override
 	public Page<SysCrawlerRulerColumInfo> page(Pagination<SysCrawlerRulerColumInfo> vo) {

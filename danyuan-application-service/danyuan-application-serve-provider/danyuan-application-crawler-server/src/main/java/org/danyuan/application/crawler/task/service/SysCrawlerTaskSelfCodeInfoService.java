@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.task.dao.SysCrawlerTaskSelfCodeInfoDao;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskSelfCodeInfo;
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysCrawlerTaskSelfCodeInfoService implements BaseService<SysCrawlerTaskSelfCodeInfo> {
+public class SysCrawlerTaskSelfCodeInfoService extends BaseServiceImpl<SysCrawlerTaskSelfCodeInfo> implements BaseService<SysCrawlerTaskSelfCodeInfo> {
 	
 	@Autowired
 	SysCrawlerTaskSelfCodeInfoDao sysCrawlerTaskSelfCodeInfoDao;
@@ -151,20 +152,5 @@ public class SysCrawlerTaskSelfCodeInfoService implements BaseService<SysCrawler
 	public void trunc() {
 		sysCrawlerTaskSelfCodeInfoDao.deleteAllInBatch();
 	}
-	
-	/** 
-	*  方法名 ： findAll
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
-	
-	@Override
-	public List<SysCrawlerTaskSelfCodeInfo> findAll(Pagination<SysCrawlerTaskSelfCodeInfo> vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 }

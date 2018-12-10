@@ -44,7 +44,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	private SysDbmsTabsInfoDao		sysDbmsTabsInfoDao;
 	@Autowired
 	JdbcTemplate					jdbcTemplate;
-	
+
 	// 分页查询
 	public Page<SysDbmsTabsColsInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
 		logger.info(tableUuid, SysDbmsTabsColsInfoService.class);
@@ -56,14 +56,14 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
 		Page<SysDbmsTabsColsInfo> sourceCodes = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return sourceCodes;
-		
+
 	}
-	
+
 	// 构建PageRequest
 	private PageRequest buildPageRequest(int pageNumber, int pageSize, Sort sort) {
 		return PageRequest.of(pageNumber - 1, pageSize, sort);
 	}
-	
+
 	// 更新
 	public void change(SysDbmsTabsColsInfo info) {
 		try {
@@ -73,23 +73,23 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 				String sql = "alter table " + tab.getTabsName() + " CHANGE " + old.get().getColsName() + " " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			} else {
-				
+
 				String sql = "alter table " + tab.getTabsName() + " add " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			}
 		} finally {
 			sysDbmsTabsColsInfoDao.save(info);
-			
+
 		}
 	}
-	
+
 	@Override
 	public void save(SysDbmsTabsColsInfo info) {
 		sysDbmsTabsColsInfoDao.save(info);
 	}
-	
+
 	public void deleteSysDbmsTabsColsInfo(List<SysDbmsTabsColsInfo> list) {
-		
+
 		Optional<SysDbmsTabsInfo> tab = sysDbmsTabsInfoDao.findById(list.get(0).getTabsUuid());
 		if (tab.isPresent()) {
 			for (SysDbmsTabsColsInfo SysDbmsTabsColsInfo : list) {
@@ -103,16 +103,16 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 			}
 		}
 	}
-	
+
 	public List<SysDbmsTabsColsInfo> findAllBySysDbmsTabsColsInfo(SysDbmsTabsColsInfo info) {
 		Example<SysDbmsTabsColsInfo> example = Example.of(info);
 		return sysDbmsTabsColsInfoDao.findAll(example);
 	}
-	
+
 	public void saveSysDbmsTabsColsInfo(List<SysDbmsTabsColsInfo> list) {
 		sysDbmsTabsColsInfoDao.saveAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -121,13 +121,13 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysDbmsTabsColsInfo findOne(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -136,13 +136,13 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public List<SysDbmsTabsColsInfo> findAll(SysDbmsTabsColsInfo info) {
 		Example<SysDbmsTabsColsInfo> example = Example.of(info);
 		return sysDbmsTabsColsInfoDao.findAll(example);
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -155,18 +155,20 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysDbmsTabsColsInfo> page(Pagination<SysDbmsTabsColsInfo> vo) {
-		Order order = new Order(Direction.DESC, "createTime");
+		List<Sort.Order> orders = new ArrayList<>();
+
 		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
+			orders = vo.getOrders();
+		} else {
+			Order order = new Order(Direction.DESC, "createTime");
+			orders.add(order);
 		}
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsTabsColsInfo());
 		}
-		List<Sort.Order> orders = new ArrayList<>();
-		orders.add(order);
 		
 		Example<SysDbmsTabsColsInfo> example = Example.of(vo.getInfo());
 		Sort sort = Sort.by(orders);
@@ -174,7 +176,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		Page<SysDbmsTabsColsInfo> page = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return page;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -182,7 +184,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void saveAll(List<SysDbmsTabsColsInfo> list) {
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : list) {
@@ -192,7 +194,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 			change(sysDbmsTabsColsInfo);
 		}
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -200,13 +202,13 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -214,12 +216,12 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void deleteAll(List<SysDbmsTabsColsInfo> list) {
 		sysDbmsTabsColsInfoDao.deleteAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -227,10 +229,10 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

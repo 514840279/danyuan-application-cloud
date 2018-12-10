@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.task.dao.SysCrawlerTaskInfoDao;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
@@ -27,10 +28,10 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo> {
+public class SysCrawlerTaskInfoService extends BaseServiceImpl<SysCrawlerTaskInfo> implements BaseService<SysCrawlerTaskInfo> {
 	@Autowired
 	SysCrawlerTaskInfoDao sysCrawlerTaskInfoDao;
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -39,7 +40,7 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public SysCrawlerTaskInfo findOne(SysCrawlerTaskInfo entity) {
 		Example<SysCrawlerTaskInfo> example = Example.of(entity);
@@ -49,7 +50,7 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 		}
 		return entity;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -58,13 +59,13 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<SysCrawlerTaskInfo> findAll(SysCrawlerTaskInfo entity) {
 		Example<SysCrawlerTaskInfo> example = Example.of(entity);
 		return sysCrawlerTaskInfoDao.findAll(example);
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -77,7 +78,7 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public Page<SysCrawlerTaskInfo> page(Pagination<SysCrawlerTaskInfo> vo) {
 		Example<SysCrawlerTaskInfo> example = Example.of(vo.getInfo());
@@ -85,7 +86,7 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysCrawlerTaskInfoDao.findAll(example, request);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -93,12 +94,12 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void save(SysCrawlerTaskInfo entity) {
 		sysCrawlerTaskInfoDao.save(entity);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -106,12 +107,12 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void saveAll(List<SysCrawlerTaskInfo> entities) {
 		sysCrawlerTaskInfoDao.saveAll(entities);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -119,12 +120,12 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void delete(SysCrawlerTaskInfo entity) {
 		sysCrawlerTaskInfoDao.delete(entity);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -132,12 +133,12 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void deleteAll(List<SysCrawlerTaskInfo> entities) {
 		sysCrawlerTaskInfoDao.deleteAll(entities);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -145,12 +146,12 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysCrawlerTaskInfoDao.deleteAllInBatch();
 	}
-	
+
 	/**
 	 * 方法名： findUrlType
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -162,7 +163,7 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	public List<String> findUrlType() {
 		return sysCrawlerTaskInfoDao.findUrlType();
 	}
-	
+
 	/**
 	 * 方法名： findTaskName
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -174,20 +175,5 @@ public class SysCrawlerTaskInfoService implements BaseService<SysCrawlerTaskInfo
 	public List<String> findTaskName() {
 		return sysCrawlerTaskInfoDao.findTaskName();
 	}
-	
-	/** 
-	*  方法名 ： findAll
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
-	
-	@Override
-	public List<SysCrawlerTaskInfo> findAll(Pagination<SysCrawlerTaskInfo> vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+
 }

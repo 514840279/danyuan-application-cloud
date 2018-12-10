@@ -26,10 +26,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerInfo> {
-	
+
 	@Autowired
 	SysCrawlerRulerInfoDao sysCrawlerRulerInfoDao;
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -38,7 +38,7 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public SysCrawlerRulerInfo findOne(SysCrawlerRulerInfo entity) {
 		Example<SysCrawlerRulerInfo> example = Example.of(entity);
@@ -48,7 +48,7 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 		}
 		return entity;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -57,13 +57,13 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<SysCrawlerRulerInfo> findAll(SysCrawlerRulerInfo entities) {
 		Example<SysCrawlerRulerInfo> example = Example.of(entities);
 		return sysCrawlerRulerInfoDao.findAll(example);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -71,12 +71,12 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void save(SysCrawlerRulerInfo entity) {
 		sysCrawlerRulerInfoDao.save(entity);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -84,12 +84,12 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void saveAll(List<SysCrawlerRulerInfo> entities) {
 		sysCrawlerRulerInfoDao.saveAll(entities);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -97,12 +97,12 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void delete(SysCrawlerRulerInfo entity) {
 		sysCrawlerRulerInfoDao.delete(entity);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -110,12 +110,12 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void deleteAll(List<SysCrawlerRulerInfo> entities) {
 		sysCrawlerRulerInfoDao.deleteAll(entities);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -123,42 +123,42 @@ public class SysCrawlerRulerInfoService implements BaseService<SysCrawlerRulerIn
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysCrawlerRulerInfoDao.deleteAllInBatch();
 	}
-	
-	/** 
-	*  方法名 ： findAll
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
-	
+
+	/**
+	 * 方法名 ： findAll
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
+
 	@Override
 	public List<SysCrawlerRulerInfo> findAll(Pagination<SysCrawlerRulerInfo> vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	/** 
-	*  方法名 ： page
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
-	
+
+	/**
+	 * 方法名 ： page
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
+
 	@Override
 	public Page<SysCrawlerRulerInfo> page(Pagination<SysCrawlerRulerInfo> vo) {
 		Example<SysCrawlerRulerInfo> example = Example.of(vo.getInfo());
-		Sort sort = Sort.by(vo.getOrder());
+		Sort sort = Sort.by(vo.getOrders());
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
-		
+
 		return sysCrawlerRulerInfoDao.findAll(example, request);
 	}
 	

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -32,7 +31,6 @@ public class Pagination<T> {
 	public String				sortName;
 	public String				filter;
 	public String				sortOrder;
-	public Direction			order;
 	public List<Order>			orders;
 	List<T>						list;
 	public T					info;
@@ -169,27 +167,14 @@ public class Pagination<T> {
 	}
 
 	public void setSortName(String sortName) {
+		if (sortName != null && !"".equals(sortName)) {
+			this.orders.add(Order.by(sortName));
+		}
 		this.sortName = sortName;
 	}
 
 	public String getSortOrder() {
 		return sortOrder;
-	}
-
-	public void setSortOrder(String sortOrder) {
-		this.sortOrder = sortOrder;
-		switch (sortOrder) {
-			case ("desc"):
-				order = Direction.DESC;
-				break;
-			case ("asc"):
-				order = Direction.ASC;
-				break;
-		}
-	}
-
-	public Direction getOrder() {
-		return order;
 	}
 
 	public String getFilter() {
@@ -212,7 +197,7 @@ public class Pagination<T> {
 	/**
 	 * 方法名 ： getOrders
 	 * 功 能 ： 返回变量 orders 的值
-	 * 
+	 *
 	 * @return: List<Order>
 	 */
 	public List<Order> getOrders() {
@@ -227,9 +212,33 @@ public class Pagination<T> {
 		this.orders = orders;
 	}
 	
+	/**
+	 * 方法名 ： setSortOrder
+	 * 功 能 ： 设置变量 sortOrder 的值
+	 */
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+	
+	/**
+	 * 方法名 ： setMap
+	 * 功 能 ： 设置变量 map 的值
+	 */
+	public void setMap(Map<String, String> map) {
+		this.map = map;
+	}
+	
+	/**
+	 * 方法名 ： toString
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @return
+	 * 参 考 ： @see java.lang.Object#toString()
+	 * 作 者 ： Administrator
+	 */
+
 	@Override
 	public String toString() {
-		return "Pagination [pageNumber=" + pageNumber + ", pageSize=" + pageSize + ", uuid=" + uuid + ", searchText=" + searchText + ", username=" + username + ", sortName=" + sortName + ", filter=" + filter + ", sortOrder=" + sortOrder + ", order=" + order + ", list=" + list + ", info=" + info + ", map=" + map + "]";
+		return "Pagination [pageNumber=" + pageNumber + ", pageSize=" + pageSize + ", uuid=" + uuid + ", searchText=" + searchText + ", username=" + username + ", sortName=" + sortName + ", filter=" + filter + ", sortOrder=" + sortOrder + ", orders=" + orders + ", list=" + list + ", info=" + info + ", map=" + map + "]";
 	}
-
+	
 }

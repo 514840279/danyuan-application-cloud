@@ -10,8 +10,6 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * 文件名 ： StringUtils.java
  * 包 名 ：
@@ -487,10 +485,5 @@ public class StringUtils {
 			return trim(strNum);
 		}
 	}
-
-	@SuppressWarnings("unchecked")
-	public static final Map<String, Object> stringToMap(String jsonString) {
-		Map<String, Object> mapType = JSON.parseObject(jsonString, Map.class);
-		return mapType;
-	}
+	
 }

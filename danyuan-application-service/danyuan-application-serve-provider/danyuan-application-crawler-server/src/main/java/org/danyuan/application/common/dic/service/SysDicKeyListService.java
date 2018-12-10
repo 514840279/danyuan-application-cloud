@@ -32,10 +32,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysDicKeyListService implements BaseService<SysDicKeyList> {
-	
+
 	@Autowired
 	private SysDicKeyListDao sysDicKeyListDao;
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -44,7 +44,7 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysDicKeyList findOne(SysDicKeyList info) {
 		Example<SysDicKeyList> example = Example.of(info);
@@ -54,7 +54,7 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 		}
 		return info;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -63,13 +63,13 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public List<SysDicKeyList> findAll(SysDicKeyList info) {
 		Example<SysDicKeyList> example = Example.of(info);
 		return sysDicKeyListDao.findAll(example);
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -82,27 +82,26 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysDicKeyList> page(Pagination<SysDicKeyList> vo) {
-		Order order = new Order(Direction.ASC, "keyOrder");
+		List<Order> orders = new ArrayList<>();
+		orders.add(new Order(Direction.ASC, "keyOrder"));
 		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
+			orders = vo.getOrders();
 		}
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDicKeyList());
 		}
-		List<Order> orders = new ArrayList<>();
-		orders.add(order);
-		
+
 		Example<SysDicKeyList> example = Example.of(vo.getInfo());
-		Sort sort = Sort.by(order);
-		
+		Sort sort = Sort.by(orders);
+
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDicKeyList> page = sysDicKeyListDao.findAll(example, request);
 		return page;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -110,12 +109,12 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void save(SysDicKeyList info) {
 		sysDicKeyListDao.save(info);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -123,12 +122,12 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void saveAll(List<SysDicKeyList> list) {
 		sysDicKeyListDao.saveAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -136,12 +135,12 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysDicKeyList info) {
 		sysDicKeyListDao.delete(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -149,12 +148,12 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void deleteAll(List<SysDicKeyList> list) {
 		sysDicKeyListDao.deleteInBatch(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -162,21 +161,21 @@ public class SysDicKeyListService implements BaseService<SysDicKeyList> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysDicKeyListDao.deleteAllInBatch();
 	}
-	
-	/** 
-	*  方法名 ： findAll
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
-	
+
+	/**
+	 * 方法名 ： findAll
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
+
 	@Override
 	public List<SysDicKeyList> findAll(Pagination<SysDicKeyList> vo) {
 		// TODO Auto-generated method stub

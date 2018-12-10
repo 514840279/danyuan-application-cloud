@@ -138,14 +138,14 @@ public class SysCrawlerResultRulerInfoService implements BaseService<SysCrawlerR
 	}
 	
 	/**
-	 * @return   
-	*  方法名： saveResultRulerInfo  
-	*  功    能： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数： @param vo 
-	*  返    回： void  
-	*  作    者 ： wang  
-	*  @throws  
-	*/
+	 * @return
+	 * 方法名： saveResultRulerInfo
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param vo
+	 * 返 回： void
+	 * 作 者 ： wang
+	 * @throws
+	 */
 	public List<SysCrawlerResultRulerInfo> saveResultRulerInfo(SysCrawlerResultRulerVo vo) {
 		SysCrawlerResultRulerInfo info = new SysCrawlerResultRulerInfo();
 		info.setTableUuid(vo.getTableUuid());
@@ -162,14 +162,14 @@ public class SysCrawlerResultRulerInfoService implements BaseService<SysCrawlerR
 		return sysCrawlerResultRulerInfoDao.findAll(example);
 	}
 	
-	/** 
-	*  方法名 ： findAll
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
+	/**
+	 * 方法名 ： findAll
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
 	
 	@Override
 	public List<SysCrawlerResultRulerInfo> findAll(Pagination<SysCrawlerResultRulerInfo> vo) {
@@ -177,19 +177,19 @@ public class SysCrawlerResultRulerInfoService implements BaseService<SysCrawlerR
 		return null;
 	}
 	
-	/** 
-	*  方法名 ： page
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param vo
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)  
-	*  作    者 ： wang  
-	*/
+	/**
+	 * 方法名 ： page
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param vo
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)
+	 * 作 者 ： wang
+	 */
 	
 	@Override
 	public Page<SysCrawlerResultRulerInfo> page(Pagination<SysCrawlerResultRulerInfo> vo) {
 		Example<SysCrawlerResultRulerInfo> example = Example.of(vo.getInfo());
-		Sort sort = Sort.by(vo.getOrder());
+		Sort sort = Sort.by(vo.getOrders());
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysCrawlerResultRulerInfoDao.findAll(example, request);
 	}

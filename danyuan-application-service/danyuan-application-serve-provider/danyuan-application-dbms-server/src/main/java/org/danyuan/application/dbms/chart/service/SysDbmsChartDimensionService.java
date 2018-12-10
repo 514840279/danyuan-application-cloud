@@ -88,16 +88,17 @@ public class SysDbmsChartDimensionService extends BaseServiceImpl<SysDbmsChartDi
 	
 	@Override
 	public Page<SysDbmsChartDimension> page(Pagination<SysDbmsChartDimension> vo) {
-		Order order = new Order(Direction.ASC, "createTime");
+		List<Order> orders = new ArrayList<>();
 		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
+			orders = vo.getOrders();
+		} else {
+			Order order = new Order(Direction.ASC, "createTime");
+			orders.add(order);
 		}
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsChartDimension());
 		}
-		List<Order> orders = new ArrayList<>();
-		orders.add(order);
-		
+
 		Example<SysDbmsChartDimension> example = Example.of(vo.getInfo());
 		Sort sort = Sort.by(orders);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
