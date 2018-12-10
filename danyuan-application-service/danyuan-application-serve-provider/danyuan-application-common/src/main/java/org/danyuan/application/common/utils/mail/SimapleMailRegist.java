@@ -25,10 +25,6 @@ import com.aliyuncs.profile.IClientProfile;
  * 版 本 ： V1.0
  */
 public class SimapleMailRegist {
-//	@Autowired
-//	private JavaMailSender mailSender;
-//
-//	@RequestMapping(path = "/mail/send", method = RequestMethod.POST)
 	public MailVo SendMailToCustom(MailVo vo) {
 		System.err.println(vo.getMail());
 		vo.setCode(RandomStringUtils.randomAscii(18));

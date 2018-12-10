@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.danyuan.application</groupId>
 		<artifactId>danyuan-application</artifactId>
-		<version>C0.0.1-SNAPSHOT</version>
+		<version>C1.0.0</version>
 	</parent>
 
 	<artifactId>danyuan-application-eureka-server</artifactId>
