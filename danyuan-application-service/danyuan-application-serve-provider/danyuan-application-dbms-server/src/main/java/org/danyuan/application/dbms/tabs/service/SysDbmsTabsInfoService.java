@@ -1,11 +1,13 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -33,7 +36,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service("sysDbmsTabsInfoService")
-public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
+public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> implements BaseService<SysDbmsTabsInfo> {
 	
 	private static final Logger		logger	= LoggerFactory.getLogger(SysDbmsTabsInfoService.class);
 	//
@@ -41,14 +44,14 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	private SysDbmsTabsInfoDao		sysDbmsTabsInfoDao;
 	@Autowired
 	private SysDbmsTabsColsInfoDao	sysDbmsTabsColsInfoDao;
-
+	
 	@Autowired
 	JdbcTemplate					jdbcTemplate;
-
+	
 	public List<SysDbmsTabsInfo> findAll() {
 		return sysDbmsTabsInfoDao.findAll();
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -65,7 +68,7 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 		sBuilder.append("CREATE TABLE ");
 		sBuilder.append(info.getTabsName());
 		sBuilder.append("(md5 varchar(36) comment 'url的md5值' )");
-
+		
 		jdbcTemplate.execute(sBuilder.toString());
 		
 		// 保存列的配置信息
@@ -75,18 +78,18 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 		// sysDbmsTabsColsInfoDao.save(new SysDbmsTabsColsInfo(UUID.randomUUID().toString(), 6, "采集时间", "datetime", 4, "date", "采集时间", info.getUuid()));
 		// 返回表配置信息
 	}
-
+	
 	public SysDbmsTabsInfo findSysDbmsTabsInofByUuid(String uuid) {
 		return sysDbmsTabsInfoDao.findSysDbmsTabsInfoByUuid(uuid);
 	}
-
+	
 	public List<SysDbmsTabsInfo> updateSysTableInfo(SysDbmsTabsInfoVo vo) {
 		// 旧数据
 		SysDbmsTabsInfo info = vo.getOld();
 		SysDbmsTabsInfo sysDbmsTabsInfo = vo.getNow();
-
+		
 		System.out.println(info.getTabsName() + "  " + sysDbmsTabsInfo.getTabsName());
-
+		
 		if (!info.getTabsName().equals(sysDbmsTabsInfo.getTabsName())) {
 			// 修改表名
 			String sql = "ALTER TABLE " + info.getTabsName() + "  RENAME TO  " + sysDbmsTabsInfo.getTabsName();
@@ -99,7 +102,7 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 		}
 		// 修改配置信息
 		sysDbmsTabsInfoDao.save(sysDbmsTabsInfo);
-
+		
 		return sysDbmsTabsInfoDao.findAll();
 	}
 	
@@ -125,7 +128,7 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	public void savev(SysDbmsTabsInfo info) {
 		sysDbmsTabsInfoDao.save(info);
 	}
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -140,10 +143,19 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 	 */
 	
 	@Override
-	public Page<SysDbmsTabsInfo> page(int pageNumber, int pageSize, SysDbmsTabsInfo info, Map<String, String> map, List<Order> order) {
-		Example<SysDbmsTabsInfo> example = Example.of(info);
-		Sort sort = Sort.by(order);
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+	public Page<SysDbmsTabsInfo> page(Pagination<SysDbmsTabsInfo> vo) {
+		Order order = new Order(Direction.DESC, "createTime");
+		if (vo.getSortName() != null) {
+			order = new Order(vo.getOrder(), vo.getSortName());
+		}
+		if (vo.getInfo() == null) {
+			vo.setInfo(new SysDbmsTabsInfo());
+		}
+		List<Order> orders = new ArrayList<>();
+		orders.add(order);
+		Example<SysDbmsTabsInfo> example = Example.of(vo.getInfo());
+		Sort sort = Sort.by(orders);
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDbmsTabsInfo> page = sysDbmsTabsInfoDao.findAll(example, request);
 		return page;
 	}
@@ -236,7 +248,7 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
 		return sysDbmsTabsInfoDao.findAll(example);
 	}
-
+	
 	/**
 	 * 方法名： change
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -253,10 +265,10 @@ public class SysDbmsTabsInfoService implements BaseService<SysDbmsTabsInfo> {
 		sBuilder.append(vo.getOld().getTabsName());
 		sBuilder.append(" RENAME TO ");
 		sBuilder.append(vo.getNow().getTabsName());
-
+		
 		jdbcTemplate.execute(sBuilder.toString());
 		sysDbmsTabsInfoDao.save(vo.getNow());
-
+		
 	}
 	
 }

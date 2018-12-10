@@ -1,11 +1,13 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
@@ -33,7 +35,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service("sysDbmsTabsColsInfoService")
-public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsInfo> {
+public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsInfo> implements BaseService<SysDbmsTabsColsInfo> {
 	private static final Logger		logger	= LoggerFactory.getLogger(SysDbmsTabsColsInfoService.class);
 	//
 	@Autowired
@@ -119,7 +121,7 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysDbmsTabsColsInfo findOne(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
@@ -134,7 +136,7 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysDbmsTabsColsInfo> findAll(SysDbmsTabsColsInfo info) {
 		Example<SysDbmsTabsColsInfo> example = Example.of(info);
@@ -153,12 +155,22 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
-	public Page<SysDbmsTabsColsInfo> page(int pageNumber, int pageSize, SysDbmsTabsColsInfo info, Map<String, String> map, List<Order> order) {
-		Example<SysDbmsTabsColsInfo> example = Example.of(info);
-		Sort sort = Sort.by(order);
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+	public Page<SysDbmsTabsColsInfo> page(Pagination<SysDbmsTabsColsInfo> vo) {
+		Order order = new Order(Direction.DESC, "createTime");
+		if (vo.getSortName() != null) {
+			order = new Order(vo.getOrder(), vo.getSortName());
+		}
+		if (vo.getInfo() == null) {
+			vo.setInfo(new SysDbmsTabsColsInfo());
+		}
+		List<Sort.Order> orders = new ArrayList<>();
+		orders.add(order);
+		
+		Example<SysDbmsTabsColsInfo> example = Example.of(vo.getInfo());
+		Sort sort = Sort.by(orders);
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDbmsTabsColsInfo> page = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return page;
 	}
@@ -170,7 +182,7 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void saveAll(List<SysDbmsTabsColsInfo> list) {
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : list) {
@@ -188,11 +200,11 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	/**
@@ -202,7 +214,7 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void deleteAll(List<SysDbmsTabsColsInfo> list) {
 		sysDbmsTabsColsInfoDao.deleteAll(list);
@@ -215,10 +227,10 @@ public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

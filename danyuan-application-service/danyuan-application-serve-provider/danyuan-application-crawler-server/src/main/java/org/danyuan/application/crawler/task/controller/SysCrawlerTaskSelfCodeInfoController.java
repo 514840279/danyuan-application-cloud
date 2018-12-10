@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysCrawlerTaskSelfCodeInfo")
 public class SysCrawlerTaskSelfCodeInfoController {
-
+	
 	@Autowired
 	SysCrawlerTaskSelfCodeInfoService sysCrawlerTaskSelfCodeInfoService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -38,9 +38,9 @@ public class SysCrawlerTaskSelfCodeInfoController {
 	 */
 	@RequestMapping("/page")
 	public Page<SysCrawlerTaskSelfCodeInfo> page(@RequestBody Pagination<SysCrawlerTaskSelfCodeInfo> vo) {
-		return sysCrawlerTaskSelfCodeInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), vo.getOrders());
+		return sysCrawlerTaskSelfCodeInfoService.page(vo);
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -53,7 +53,7 @@ public class SysCrawlerTaskSelfCodeInfoController {
 	public List<SysCrawlerTaskSelfCodeInfo> findAll(@RequestBody SysCrawlerTaskSelfCodeInfo info) {
 		return sysCrawlerTaskSelfCodeInfoService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -66,7 +66,7 @@ public class SysCrawlerTaskSelfCodeInfoController {
 	public SysCrawlerTaskSelfCodeInfo findOne(@RequestBody SysCrawlerTaskSelfCodeInfo info) {
 		return sysCrawlerTaskSelfCodeInfoService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -80,7 +80,7 @@ public class SysCrawlerTaskSelfCodeInfoController {
 		sysCrawlerTaskSelfCodeInfoService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -94,7 +94,7 @@ public class SysCrawlerTaskSelfCodeInfoController {
 		sysCrawlerTaskSelfCodeInfoService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -108,7 +108,7 @@ public class SysCrawlerTaskSelfCodeInfoController {
 		sysCrawlerTaskSelfCodeInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -122,7 +122,7 @@ public class SysCrawlerTaskSelfCodeInfoController {
 		sysCrawlerTaskSelfCodeInfoService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -135,5 +135,5 @@ public class SysCrawlerTaskSelfCodeInfoController {
 		sysCrawlerTaskSelfCodeInfoService.trunc();
 		return "1";
 	}
-
+	
 }

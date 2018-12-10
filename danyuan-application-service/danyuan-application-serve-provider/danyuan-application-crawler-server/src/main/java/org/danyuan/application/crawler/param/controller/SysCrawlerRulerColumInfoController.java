@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysCrawlerRulerColumInfo")
 public class SysCrawlerRulerColumInfoController {
-
+	
 	@Autowired
 	SysCrawlerRulerColumInfoService sysCrawlerRulerColumInfoService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -39,9 +39,9 @@ public class SysCrawlerRulerColumInfoController {
 	 */
 	@RequestMapping("/page")
 	public Page<SysCrawlerRulerColumInfo> page(@RequestBody Pagination<SysCrawlerRulerColumInfo> vo) {
-		return sysCrawlerRulerColumInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), vo.getOrders());
+		return sysCrawlerRulerColumInfoService.page(vo);
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -54,7 +54,7 @@ public class SysCrawlerRulerColumInfoController {
 	public List<SysCrawlerRulerColumInfo> findAll(@RequestBody SysCrawlerRulerColumInfo info) {
 		return sysCrawlerRulerColumInfoService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -67,7 +67,7 @@ public class SysCrawlerRulerColumInfoController {
 	public SysCrawlerRulerColumInfo findOne(@RequestBody SysCrawlerRulerColumInfo info) {
 		return sysCrawlerRulerColumInfoService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -84,7 +84,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -98,7 +98,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -112,7 +112,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -126,7 +126,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -139,5 +139,5 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.trunc();
 		return "1";
 	}
-
+	
 }

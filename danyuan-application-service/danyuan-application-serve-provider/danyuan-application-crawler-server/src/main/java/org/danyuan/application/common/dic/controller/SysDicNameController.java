@@ -1,14 +1,8 @@
 /**
- * 文件名：SysDicNameController.java
- *
- * 版本信息：
- * 日期：2018年5月16日
- * Copyright 足下 Corporation 2018
- * 版权所有
+ * 文件名：SysDicNameController.java 版本信息： 日期：2018年5月16日 Copyright 足下 Corporation 2018 版权所有
  */
 package org.danyuan.application.common.dic.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,16 +55,8 @@ public class SysDicNameController {
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDicName> page(@RequestBody Pagination<SysDicName> vo) {
 		logger.info("page", SysDicNameController.class);
-		Order order = new Order(Direction.DESC, "createTime");
-		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
-		}
-		if (vo.getInfo() == null) {
-			vo.setInfo(new SysDicName());
-		}
-		List<Order> orders = new ArrayList<>();
-		orders.add(order);
-		return sysDicNameService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), orders);
+		
+		return sysDicNameService.page(vo);
 	}
 	
 	/**
@@ -198,5 +182,5 @@ public class SysDicNameController {
 		List<SysDicKeyList> list = sysDicNameService.findkeyList(info);
 		return list;
 	}
-
+	
 }

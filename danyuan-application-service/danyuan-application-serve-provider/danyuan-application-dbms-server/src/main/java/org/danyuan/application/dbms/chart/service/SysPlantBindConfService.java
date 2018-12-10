@@ -4,10 +4,11 @@
 package org.danyuan.application.dbms.chart.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.chart.dao.SysPlantBindConfDao;
 import org.danyuan.application.dbms.chart.po.SysPlantBindConf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
+public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> implements BaseService<SysPlantBindConf> {
 	
 	@Autowired
 	SysPlantBindConfDao sysPlantBindConfDao;
@@ -43,7 +44,7 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysPlantBindConf findOne(SysPlantBindConf info) {
 		Example<SysPlantBindConf> example = Example.of(info);
@@ -62,7 +63,7 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysPlantBindConf> findAll(SysPlantBindConf info) {
 		Order[] order = { new Order(Direction.ASC, "colsOrder"), new Order(Direction.ASC, "createTime") };
@@ -84,10 +85,10 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 作 者 ： Administrator
 	 */
 	@Override
-	public Page<SysPlantBindConf> page(int pageNumber, int pageSize, SysPlantBindConf entity, Map<String, String> map, List<Order> order) {
-		Example<SysPlantBindConf> example = Example.of(entity);
-		Sort sort = Sort.by(order);
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+	public Page<SysPlantBindConf> page(Pagination<SysPlantBindConf> vo) {
+		Example<SysPlantBindConf> example = Example.of(vo.getInfo());
+		Sort sort = Sort.by(vo.getOrder());
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysPlantBindConfDao.findAll(example, request);
 	}
 	
@@ -98,7 +99,7 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void save(SysPlantBindConf info) {
 		sysPlantBindConfDao.save(info);
@@ -111,7 +112,7 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void saveAll(List<SysPlantBindConf> list) {
 		sysPlantBindConfDao.saveAll(list);
@@ -124,7 +125,7 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysPlantBindConf info) {
 		sysPlantBindConfDao.delete(info);
@@ -137,7 +138,7 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void deleteAll(List<SysPlantBindConf> list) {
 		sysPlantBindConfDao.deleteAll(list);
@@ -150,10 +151,10 @@ public class SysPlantBindConfService implements BaseService<SysPlantBindConf> {
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		sysPlantBindConfDao.deleteAllInBatch();
 	}
-
+	
 }

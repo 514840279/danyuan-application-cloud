@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -28,20 +29,27 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired // 数据库服务类
-	private SysUserBaseService sysUserBaseService;
-
+	private SysUserBaseService	sysUserBaseService;
+	
+	@Autowired
+	PasswordEncoder				passwordEncoder;
+	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		System.err.println("CustomUserDetailsService.loadUserByUsername");
+		System.err.println(passwordEncoder.encode("test"));
 		SysUserBaseInfo user;
 		try {
 			user = sysUserBaseService.findByName(userName);
+			
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("user select fail");
-
+			
 		}
 		if (user == null) {
 			throw new UsernameNotFoundException("no user found");
 		} else {
+			System.err.println(user.getPassword());
 			try {
 				List<SysRolesInfo> menu = sysUserBaseService.getRoleByUser(user.getUuid());
 				List<GrantedAuthority> gas = new ArrayList<>();
@@ -50,7 +58,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 						gas.add(new SimpleGrantedAuthority(sysRolesInfo.getRoleName()));
 					}
 				}
-//				gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new Authentication()));
+				
+				//				gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new Authentication()));
 				UserDetails users = new User(user.getUserName(), user.getPassword(), true, true, true, true, gas);
 				return users;
 			} catch (Exception e) {
@@ -58,5 +67,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 			}
 		}
 	}
-
+	
 }

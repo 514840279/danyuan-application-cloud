@@ -38,7 +38,7 @@ public class SysCrawlerTaskErrInfoController {
 	 */
 	@RequestMapping("/page")
 	public Page<SysCrawlerTaskErrInfo> page(@RequestBody Pagination<SysCrawlerTaskErrInfo> vo) {
-		return sysCrawlerTaskErrInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), vo.getOrders());
+		return sysCrawlerTaskErrInfoService.page(vo);
 	}
 	
 	/**

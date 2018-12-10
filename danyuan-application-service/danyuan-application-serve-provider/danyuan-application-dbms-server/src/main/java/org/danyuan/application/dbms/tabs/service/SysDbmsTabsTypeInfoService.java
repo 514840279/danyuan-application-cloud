@@ -1,9 +1,10 @@
 package org.danyuan.application.dbms.tabs.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsTypeInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service("sysDbmsTabsTypeInfoService")
-public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeInfo> {
+public class SysDbmsTabsTypeInfoService extends BaseServiceImpl<SysDbmsTabsTypeInfo> implements BaseService<SysDbmsTabsTypeInfo> {
 	//
 	@Autowired
 	private SysDbmsTabsTypeInfoDao sysDbmsTabsTypeInfoDao;
@@ -39,7 +40,7 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	public void save(SysDbmsTabsTypeInfo info) {
 		sysDbmsTabsTypeInfoDao.save(info);
 	}
-
+	
 	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(int pageNumber, int pageSize, SysDbmsTabsTypeInfo SysDbmsTabsTypeInfo) {
 		Example<SysDbmsTabsTypeInfo> example = Example.of(SysDbmsTabsTypeInfo);
 		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
@@ -61,7 +62,7 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysDbmsTabsTypeInfo findOne(SysDbmsTabsTypeInfo info) {
 		// TODO Auto-generated method stub
@@ -76,7 +77,7 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysDbmsTabsTypeInfo> findAll(SysDbmsTabsTypeInfo info) {
 		// TODO Auto-generated method stub
@@ -95,9 +96,9 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
-	public Page<SysDbmsTabsTypeInfo> page(int pageNumber, int pageSize, SysDbmsTabsTypeInfo info, Map<String, String> map, List<Order> order) {
+	public Page<SysDbmsTabsTypeInfo> page(Pagination<SysDbmsTabsTypeInfo> vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -109,10 +110,10 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void saveAll(List<SysDbmsTabsTypeInfo> list) {
-
+		
 	}
 	
 	/**
@@ -122,11 +123,11 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysDbmsTabsTypeInfo info) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	/**
@@ -136,10 +137,10 @@ public class SysDbmsTabsTypeInfoService implements BaseService<SysDbmsTabsTypeIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		// TODO Auto-generated method stub
-
+		
 	}
 }

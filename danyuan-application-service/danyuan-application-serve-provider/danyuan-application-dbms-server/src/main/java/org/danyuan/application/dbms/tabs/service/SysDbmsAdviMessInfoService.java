@@ -1,14 +1,14 @@
 package org.danyuan.application.dbms.tabs.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsAdviMessInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysDbmsAdviMessInfoService implements BaseService<SysDbmsAdviMessInfo> {
+public class SysDbmsAdviMessInfoService extends BaseServiceImpl<SysDbmsAdviMessInfo> implements BaseService<SysDbmsAdviMessInfo> {
 	@Autowired
 	SysDbmsAdviMessInfoDao sysDbmsAdviMessInfoDao;
 	
@@ -127,7 +127,7 @@ public class SysDbmsAdviMessInfoService implements BaseService<SysDbmsAdviMessIn
 	}
 	
 	@Override
-	public Page<SysDbmsAdviMessInfo> page(int pageNumber, int pageSize, SysDbmsAdviMessInfo info, Map<String, String> map, List<Order> order) {
+	public Page<SysDbmsAdviMessInfo> page(Pagination<SysDbmsAdviMessInfo> vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

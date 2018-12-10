@@ -1,6 +1,5 @@
 package org.danyuan.application.dbms.tabs.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,10 +46,10 @@ public class SysDbmsTabsInfoController {
 	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
 	@Autowired
 	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
-
+	
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
-
+	
 	@RequestMapping(path = "/pagev", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Map<String, Object>> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
 		logger.info("pagev", SysDbmsTabsInfoController.class);
@@ -80,7 +77,7 @@ public class SysDbmsTabsInfoController {
 		} else {
 			return null;
 		}
-
+		
 		// String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
 		
 	}
@@ -96,16 +93,7 @@ public class SysDbmsTabsInfoController {
 	@RequestMapping(path = "/page", method = { RequestMethod.GET, RequestMethod.POST })
 	public Page<SysDbmsTabsInfo> page(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("page", SysDbmsTabsInfoController.class);
-		Order order = new Order(Direction.DESC, "createTime");
-		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
-		}
-		if (vo.getInfo() == null) {
-			vo.setInfo(new SysDbmsTabsInfo());
-		}
-		List<Order> orders = new ArrayList<>();
-		orders.add(order);
-		return sysDbmsTabsInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), orders);
+		return sysDbmsTabsInfoService.page(vo);
 	}
 	
 	/**
@@ -146,7 +134,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.change(vo);
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("savev", SysDbmsTabsInfoController.class);
@@ -170,7 +158,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.drop(vo.getList());
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("delete", SysDbmsTabsInfoController.class);

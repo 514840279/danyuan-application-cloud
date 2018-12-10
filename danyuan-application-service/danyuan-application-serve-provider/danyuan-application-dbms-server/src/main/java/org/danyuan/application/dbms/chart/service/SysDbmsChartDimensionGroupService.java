@@ -1,15 +1,10 @@
 /**
- * 文件名：SysPlantChartDimensionGroupService.java
- *
- * 版本信息：
- * 日期：2018年5月22日
- * Copyright 足下 Corporation 2018
- * 版权所有
+ * 文件名：SysPlantChartDimensionGroupService.java 版本信息： 日期：2018年5月22日 Copyright 足下 Corporation 2018 版权所有
  */
 package org.danyuan.application.dbms.chart.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -18,6 +13,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.chart.dao.SysDbmsChartDimensionGroupDao;
 import org.danyuan.application.dbms.chart.po.SysDbmsChartDimensionGroup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -40,11 +38,11 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsChartDimensionGroup> {
-
+public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsChartDimensionGroup> implements BaseService<SysDbmsChartDimensionGroup> {
+	
 	@Autowired
 	SysDbmsChartDimensionGroupDao sysDbmsChartDimensionGroupDao;
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -64,7 +62,7 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -79,7 +77,7 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 		Example<SysDbmsChartDimensionGroup> example = Example.of(info);
 		return sysDbmsChartDimensionGroupDao.findAll(example);
 	}
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -94,12 +92,21 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 	 */
 	
 	@Override
-	public Page<SysDbmsChartDimensionGroup> page(int pageNumber, int pageSize, SysDbmsChartDimensionGroup info, Map<String, String> map, List<Order> order) {
-		// Example<SysPlantChartDimensionGroup> example = Example.of(info);
-		Sort sort = Sort.by(order);
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+	public Page<SysDbmsChartDimensionGroup> page(Pagination<SysDbmsChartDimensionGroup> vo) {
+		Order order = new Order(Direction.ASC, "createTime");
+		if (vo.getSortName() != null) {
+			order = new Order(vo.getOrder(), vo.getSortName());
+		}
+		if (vo.getInfo() == null) {
+			vo.setInfo(new SysDbmsChartDimensionGroup());
+		}
+		List<Order> orders = new ArrayList<>();
+		orders.add(order);
+		
+		Sort sort = Sort.by(orders);
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysDbmsChartDimensionGroupDao.findAll(new Specification<SysDbmsChartDimensionGroup>() {
-
+			
 			/**
 			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 			 */
@@ -107,13 +114,11 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 			
 			@Override
 			public Predicate toPredicate(Root<SysDbmsChartDimensionGroup> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				// TODO Auto-generated method stub
-				
-				return cb.like(root.get("title"), "%" + info.getTitle() + "%");
+				return cb.like(root.get("title"), "%" + vo.getInfo().getTitle() + "%");
 			}
 		}, request);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -126,7 +131,7 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 	public void save(SysDbmsChartDimensionGroup info) {
 		sysDbmsChartDimensionGroupDao.save(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -139,7 +144,7 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 	public void saveAll(List<SysDbmsChartDimensionGroup> list) {
 		sysDbmsChartDimensionGroupDao.saveAll(list);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -152,7 +157,7 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 	public void delete(SysDbmsChartDimensionGroup info) {
 		sysDbmsChartDimensionGroupDao.delete(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -165,7 +170,7 @@ public class SysDbmsChartDimensionGroupService implements BaseService<SysDbmsCha
 	public void deleteAll(List<SysDbmsChartDimensionGroup> list) {
 		sysDbmsChartDimensionGroupDao.deleteAll(list);
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)

@@ -33,7 +33,7 @@ security:
       #authenticationScheme: query
       #clientAuthenticationScheme: form
     resource:
-      userInfoUri: http://localhost:8800/oauth2/user
+      #userInfoUri: http://localhost:8800/oauth2/user
       jwt:
         key-uri: http://localhost:8800/oauth2/oauth/token_key
     authorization:

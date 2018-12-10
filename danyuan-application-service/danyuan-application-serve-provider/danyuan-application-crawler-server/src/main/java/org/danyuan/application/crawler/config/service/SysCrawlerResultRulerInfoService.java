@@ -1,10 +1,10 @@
 package org.danyuan.application.crawler.config.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.config.dao.SysCrawlerResultRulerInfoDao;
 import org.danyuan.application.crawler.config.po.SysCrawlerResultRulerInfo;
 import org.danyuan.application.crawler.config.vo.SysCrawlerResultRulerVo;
@@ -66,27 +66,6 @@ public class SysCrawlerResultRulerInfoService implements BaseService<SysCrawlerR
 		Example<SysCrawlerResultRulerInfo> example = Example.of(info);
 		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
 		return sysCrawlerResultRulerInfoDao.findAll(example, sort);
-	}
-	
-	/**
-	 * 方法名 ： page
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param pageNumber
-	 * 参 数 ： @param pageSize
-	 * 参 数 ： @param info
-	 * 参 数 ： @param map
-	 * 参 数 ： @param order
-	 * 参 数 ： @return
-	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
-	 * 作 者 ： wang
-	 */
-	
-	@Override
-	public Page<SysCrawlerResultRulerInfo> page(int pageNumber, int pageSize, SysCrawlerResultRulerInfo info, Map<String, String> map, List<Order> order) {
-		Example<SysCrawlerResultRulerInfo> example = Example.of(info);
-		Sort sort = Sort.by(order);
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
-		return sysCrawlerResultRulerInfoDao.findAll(example, request);
 	}
 	
 	/**
@@ -181,6 +160,38 @@ public class SysCrawlerResultRulerInfoService implements BaseService<SysCrawlerR
 			}
 		}
 		return sysCrawlerResultRulerInfoDao.findAll(example);
+	}
+	
+	/** 
+	*  方法名 ： findAll
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param vo
+	*  参    数 ： @return  
+	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<SysCrawlerResultRulerInfo> findAll(Pagination<SysCrawlerResultRulerInfo> vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/** 
+	*  方法名 ： page
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param vo
+	*  参    数 ： @return  
+	*  参    考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public Page<SysCrawlerResultRulerInfo> page(Pagination<SysCrawlerResultRulerInfo> vo) {
+		Example<SysCrawlerResultRulerInfo> example = Example.of(vo.getInfo());
+		Sort sort = Sort.by(vo.getOrder());
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
+		return sysCrawlerResultRulerInfoDao.findAll(example, request);
 	}
 	
 }

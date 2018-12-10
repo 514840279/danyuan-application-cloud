@@ -4,7 +4,7 @@ window.operateEvents = {
 	// 修改
     'click #clickA ': function (e, value, row, index) {
     	modals.openWin({
-	    	winId:"add_config_table",
+	    	winId:"add_crawler_config_table_modal",
 	    	title:'修改任务',
 	    	width:'1500px',
 	    	url:"/pages/crawler/task/add.html"
@@ -21,9 +21,9 @@ window.operateEvents = {
 		title : "系统提示",
 		callback : function(result) {
 				if (result) {
-					var data = $('#dbm_config_table_datagrid').bootstrapTable('getAllSelections');
+					var data = $('#crawler_task_config_table_datagrid').bootstrapTable('getAllSelections');
 					var url = "/crawler/sysCrawlerTaskInfo/delete";
-					ajaxPost(url, row, addSysTableTypeInfoSuccess, 5000, findError);
+					ajaxPost(url, row, addSysCrawlerTaskInfoSuccess, 5000, findError);
 				}
 			}
 		});
@@ -34,7 +34,7 @@ $(function() {
 	$('#addnew_config_table').click(function() {
 		// 打开添加窗口
 		modals.openWin({
-	    	winId:"add_config_table",
+	    	winId:"add_crawler_config_table_modal",
 	    	title:'添加任务',
 	    	width:'1500px',
 	    	url:"/pages/crawler/task/add.html"
@@ -43,7 +43,7 @@ $(function() {
 		
 	});
 	$('#deleteold_config_table').click(function() {
-		var data = $('#dbm_config_table_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_task_config_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -55,7 +55,7 @@ $(function() {
 					if (result) {
 						var url = "/crawler/sysCrawlerTaskInfo/deleteAll";
 						var param={list:data};
-						ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+						ajaxPost(url, param, addSysCrawlerTaskInfoSuccess, 5000, findError);
 					}
 				}
 			});
@@ -63,7 +63,7 @@ $(function() {
 	});
 	
 	$('#start_config_table').click(function() {
-		var data = $('#dbm_config_table_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_task_config_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -75,7 +75,7 @@ $(function() {
 					if (result) {
 						var url = "/python/start/run";
 						var param={list:data};
-						ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+						ajaxPost(url, param, addSysCrawlerTaskInfoSuccess, 5000, findError);
 					}
 				}
 			});
@@ -83,7 +83,7 @@ $(function() {
 	});
 	
 	$('#stop_config_table').click(function() {
-		var data = $('#dbm_config_table_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_task_config_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -95,7 +95,7 @@ $(function() {
 					if (result) {
 						var url = "/crawler/sysCrawlerTaskInfo/stopAll";
 						var param={list:data};
-						ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+						ajaxPost(url, param, addSysCrawlerTaskInfoSuccess, 5000, findError);
 					}
 				}
 			});
@@ -113,11 +113,11 @@ $(function() {
 		if(search_task_excuteFlag == "请选择"){
 			search_task_excuteFlag = null;
 		}
-		$('#dbm_config_table_datagrid').bootstrapTable('refresh');
+		$('#crawler_task_config_table_datagrid').bootstrapTable('refresh');
 	});
 	
 	// bootstrap table
-	$('#dbm_config_table_datagrid').bootstrapTable({
+	$('#crawler_task_config_table_datagrid').bootstrapTable({
 		url : "/crawler/sysCrawlerTaskInfo/page",
 		dataType : "json",
 		toolbar : '#dbm_config_table_toolbar', // 工具按钮用哪个容器
@@ -210,8 +210,7 @@ function optionFormatter(e,row,index){
 }
 
 
-
-
-function addSysTableTypeInfoSuccess(result){
-	$('#dbm_config_table_datagrid').bootstrapTable('refresh');
+function addSysCrawlerTaskInfoSuccess(result){
+	$('#crawler_task_config_table_datagrid').bootstrapTable('refresh');
+//	$("#add_crawler_config_table_modal").modal('hide');
 }

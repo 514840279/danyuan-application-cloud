@@ -1,6 +1,5 @@
 package org.danyuan.application.dbms.tabs.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -70,16 +66,7 @@ public class SysDbmsTabsColsInfoController {
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDbmsTabsColsInfo> page(@RequestBody Pagination<SysDbmsTabsColsInfo> vo) {
 		logger.info("page", SysDbmsTabsColsInfoController.class);
-		Order order = new Order(Direction.DESC, "createTime");
-		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
-		}
-		if (vo.getInfo() == null) {
-			vo.setInfo(new SysDbmsTabsColsInfo());
-		}
-		List<Sort.Order> orders = new ArrayList<>();
-		orders.add(order);
-		return sysDbmsTabsColsInfoService.page(vo.getPageNumber().intValue(), vo.getPageSize().intValue(), vo.getInfo(), vo.getMap(), orders);
+		return sysDbmsTabsColsInfoService.page(vo);
 	}
 	
 	@RequestMapping(path = "/pagev", method = RequestMethod.POST)

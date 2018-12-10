@@ -8,8 +8,8 @@ function init(){
 	var url ="/crawler/sysDicName/findkeyList";
 	ajaxPost(url,{code:"crawler_request_web_mode"},loadRequestWay)
 	
-	$("#submit_add_task_id").bind("click",function(){
-		submit_add_addr();
+	$("#submit_add_crawler_task_id").bind("click",function(){
+		submit_add_crawler_task_id();
 	})
 	
 }
@@ -43,7 +43,7 @@ function loadRequestWay(result){
 }
 
 
-function submit_add_addr(){
+function submit_add_crawler_task_id(){
 	
 	taskdata.url = $("#add_task_url").val();
 	taskdata.taskName = $("#add_task_taskName").val();
@@ -54,20 +54,6 @@ function submit_add_addr(){
 	taskdata.requestData = $("#add_task_requestData").val();
 	taskdata.requestType = add_task_requestType;
 	var url = "/crawler/sysCrawlerTaskInfo/save";
-	ajaxPost(url, taskdata, successAddTaskSuccess);
+	ajaxPost(url, taskdata, addSysCrawlerTaskInfoSuccess);
 }
-
-function successAddTaskSuccess(result){
-	$('#dbm_config_table_datagrid').bootstrapTable('refresh');
-	$("#add_config_table").modal("hide");
-}
-
-
-
-
-
-
-
-
-
 

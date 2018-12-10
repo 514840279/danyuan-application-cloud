@@ -1,18 +1,15 @@
 /**
- * 文件名：SysPlantChartDimensionDataService.java
- *
- * 版本信息：
- * 日期：2018年5月22日
- * Copyright 足下 Corporation 2018
- * 版权所有
+ * 文件名：SysPlantChartDimensionDataService.java 版本信息： 日期：2018年5月22日 Copyright 足下 Corporation 2018 版权所有
  */
 package org.danyuan.application.dbms.chart.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.chart.dao.SysDbmsChartDimensionDataDao;
 import org.danyuan.application.dbms.chart.po.SysDbmsChartDimensionData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +17,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +32,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChartDimensionData> {
+public class SysDbmsChartDimensionDataService extends BaseServiceImpl<SysDbmsChartDimensionData> implements BaseService<SysDbmsChartDimensionData> {
 	
 	@Autowired
 	SysDbmsChartDimensionDataDao sysDbmsChartDimensionDataDao;
@@ -47,7 +45,7 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysDbmsChartDimensionData findOne(SysDbmsChartDimensionData info) {
 		Example<SysDbmsChartDimensionData> example = Example.of(info);
@@ -66,7 +64,7 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysDbmsChartDimensionData> findAll(SysDbmsChartDimensionData info) {
 		Example<SysDbmsChartDimensionData> example = Example.of(info);
@@ -85,12 +83,22 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
-	public Page<SysDbmsChartDimensionData> page(int pageNumber, int pageSize, SysDbmsChartDimensionData info, Map<String, String> map, List<Order> order) {
-		Example<SysDbmsChartDimensionData> example = Example.of(info);
-		Sort sort = Sort.by(order);
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+	public Page<SysDbmsChartDimensionData> page(Pagination<SysDbmsChartDimensionData> vo) {
+		Order order = new Order(Direction.ASC, "createTime");
+		if (vo.getSortName() != null) {
+			order = new Order(vo.getOrder(), vo.getSortName());
+		}
+		if (vo.getInfo() == null) {
+			vo.setInfo(new SysDbmsChartDimensionData());
+		}
+		List<Order> orders = new ArrayList<>();
+		orders.add(order);
+		
+		Example<SysDbmsChartDimensionData> example = Example.of(vo.getInfo());
+		Sort sort = Sort.by(orders);
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysDbmsChartDimensionDataDao.findAll(example, request);
 	}
 	
@@ -101,7 +109,7 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void save(SysDbmsChartDimensionData info) {
 		sysDbmsChartDimensionDataDao.save(info);
@@ -114,7 +122,7 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void saveAll(List<SysDbmsChartDimensionData> list) {
 		sysDbmsChartDimensionDataDao.saveAll(list);
@@ -127,7 +135,7 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysDbmsChartDimensionData info) {
 		sysDbmsChartDimensionDataDao.delete(info);
@@ -140,7 +148,7 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void deleteAll(List<SysDbmsChartDimensionData> list) {
 		sysDbmsChartDimensionDataDao.deleteAll(list);
@@ -153,10 +161,10 @@ public class SysDbmsChartDimensionDataService implements BaseService<SysDbmsChar
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		sysDbmsChartDimensionDataDao.deleteAllInBatch();
 	}
-
+	
 }

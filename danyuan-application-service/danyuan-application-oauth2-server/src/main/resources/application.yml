@@ -5,7 +5,7 @@ spring:
   application:
     name: danyuan-application-oauth2-server
   datasource:
-    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
+    url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
     username: root
     password: 514840279@qq.com
     #driver-class-name: com.mysql.cj.jdbc.Driver
@@ -30,15 +30,17 @@ spring:
     servlet:      content-type: text/html; charset=utf-8    
        
 
-#security:
+security:
 #  user:
 #    password: 123
-#  oauth2:
+  oauth2:
 #    client:
 #      client-id: wth
 #      client-secret: wth
 #    resource:
 #      filter-order: 3
+    authorization:
+      check-token-access: true
 
 logging:
   level:

@@ -1,14 +1,8 @@
 /**
- * 文件名：SysPlantChartDimensionController.java
- *
- * 版本信息：
- * 日期：2018年5月22日
- * Copyright 足下 Corporation 2018
- * 版权所有
+ * 文件名：SysPlantChartDimensionController.java 版本信息： 日期：2018年5月22日 Copyright 足下 Corporation 2018 版权所有
  */
 package org.danyuan.application.dbms.chart.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,7 +43,7 @@ public class SysDbmsChartDimensionController {
 	SysDbmsChartDimensionService		sysDbmsChartDimensionService;
 	@Autowired
 	SysDbmsChartDimensionDataService	sysDbmsChartDimensionDataService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -62,18 +54,10 @@ public class SysDbmsChartDimensionController {
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDbmsChartDimension> page(Pagination<SysDbmsChartDimension> vo) {
 		logger.info("page", SysDbmsChartDimensionController.class);
-		Order order = new Order(Direction.ASC, "createTime");
-		if (vo.getSortName() != null) {
-			order = new Order(vo.getOrder(), vo.getSortName());
-		}
-		if (vo.getInfo() == null) {
-			vo.setInfo(new SysDbmsChartDimension());
-		}
-		List<Order> orders = new ArrayList<>();
-		orders.add(order);
-		return sysDbmsChartDimensionService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), orders);
+		
+		return sysDbmsChartDimensionService.page(vo);
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -86,7 +70,7 @@ public class SysDbmsChartDimensionController {
 		logger.info("findAll", SysDbmsChartDimensionController.class);
 		return sysDbmsChartDimensionService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findAllDime
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -99,7 +83,7 @@ public class SysDbmsChartDimensionController {
 		logger.info("findAllDime", SysDbmsChartDimensionController.class);
 		if (request.getParameter("uuid") == null || "null".equals(request.getParameter("uuid"))) {
 			List<SysDbmsChartDimension> list = sysDbmsChartDimensionService.findAllDime();
-
+			
 			if (list.size() == 0) {
 				ModelAndView view = new ModelAndView("plant/chart/chart");
 				return view;
@@ -133,7 +117,7 @@ public class SysDbmsChartDimensionController {
 		view.addObject("sysPlantChartDimensionList", list);
 		return view;
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -146,7 +130,7 @@ public class SysDbmsChartDimensionController {
 		logger.info("findOne", SysDbmsChartDimensionController.class);
 		return sysDbmsChartDimensionService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -165,7 +149,7 @@ public class SysDbmsChartDimensionController {
 		map.put("uuid", info.getUuid());
 		return map;
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -179,7 +163,7 @@ public class SysDbmsChartDimensionController {
 		sysDbmsChartDimensionService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -193,7 +177,7 @@ public class SysDbmsChartDimensionController {
 		sysDbmsChartDimensionService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -209,7 +193,7 @@ public class SysDbmsChartDimensionController {
 		map.put("uuid", info.getUuid());
 		return map;
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -243,7 +227,7 @@ public class SysDbmsChartDimensionController {
 		}
 		return view;
 	}
-
+	
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		logger.info("addBefor", SysDbmsChartDimensionController.class);
@@ -261,7 +245,7 @@ public class SysDbmsChartDimensionController {
 			return view;
 		}
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)

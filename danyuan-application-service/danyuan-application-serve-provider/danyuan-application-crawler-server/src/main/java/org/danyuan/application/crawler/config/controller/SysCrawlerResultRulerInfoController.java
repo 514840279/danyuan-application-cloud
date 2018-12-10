@@ -39,7 +39,7 @@ public class SysCrawlerResultRulerInfoController {
 	 */
 	@RequestMapping("/page")
 	public Page<SysCrawlerResultRulerInfo> page(@RequestBody Pagination<SysCrawlerResultRulerInfo> vo) {
-		return sysCrawlerResultRulerInfo.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), vo.getOrders());
+		return sysCrawlerResultRulerInfo.page(vo);
 	}
 	
 	/**
