@@ -79,13 +79,12 @@ public class SysCrawlerRulerInfoController {
 	 * 作 者 ： wang
 	 */
 	@RequestMapping("/save")
-	public String save(@RequestBody SysCrawlerRulerInfo info) {
+	public SysCrawlerRulerInfo save(@RequestBody SysCrawlerRulerInfo info) {
 		if (info.getUuid() == null || info.getUuid().equals("")) {
 			info.setUuid(UUID.randomUUID().toString());
 			
 		}
-		sysCrawlerRulerInfoService.save(info);
-		return "1";
+		return sysCrawlerRulerInfoService.save(info);
 	}
 	
 	/**

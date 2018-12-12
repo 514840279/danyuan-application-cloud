@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.task.dao.SysCrawlerTaskErrInfoDao;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskErrInfo;
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysCrawlerTaskErrInfoService implements BaseService<SysCrawlerTaskErrInfo> {
+public class SysCrawlerTaskErrInfoService extends BaseServiceImpl<SysCrawlerTaskErrInfo> implements BaseService<SysCrawlerTaskErrInfo> {
 	
 	@Autowired
 	SysCrawlerTaskErrInfoDao sysCrawlerTaskErrInfoDao;
@@ -85,19 +86,6 @@ public class SysCrawlerTaskErrInfoService implements BaseService<SysCrawlerTaskE
 		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysCrawlerTaskErrInfoDao.findAll(example, request);
-	}
-	
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param entity
-	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.lang.Object)
-	 * 作 者 ： wang
-	 */
-	
-	@Override
-	public void save(SysCrawlerTaskErrInfo entity) {
-		sysCrawlerTaskErrInfoDao.save(entity);
 	}
 	
 	/**

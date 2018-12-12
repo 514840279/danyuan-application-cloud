@@ -225,11 +225,6 @@ function loadRuleGroup(){
 			{title : '规则名称',field : 'name',align : 'center',sortable : true,valign : 'top'},
 			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
 			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
-			{title : '操作', align : 'center',valign : 'top', events: operateEvents,formatter : function(value, row, index) {
-				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑' ></i> ";
-				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-remove' title='删除'></i> ";
-				return A + B;
-			}},
 		],
 		responseHandler: function(result){  // 成功时执行
 			console.log(result)

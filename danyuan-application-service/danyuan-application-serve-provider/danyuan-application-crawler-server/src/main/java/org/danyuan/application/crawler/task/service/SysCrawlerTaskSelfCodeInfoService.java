@@ -91,19 +91,6 @@ public class SysCrawlerTaskSelfCodeInfoService extends BaseServiceImpl<SysCrawle
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param entity
-	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.lang.Object)
-	 * 作 者 ： wang
-	 */
-	
-	@Override
-	public void save(SysCrawlerTaskSelfCodeInfo entity) {
-		sysCrawlerTaskSelfCodeInfoDao.save(entity);
-	}
-	
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数 ： @param entities
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： wang
@@ -152,5 +139,5 @@ public class SysCrawlerTaskSelfCodeInfoService extends BaseServiceImpl<SysCrawle
 	public void trunc() {
 		sysCrawlerTaskSelfCodeInfoDao.deleteAllInBatch();
 	}
-
+	
 }

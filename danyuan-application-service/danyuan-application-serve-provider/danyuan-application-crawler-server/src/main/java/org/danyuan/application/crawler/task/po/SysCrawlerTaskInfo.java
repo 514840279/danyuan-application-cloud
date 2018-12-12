@@ -474,4 +474,17 @@ public class SysCrawlerTaskInfo {
 		this.charset = charset;
 	}
 	
+	/** 
+	*  方法名 ： toString
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see java.lang.Object#toString()  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public String toString() {
+		return "SysCrawlerTaskInfo [uuid=" + uuid + ", url=" + url + ", taskName=" + taskName + ", urlType=" + urlType + ", charset=" + charset + ", webIcon=" + webIcon + ", requestData=" + requestData + ", requestType=" + requestType + ", startTime=" + startTime + ", lastExcuteTime=" + lastExcuteTime + ", surplusNum=" + surplusNum + ", successNum=" + successNum + ", taskFlag=" + taskFlag + ", errorNum=" + errorNum + ", excuteFlag=" + excuteFlag + ", excuteBatch=" + excuteBatch + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
+	}
+	
 }

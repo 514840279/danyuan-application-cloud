@@ -59,20 +59,6 @@ public class SysDbmsAdviMessInfoService extends BaseServiceImpl<SysDbmsAdviMessI
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.lang.Object)
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public void save(SysDbmsAdviMessInfo info) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数 ： @param list
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator

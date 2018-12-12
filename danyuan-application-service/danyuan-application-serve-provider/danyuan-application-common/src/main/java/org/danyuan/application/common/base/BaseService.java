@@ -18,13 +18,15 @@ public interface BaseService<T> {
 	
 	T findOne(T entity);
 	
+	T findById(String id);
+	
 	List<T> findAll(T entity);
 	
 	List<T> findAll(Pagination<T> vo);
 	
 	Page<T> page(Pagination<T> vo);
 	
-	void save(T entity);
+	T save(T entity);
 	
 	void saveAll(List<T> entities);
 	

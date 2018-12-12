@@ -36,11 +36,6 @@ public class SysDbmsTabsTypeInfoService extends BaseServiceImpl<SysDbmsTabsTypeI
 		return sysDbmsTabsTypeInfoDao.findAll();
 	}
 	
-	@Override
-	public void save(SysDbmsTabsTypeInfo info) {
-		sysDbmsTabsTypeInfoDao.save(info);
-	}
-	
 	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(int pageNumber, int pageSize, SysDbmsTabsTypeInfo SysDbmsTabsTypeInfo) {
 		Example<SysDbmsTabsTypeInfo> example = Example.of(SysDbmsTabsTypeInfo);
 		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));

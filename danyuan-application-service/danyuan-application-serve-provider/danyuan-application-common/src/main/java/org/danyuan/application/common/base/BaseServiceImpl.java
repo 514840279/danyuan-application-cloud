@@ -49,6 +49,27 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		return null;
 	}
 	
+	/** 
+	*  方法名 ： findById
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param id
+	*  参    数 ： @return  
+	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findById(java.lang.String)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public T findById(String id) {
+		if (id == null || "".equals(id)) {
+			return null;
+		}
+		Optional<T> optional = baseDao.findById(id);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
+	}
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -67,7 +88,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 			List<T> list = baseDao.findAll(example);
 			return list;
 		}
-
+		
 	}
 	
 	/**
@@ -79,12 +100,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 */
 	
 	@Override
-	public void save(T entity) {
+	public T save(T entity) {
 		if (entity == null) {
 			// TODO 判断空的方法
-			return;
+			return null;
 		}
-		baseDao.save(entity);
+		return baseDao.save(entity);
 	}
 	
 	/**
@@ -166,7 +187,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 				return baseDao.findAll(example);
 			}
 		}
-
+		
 	}
 	
 	/**

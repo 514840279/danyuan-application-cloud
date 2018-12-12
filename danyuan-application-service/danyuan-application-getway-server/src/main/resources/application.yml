@@ -3,7 +3,9 @@ server:
 spring:
   application:
     name: danyuan-application-getway-server  devtools:    restart:      enabled: false
-  thymeleaf:    cache: false          
+  thymeleaf:    cache: false  main:
+    allow-bean-definition-overriding: true
+    
 eureka:
   client:
     enabled: true
@@ -85,14 +87,15 @@ zuul:
   add-host-header: true
   add-proxy-headers: true
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+  ReadTimeout: 6000
+  ConnectTimeout: 6000
 
+# hystrix 时间要是ribbon的三倍
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 900000
   

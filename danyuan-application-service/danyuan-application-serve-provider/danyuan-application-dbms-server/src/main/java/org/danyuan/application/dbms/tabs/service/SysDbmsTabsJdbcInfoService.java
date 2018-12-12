@@ -33,11 +33,6 @@ public class SysDbmsTabsJdbcInfoService extends BaseServiceImpl<SysDbmsTabsJdbcI
 		return sysDbmsTabsJdbcInfoDao.findAll();
 	}
 	
-	@Override
-	public void save(SysDbmsTabsJdbcInfo SysDbmsTabsJdbcInfo) {
-		sysDbmsTabsJdbcInfoDao.save(SysDbmsTabsJdbcInfo);
-	}
-	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)

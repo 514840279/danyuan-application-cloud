@@ -24,56 +24,54 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<form id="add_form">
-			<div class="row">
-				
-				<input type="text" id="add_task_uuid" name="uuid" placeholder="id" hidden="hedden" />
-				<div class=" col-md-12 form-group">
-					<label class="col-sm-2 control-label text-right">网站类型:</label>
-					<div class="col-sm-10">
-						<select style="width: 100%;" id="add_search_task_urlType" name="urlType"></select>
-					</div>
-				</div>
-				<div class=" col-md-12 form-group">
-					<label class="col-sm-2 control-label text-right">任务id:</label>
-					<div class="col-sm-10">
-						<select style="width: 100%;" id="add_search_task_taskUuid" name="taskUuid"></select>
-					</div>
-				</div>
-				<div class=" col-md-12 form-group">
-					<label class="col-sm-2 control-label text-right">上层id:</label>
-					<div class="col-sm-10">
-						<select style="width: 100%;" id="add_ruler_parrentId" name="parrentId"></select>
-					</div>
-				</div>
-				<div class=" col-md-12 form-group">
-					<label class="col-sm-2 control-label text-right">组类型:</label>
-					<div class="col-sm-10">
-						<select style="width: 100%;" id="add_ruler_groupType" name="groupType"></select>
-					</div>
-				</div>
-				<div class=" col-md-12 form-group">
-					<label class="col-sm-2 control-label text-right">组规则:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="add_ruler_group_ruler" name="ruler" placeholder="" />
-					</div>
-				</div>
-				<div class=" col-md-12 form-group">
-					<label class="col-sm-2 control-label text-right">组名称:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="add_ruler_group_name" name="name" placeholder="" />
-					</div>
+		<div class="row">
+			
+			<input type="text" id="add_task_uuid" name="uuid" placeholder="id" hidden="hedden" />
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">网站类型:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_search_task_urlType" name="urlType"></select>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12 form-group text-center">
-					<div class="col-sm-12">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button class="btn btn-success" id="submit_add_group_id">确认</button>
-					</div>
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">任务id:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_search_task_taskUuid" name="taskUuid"></select>
 				</div>
 			</div>
-		</form>
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">上层id:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_ruler_parrentId" name="parrentId"></select>
+				</div>
+			</div>
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">组类型:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_ruler_groupType" name="groupType"></select>
+				</div>
+			</div>
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">组规则:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_group_ruler" name="ruler" placeholder="" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">组名称:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_group_name" name="name" placeholder="" />
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 form-group text-center">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-success" id="submit_add_group_id">确认</button>
+				</div>
+			</div>
+		</div>
 	</section>
 	<script type="text/javascript" src="/pages/crawler/rule/addgroup.js"></script>
 </body>

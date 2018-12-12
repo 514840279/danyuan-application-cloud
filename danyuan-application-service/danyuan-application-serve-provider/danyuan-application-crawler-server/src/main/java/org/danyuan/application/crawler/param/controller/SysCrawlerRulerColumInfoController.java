@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.param.po.SysCrawlerRulerColumInfo;
+import org.danyuan.application.crawler.param.po.SysCrawlerRulerInfo;
 import org.danyuan.application.crawler.param.service.SysCrawlerRulerColumInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,12 @@ public class SysCrawlerRulerColumInfoController {
 	
 	@Autowired
 	SysCrawlerRulerColumInfoService sysCrawlerRulerColumInfoService;
+	
+	@RequestMapping("/findParent")
+	public List<SysCrawlerRulerColumInfo> findParent(@RequestBody SysCrawlerRulerInfo info) {
+		System.err.println(info.toString());
+		return sysCrawlerRulerColumInfoService.findParent(info);
+	}
 	
 	/**
 	 * 方法名 ： page

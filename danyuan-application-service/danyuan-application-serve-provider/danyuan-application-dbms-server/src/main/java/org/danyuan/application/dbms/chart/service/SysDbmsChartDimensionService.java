@@ -98,25 +98,11 @@ public class SysDbmsChartDimensionService extends BaseServiceImpl<SysDbmsChartDi
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsChartDimension());
 		}
-
+		
 		Example<SysDbmsChartDimension> example = Example.of(vo.getInfo());
 		Sort sort = Sort.by(orders);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysDbmsChartDimensionDao.findAll(example, request);
-	}
-	
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.lang.Object)
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public void save(SysDbmsChartDimension info) {
-		sysDbmsChartDimensionDao.save(info);
-		
 	}
 	
 	/**

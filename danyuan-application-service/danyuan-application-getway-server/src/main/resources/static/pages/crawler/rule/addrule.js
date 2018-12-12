@@ -4,6 +4,7 @@ $(function() {
 
 });
 var add_ruler_process=null;
+var add_ruler_colum_parentUuid=null;
 function init(){
 	var url ="/crawler/sysDicName/findkeyList";
 	ajaxPost(url,{code:"crawler_ruler_cloumn_type"},loadProcess)
@@ -12,6 +13,26 @@ function init(){
 		submit_add_ruler();
 	})
 	
+	var rows = $('#crawler_rule_group_config_table_datagrid').bootstrapTable('getAllSelections');
+	var url ="/crawler/sysCrawlerRulerColumInfo/findParent";
+	ajaxPost(url,rows[0],loadParentUuid)
+	
+	
+}
+
+function loadParentUuid(result){
+	data=[{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.columName});
+	})
+	
+	$('#add_ruler_colum_parentUuid').select2({
+	    tags: true,
+	    data:data
+	});
+	$('#add_ruler_colum_parentUuid').on('select2:select', function (evt) {
+		add_ruler_colum_parentUuid=evt.params.data.id;
+	});
 }
 
 function loadProcess(result){
@@ -63,6 +84,10 @@ function loadProcess(result){
 				$("#add_ruler_param_str_id").css({"display":"none"});
 				$("#add_ruler_param_new_id").css({"display":"none"});
 				break;
+			case("listItem"):
+			case("nextPage"):
+			case("subPage"):
+				break;
 			default:
 				add_ruler_process=null;
 				return;
@@ -79,6 +104,7 @@ function submit_add_ruler(){
 				columName:$("#add_ruler_name").val(),
 				ruler:$("#add_ruler_xpath").val(),
 				type:add_ruler_process,
+				parentUuid:add_ruler_colum_parentUuid,
 				start:$("#add_ruler_param_start").val(),
 				end:$("#add_ruler_param_end").val(),
 				param:$("#add_ruler_param_str").val(),
