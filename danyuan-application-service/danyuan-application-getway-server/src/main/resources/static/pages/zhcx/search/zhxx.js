@@ -1,5 +1,5 @@
 $(function() {
-	tabsName = tabsDesc ==null?tabsName:tabsDesc;
+	tabsName = tabsDesc ==null||tabsDesc ==""?tabsName:tabsDesc;
 	$("#context_title").text(tabsName+"详细信息");
 	var table = $("#context_input_tab");
 	var tr = table.find("tr:eq(0)").clone(false);
@@ -8,7 +8,7 @@ $(function() {
 //	    if(paramString[int].pageView){
 	    	a ++
 	    	var colsName =paramString[int].colsName;
-	    	var colsDesc =paramString[int].colsDesc ==""?colsName:paramString[int].colsDesc;
+	    	var colsDesc =paramString[int].colsDesc ==null||paramString[int].colsDesc ==""?colsName:paramString[int].colsDesc;
 	    	var val = eval('mapString.'+ colsName);
 	    	var td = tr.find("td:eq(0)").clone(false);
 	    	td.css({"display":""});

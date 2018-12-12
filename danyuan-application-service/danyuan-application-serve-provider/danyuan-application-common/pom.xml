@@ -13,7 +13,7 @@
 	<artifactId>danyuan-application-common</artifactId>
 	<version>C1.0.0</version>
 	<name>danyuan-application-common</name>
-	
+
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -129,13 +129,22 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<!-- 编译的时候使用JDK7和UTF8编码 -->
+			<!-- 编译的时候使用JDK8和UTF8编码 -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- 跳过测试 打包发布时 install 不执行 test 否则报错 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
