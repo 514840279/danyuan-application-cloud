@@ -10,7 +10,8 @@ start = Blueprint(name='start',import_name="start" ,static_folder='./static',tem
 @start.route("/run",methods=['POST'])
 def run():
     params = request.json
+    result = {"code": 1}
     startService = StartService()
     for item in params['list']:
-        data = startService.run(item)
-    return Response(json.dumps(data), mimetype='application/json')  # 采用json方式发送数据
+        startService.run(item)
+    return Response(json.dumps(result), mimetype='application/json')  # 采用json方式发送数据

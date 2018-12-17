@@ -17,8 +17,10 @@
 #-----系统自带必备模块引用-----
 import sys
 import os
+from application import datasource
 #-----系统外部需安装库模块引用-----
 import pymysql
+
 #-----DIY自定义库模块引用-----
 sys.path.append("..")
 #--------- 外部模块处理<<结束>> ---------#
@@ -32,9 +34,10 @@ sys.path.append("..")
 # mysql数据库对象
 class Conn_mysql():
 
-    def __init__(self, host='localhost', user='root', passwd='514840279@qq.com', db='flasktest', port=3306):
+    def __init__(self, host=datasource['host'], user=datasource['user'], passwd= datasource['passwd'], db=datasource['db'], port=datasource['port'],cursorclass = pymysql.cursors.DictCursor):
+
         try:
-            self.conn = pymysql.connect(host=host, user=user, passwd=passwd, db=db, port=port, charset="utf8",cursorclass = pymysql.cursors.DictCursor)
+            self.conn = pymysql.connect(host=host, user=user, passwd=passwd, db=db, port=port, charset="utf8",cursorclass = cursorclass)
             self.cur = self.conn.cursor()
         except Exception as e:
             print('事务处理失败', e)

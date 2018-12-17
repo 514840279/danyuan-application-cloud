@@ -88,7 +88,7 @@ function findAllType_Sucess(result){
 					var tabsRows = value.tabsRows==null?0:value.tabsRows;
 					var table = table_parrent.find("#table_box:eq(0)").clone();
 					var collapse = table.find("#table_title_id");
-					collapse.text(tabsDesc);
+					collapse.text(tabsDesc==null||tabsDesc==""?tabsName:tabsDesc);
 					
 					collapse.attr("href","#collapse_"+tabsId);
 					table.find("#collapseTable").attr("id","collapse_"+tabsId);

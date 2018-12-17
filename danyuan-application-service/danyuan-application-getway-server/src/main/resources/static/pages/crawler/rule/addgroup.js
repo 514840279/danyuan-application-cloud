@@ -4,11 +4,14 @@ $(function() {
 	// 绑定添加事件
 	$("#submit_add_group_id").bind("click",function(){
 		var param={
-				taskUuid:group_param.taskUuid,
-				type:group_param.groupType,
-				name:$("#add_ruler_group_name").val(),
-				ruler:$("#add_ruler_group_ruler").val(),
-				parentUuid:group_param.parrentId
+				uuid:$("#add_ruler_group_uuid").val(),
+			taskUuid:group_param.taskUuid,
+			type:group_param.groupType,
+			name:$("#add_ruler_group_name").val(),
+			ruler:$("#add_ruler_group_ruler").val(),
+			itemsRuler:$("#add_ruler_group_items").val(),
+			nextpageRuler:$("#add_ruler_group_nextpage").val(),
+			parentUuid:group_param.parrentId
 		}
 		var url="/crawler/sysCrawlerRulerInfo/save";
 		ajaxPost(url,param,successedSaveRulerGroup)
@@ -77,6 +80,14 @@ function init(){
 		group_param.groupType = evt.params.data.id;
 		if(group_param.groupType == "请选择"){
 			group_param.groupType = null;
+		}
+		switch(group_param.groupType){
+			case('listPage'):
+				$(".listpageGroupshow").css({"display":""});
+				break;
+			default:
+				$(".listpageGroupshow").css({"display":"none"});
+				break;
 		}
 	});
 	

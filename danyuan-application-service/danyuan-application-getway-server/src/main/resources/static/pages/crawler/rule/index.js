@@ -11,15 +11,27 @@ window.operateEvents = {
 		
 		// 反填数据
 		setTimeout(function(){
+			$("#add_ruler_group_uuid").val(row.uuid);
 			$("#add_ruler_group_ruler").val(row.ruler);
 			$("#add_ruler_group_name").val(row.name);
-			group_param.taskUuid = row.taskUuid;
-			$("#add_search_task_taskUuid").select2().val(row.taskUuid).trigger("change");
+			$("#add_ruler_group_items").val(row.itemsRuler);
+			$("#add_ruler_group_nextpage").val(row.nextpageRuler);
+			
 			group_param.groupType= row.type;
-			$("#add_ruler_groupType").select2().val(row.type).trigger("change"); 
+			switch(group_param.groupType){
+				case("listPage"):
+					$(".listpageGroupshow").css({"display":""});
+					break;
+				default:
+					$(".listpageGroupshow").css({"display":"none"});
+					break;
+			}
+			$("#add_ruler_groupType").val(row.type).trigger("change"); 
+			group_param.taskUuid = row.taskUuid;
+			$("#add_search_task_taskUuid").val(row.taskUuid).trigger("change");
 			group_param.parrentId= row.parentUuid;
-			$("#add_ruler_parrentId").select2().val(row.parentUuid).trigger("change");  
-		}, 300);
+			$("#add_ruler_parrentId").val(row.parentUuid).trigger("change"); 
+		}, 3000);
 		
 	
 	},
@@ -195,6 +207,7 @@ function loadRuleGroup(){
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
 		detailView : false, // 是否显示父子表
+		singleSelect : true,
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
@@ -225,6 +238,11 @@ function loadRuleGroup(){
 			{title : '规则名称',field : 'name',align : 'center',sortable : true,valign : 'top'},
 			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
 			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
+			{title : '操作', align : 'center',valign : 'top', events: operateEvents,formatter : function(value, row, index) {
+				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑' ></i> ";
+				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-remove' title='删除'></i> ";
+				return A + B;
+			}},
 		],
 		responseHandler: function(result){  // 成功时执行
 			console.log(result)
@@ -265,6 +283,7 @@ function loadRule(row){
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
 		detailView : false, // 是否显示父子表
+		singleSelect : true,
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型

@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-import hashlib
 from lxml import html
-from lxml.html import fromstring,tostring
 
 
 class Rule:
-    # 计算MD5值
-    def get_md5_value(self,src):
-        myMd5 = hashlib.md5()
-        myMd5.update(src.encode("utf8"))
-        myMd5_Digest = myMd5.hexdigest()
-        return myMd5_Digest
+
 
     # 读取网站域名
     def get_url_root(self, url):
@@ -122,7 +115,6 @@ class Rule:
 
     # 数据提取详细页的
     def html_content_analysis_detial(self,html_text,group_ruler, column):
-        md5 = self.get_md5_value(src=html_text)
         tree = html.fromstring(html_text)
         content = tree.xpath(group_ruler)
         column_context = self._analysis_(tree=content,column=column)
@@ -130,15 +122,17 @@ class Rule:
         return column_context
 
     # 数据提取列表页处理方式
-    def html_content_analysis_list(self,html_text,group_ruler, column):
+    def html_content_analysis_list(self,html_text,group, column):
         tree = html.fromstring(html_text)
-        column_content = tree.xpath(group_ruler)
+        content = tree.xpath(group['ruler'])[0]
+        column_content = content.xpath(group['items_ruler'])
+        nextpage = content.xpath(group['nextpage_ruler'])
         lista = []
         for a in range(len(column_content)):
             row = self._analysis_(tree=column_content[a], column=column)
             lista.append(row)
         print(lista)
-        return lista
+        return lista,nextpage
 
 
     # 数据提取列表页处理方式

@@ -15,82 +15,60 @@ from selenium.webdriver.chrome.options import Options
 
 # 获取网页源码 重要
 class HtmlSource:
-    def get_html(self,url_p, type_p='rp', chartset_p='utf-8',timeout_p=10):
+    def get_html(self,url_p, type_p='requestGet', chartset_p='utf-8',timeout_p=10):
         headers_p = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"}
-
         txt = "nothing"
         # 获取网页源码
         try:
             # get的方法
             if (type_p == 'requestGet'):
-                    html = requests.get(url=url_p, timeout=timeout_p, headers=headers_p)
-                    txt = str(html.text.encode(html.encoding), encoding=chartset_p)
-                    html.close()
+                html = requests.get(url=url_p, timeout=timeout_p, headers=headers_p)
+                txt = str(html.text.encode(html.encoding), encoding=chartset_p)
+                status_code = html.status_code
+                html.close()
 
             # post的方法
             if (type_p == 'requestPost'):
-                    html = requests.post(url=url_p, timeout=timeout_p, headers=headers_p)
-                    txt = str(html.text.encode(html.encoding), encoding=chartset_p)
-                    html.close()
+                html = requests.post(url=url_p, timeout=timeout_p, headers=headers_p)
+                txt = str(html.text.encode(html.encoding), encoding=chartset_p)
+                status_code = html.status_code
+                html.close()
 
             # session的方法
-            if (type_p == 'ss'):
-                    res_addr = self.session.get(url_p, timeout=timeout_p, headers=headers_p)
-                    res_addr.encoding = chardet.detect(res_addr.content)["encoding"]
-                    txt = bs_4(res_addr.text, "lxml")
+            elif (type_p == 'session'):
+                res_addr = self.session.get(url_p, timeout=timeout_p, headers=headers_p)
+                res_addr.encoding = chardet.detect(res_addr.content)["encoding"]
+                txt = bs_4(res_addr.text, "lxml")
 
             # urllib的方法
-            if (type_p == 'urllib'):
-                    html = urllib.request.urlopen(url=url_p)
-                    txt = html.read().decode(chartset_p, "ignore")
-                    html.close()
+            elif (type_p == 'urllib'):
+                status_code,txt = self.get_html_ulib( url_p,  chartset_p=chartset_p)
 
             # Selenium的方法 待完善
-            if (type_p == 'se'):
-                    self.driver.get(url_p)
-                    js = "var q=document.body.scrollTop=100000"
-                    self.driver.execute_script(js)
-                    self.driver.implicitly_wait(30)  # 据说此方法是智能等待，看效果还不错，数据加载完就返回了 30 代表等待秒
-                    txt = self.driver.page_source
-
-            # login的方法 待完善
-            if (type_p == 'lg'):
-
-                try:
-                    pass
-                except:
-                    pass
-
-            # 最后默认的方法
-            if (type_p == 'df'):
-                    html = requests.get(url=url_p, timeout=timeout_p, headers=headers_p)
-                    txt = html.text
-                    html.close()
+            elif (type_p == 'chrome'):
+                txt,driver =self.get_html_selenium(url_p)
 
         except(Exception):
-            html = requests.get(url=url_p, headers=headers_p)
-            txt = html.text
-            chartset_p = self.get_encodings_from_content(txt)
-            txt = str(html.text.encode(html.encoding), encoding=chartset_p)
-            html.close()
+
+            # TODO
+            pass
         return txt
 
     #  获取网页原文 （ulib）
-    def get_html_ulib(self,url_p, type_p='rp', chartset_p='utf-8'):
+    def get_html_ulib(self,url_p, chartset_p='utf-8'):
         html = urllib.request.urlopen(url=url_p)
         txt = html.read().decode(chartset_p)
+        status_code = html.status_code
         html.close()
-        return txt
+        return status_code,txt
 
     #  获取网页原文 （selenium）
     def get_html_selenium(self,url_p):
         driver = webdriver.Chrome("../driver/chromedriver.exe")
-
         driver.get(url_p)
         js = "document.documentElement.scrollTop=1000000"
         driver.execute_script(js)
         driver.implicitly_wait(30)  # 据说此方法是智能等待，看效果还不错，数据加载完就返回了 30 代表等待秒
-        print(driver)
         txt = driver.page_source
         return txt,driver
 
@@ -107,7 +85,6 @@ class HtmlSource:
 
     # 获取html原码的地址列表信息1
     def get_url_list(self, html=''):
-
         all_a_url = re.findall("href=[\"'](.*?)[\"']", html)
         return all_a_url
 

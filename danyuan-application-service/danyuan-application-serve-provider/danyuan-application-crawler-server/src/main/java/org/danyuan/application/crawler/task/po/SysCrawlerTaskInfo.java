@@ -100,6 +100,8 @@ public class SysCrawlerTaskInfo {
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer	deleteFlag	= 0;
 	
+	private String	homeStatue;
+	
 	/**  
 	 *  方法名 ： getUuid 
 	 *  功    能 ： 返回变量 uuid 的值  
@@ -485,6 +487,23 @@ public class SysCrawlerTaskInfo {
 	@Override
 	public String toString() {
 		return "SysCrawlerTaskInfo [uuid=" + uuid + ", url=" + url + ", taskName=" + taskName + ", urlType=" + urlType + ", charset=" + charset + ", webIcon=" + webIcon + ", requestData=" + requestData + ", requestType=" + requestType + ", startTime=" + startTime + ", lastExcuteTime=" + lastExcuteTime + ", surplusNum=" + surplusNum + ", successNum=" + successNum + ", taskFlag=" + taskFlag + ", errorNum=" + errorNum + ", excuteFlag=" + excuteFlag + ", excuteBatch=" + excuteBatch + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
+	}
+	
+	/**  
+	 *  方法名 ： getHomeStatue 
+	 *  功    能 ： 返回变量 homeStatue 的值  
+	 *  @return: String 
+	 */
+	public String getHomeStatue() {
+		return homeStatue;
+	}
+	
+	/**  
+	 *  方法名 ： setHomeStatue 
+	 *  功    能 ： 设置变量 homeStatue 的值
+	 */
+	public void setHomeStatue(String homeStatue) {
+		this.homeStatue = homeStatue;
 	}
 	
 }
