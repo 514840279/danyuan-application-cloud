@@ -31,7 +31,7 @@ window.operateEvents = {
 			$("#add_search_task_taskUuid").val(row.taskUuid).trigger("change");
 			group_param.parrentId= row.parentUuid;
 			$("#add_ruler_parrentId").val(row.parentUuid).trigger("change"); 
-		}, 3000);
+		}, 2500);
 		
 	
 	},
@@ -125,7 +125,7 @@ function bindClick(){
 	$("#add_crawler_rule_config_btn").bind("click",function(){
 		// 打开添加窗口
 		modals.openWin({
-	    	winId:"add_rule_modal",
+	    	winId:"add_rule_config_table",
 	    	title:'添加规则',
 	    	width:'800px',
 	    	url:"/pages/crawler/rule/addrule.html"
@@ -148,6 +148,81 @@ function bindClick(){
 				}
 			});
 			
+		}
+	})
+	
+	// 编辑点击事件
+	$("#edit_crawler_rule_config_btn").bind("click",function(){
+		var rows = $('#crawler_rule_config_table_datagrid').bootstrapTable("getAllSelections");
+		if(rows.length >= 1){
+			// 打开modal
+			modals.openWin({
+		    	winId:"add_rule_config_table",
+		    	title:'添加规则组',
+		    	width:'800px',
+		    	url:"/pages/crawler/rule/addrule.html"
+		    });
+			row= rows[0];
+			// 反填数据
+			setTimeout(function(){
+				$("#add_ruler_uuid").val(row.uuid);
+				$("#add_ruler_name").val(row.columName);
+				$("#add_ruler_xpath").val(row.ruler);
+				$("#add_ruler_colum_parentUuid").val(row.parentUuid).trigger("change");
+				add_ruler_colum_parentUuid= row.parentUuid;
+				$("#add_ruler_process").val(row.type).trigger("change"); 
+				add_ruler_process= row.type;
+				switch(add_ruler_process){
+					case('lxml'):
+					case('none'):
+					case('dict'):
+					case('rdict'):
+					case('arrayToString'):
+						$("#add_ruler_param_start_id").css({"display":"none"});
+						$("#add_ruler_param_end_id").css({"display":"none"});
+						$("#add_ruler_param_str_id").css({"display":"none"});
+						$("#add_ruler_param_new_id").css({"display":"none"});
+						break;
+					case("strSub"):
+						$("#add_ruler_param_start_id").css({"display":""});
+						$("#add_ruler_param_end_id").css({"display":""});
+						$("#add_ruler_param_str_id").css({"display":"none"});
+						$("#add_ruler_param_new_id").css({"display":"none"});
+						break;
+					case("strSplit"):
+					case("strAppendAfter"):
+					case("strAppendbefor"):
+						$("#add_ruler_param_start_id").css({"display":"none"});
+						$("#add_ruler_param_end_id").css({"display":"none"});
+						$("#add_ruler_param_str_id").css({"display":""});
+						$("#add_ruler_param_new_id").css({"display":"none"});
+						break;
+					case("strReplace"):
+						$("#add_ruler_param_start_id").css({"display":"none"});
+						$("#add_ruler_param_end_id").css({"display":"none"});
+						$("#add_ruler_param_str_id").css({"display":""});
+						$("#add_ruler_param_new_id").css({"display":""});
+						break;
+					case("arraySingle"):
+						$("#add_ruler_param_start_id").css({"display":""});
+						$("#add_ruler_param_end_id").css({"display":"none"});
+						$("#add_ruler_param_str_id").css({"display":"none"});
+						$("#add_ruler_param_new_id").css({"display":"none"});
+						break;
+					case("listItem"):
+					case("nextPage"):
+					case("subPage"):
+						break;
+					default:
+						add_ruler_process=null;
+						return;
+				}
+				$("#add_ruler_param_start").val(row.start),
+				$("#add_ruler_param_end").val(row.end),
+				$("#add_ruler_param_str").val(row.param),
+				$("#add_ruler_param_new").val(row.paramNew)
+				
+			}, 2500);
 		}
 	})
 }
@@ -211,7 +286,6 @@ function loadRuleGroup(){
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 //		sidePagination: "server", // 服务端处理分页 server
@@ -287,7 +361,6 @@ function loadRule(row){
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server

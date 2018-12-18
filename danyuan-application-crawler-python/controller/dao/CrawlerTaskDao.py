@@ -45,7 +45,24 @@ class SysCrawlerGroupInfo():
 
     # 查询
     def findAll(self,uuid):
-        pass
+        groupsql = '''
+            select * from sys_crawler_ruler_info r
+            where r.task_uuid='%s'
+            and (r.parent_uuid is null or r.parent_uuid ='')
+        ''' % uuid
+        res, groupdata = self.conn.read_sql(groupsql)
+        return groupdata
+
+        # 查询
+    def findAllByGroup(self, uuid,groupid):
+        ## 数据提取参数获取 ##############
+        groupsql = '''
+            select * from sys_crawler_ruler_info r
+            where r.task_uuid='%s'
+            and r.parent_uuid = '%s'
+        ''' % (uuid,groupid)
+        res, groupdata = self.conn.read_sql(groupsql)
+        return groupdata
 
     if __name__ == '__main__':
         pass

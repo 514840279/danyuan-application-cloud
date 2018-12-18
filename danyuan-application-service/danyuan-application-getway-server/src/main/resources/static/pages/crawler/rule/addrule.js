@@ -100,15 +100,15 @@ function submit_add_ruler(){
 	var rows = $('#crawler_rule_group_config_table_datagrid').bootstrapTable("getAllSelections");
 	if(rows.length==1){
 		var param={
-				rulerUuid:rows[0].uuid,
-				columName:$("#add_ruler_name").val(),
-				ruler:$("#add_ruler_xpath").val(),
-				type:add_ruler_process,
-				parentUuid:add_ruler_colum_parentUuid,
-				start:$("#add_ruler_param_start").val(),
-				end:$("#add_ruler_param_end").val(),
-				param:$("#add_ruler_param_str").val(),
-				paramNew:$("#add_ruler_param_new").val()
+			rulerUuid:rows[0].uuid,
+			columName:$("#add_ruler_name").val(),
+			ruler:$("#add_ruler_xpath").val(),
+			type:add_ruler_process,
+			parentUuid:add_ruler_colum_parentUuid,
+			start:$("#add_ruler_param_start").val(),
+			end:$("#add_ruler_param_end").val(),
+			param:$("#add_ruler_param_str").val(),
+			paramNew:$("#add_ruler_param_new").val()
 		}
 		
 		var url = "/crawler/sysCrawlerRulerColumInfo/save";
@@ -121,7 +121,7 @@ function submit_add_ruler(){
 
 function successAddRulerSuccess(result){
 	$('#crawler_rule_config_table_datagrid').bootstrapTable('refresh');
-	$("#add_rule_modal").modal("hide");
+	$("#add_rule_config_table").modal("hide");
 }
 
 

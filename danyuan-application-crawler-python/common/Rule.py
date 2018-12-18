@@ -2,7 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 from lxml import html
-
+from lxml import etree
+from common import HtmlSource
 
 class Rule:
 
@@ -126,7 +127,10 @@ class Rule:
         tree = html.fromstring(html_text)
         content = tree.xpath(group['ruler'])[0]
         column_content = content.xpath(group['items_ruler'])
+        print(group['nextpage_ruler'])
         nextpage = content.xpath(group['nextpage_ruler'])
+        #htmlsource = HtmlSource()
+        #nextpage = htmlsource.addr_reckon(nextpage)
         lista = []
         for a in range(len(column_content)):
             row = self._analysis_(tree=column_content[a], column=column)
