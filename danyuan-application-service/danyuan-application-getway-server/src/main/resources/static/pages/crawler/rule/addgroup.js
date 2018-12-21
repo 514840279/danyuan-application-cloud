@@ -36,9 +36,12 @@ function init(){
 		if(add_search_task_urlType == "请选择"){
 			group_param.urlType = null;
 		}
-		var url = "/crawler/sysCrawlerTaskInfo/findAll";
+		var url = "/crawler/sysCrawlerRulerInfo/findAll";
 		ajaxPost(url,{urlType:group_param.urlType},addloadParrentId);
 	});
+	
+	var url = "/crawler/sysCrawlerRulerInfo/findAll";
+	ajaxPost(url,{urlType:group_param.urlType},addloadParrentId);
 	
 	// select 初始化 任务
 	group_param.taskUuid=null;

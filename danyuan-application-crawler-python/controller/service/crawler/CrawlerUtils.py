@@ -2,6 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 import hashlib
+from common.inc_conn import Conn_mysql
+from controller.dao.CrawlerTaskDao import SysCrawlerMappedTableOfColumnInfo
 
 class CrawlerUtils():
 
@@ -12,6 +14,8 @@ class CrawlerUtils():
         myMd5.update(src.encode("utf8"))
         myMd5_Digest = myMd5.hexdigest()
         return myMd5_Digest
+
+
 
 
     def __init__(self):

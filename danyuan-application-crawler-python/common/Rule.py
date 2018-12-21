@@ -7,23 +7,6 @@ from common import HtmlSource
 
 class Rule:
 
-
-    # 读取网站域名
-    def get_url_root(self, url):
-        http = ''
-        https = ''
-        url_root = ''
-        if 'http://' in url or 'http:/' in url:
-            http = 'http://'
-            url = url.replace('http://', '').replace('http:/', '').strip()
-        elif 'https://' in url or 'https:/' in url:
-            https = 'https://'
-            url = url.replace('https://', '').replace('httpss:/', '').strip()
-        else:
-            pass
-        url_root = url.split('/')[0]
-        return (http + https + url_root)
-
     # 解析页面
     def _analysis_(self,tree ,column):
         column_context = []
@@ -137,7 +120,6 @@ class Rule:
             lista.append(row)
         print(lista)
         return lista,nextpage
-
 
     # 数据提取列表页处理方式
     def html_content_analysis_navigation(self,html_text,group_ruler, column):

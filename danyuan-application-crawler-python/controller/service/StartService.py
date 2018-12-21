@@ -18,15 +18,13 @@ class StartService():
     def run(self,task):
         ## 数据参数获取 ##############
         sysCrawlerGroupInfo = SysCrawlerGroupInfo()
-        groupdata =  sysCrawlerGroupInfo.findAll(task['uuid'])
+        groupdata =  sysCrawlerGroupInfo.findAllByTaskId(task['uuid'])
 
         # 判断配置的第一个是那种类型的页面进行爬取
         for group in groupdata:
             if(group['type'] == 'navigation_bar'):# 导航页面
                 navigation = CrawlerNavigation()
-                rows = navigation.crawlerNavigation(task,group);
-                #  调用配置中心进行下一组任务
-                navigation.runconfig(task,group,rows)
+                navigation.crawlerNavigation(task,group);
             elif (group['type'] == 'listPage'):# 列表页面
                 listItem = CrawlerListItem()
                 #  列表页面采集

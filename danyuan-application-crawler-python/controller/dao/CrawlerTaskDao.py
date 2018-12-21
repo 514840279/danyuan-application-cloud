@@ -44,7 +44,7 @@ class SysCrawlerGroupInfo():
         pass
 
     # 查询
-    def findAll(self,uuid):
+    def findAllByTaskId(self,uuid):
         groupsql = '''
             select * from sys_crawler_ruler_info r
             where r.task_uuid='%s'
@@ -53,14 +53,24 @@ class SysCrawlerGroupInfo():
         res, groupdata = self.conn.read_sql(groupsql)
         return groupdata
 
-        # 查询
-    def findAllByGroup(self, uuid,groupid):
+    # 查询
+    def findAllByTaskIdAndGroup(self, uuid,groupid):
         ## 数据提取参数获取 ##############
         groupsql = '''
             select * from sys_crawler_ruler_info r
             where r.task_uuid='%s'
             and r.parent_uuid = '%s'
         ''' % (uuid,groupid)
+        res, groupdata = self.conn.read_sql(groupsql)
+        return groupdata
+
+    # 查询
+    def findOne(self, uuid):
+        ## 数据提取参数获取 ##############
+        groupsql = '''
+            select * from sys_crawler_ruler_info r
+            where r.parent_uuid = '%s'
+        ''' % (uuid)
         res, groupdata = self.conn.read_sql(groupsql)
         return groupdata
 
@@ -152,6 +162,15 @@ class CrawlerResults():
             print(insettemsql)
             instconn.write_sql(insettemsql)
 
+    def get_navigation_List(self,group):
+        sysCrawlerMappedTableOfColumnInfo = SysCrawlerMappedTableOfColumnInfo()
+        condata = sysCrawlerMappedTableOfColumnInfo.findCondata(group)
+        sql = """
+            select * from %s 
+        """ % condata[0]['tabs_name']
+        conn = Conn_mysql()
+        rows = conn.read_sql(sql=sql)
+        return rows
 
 
     if __name__ == '__main__':

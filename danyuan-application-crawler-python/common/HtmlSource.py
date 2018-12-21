@@ -17,7 +17,7 @@ from selenium.webdriver.chrome.options import Options
 class HtmlSource:
     def get_html(self,url_p, type_p='requestGet', chartset_p='utf-8',timeout_p=10):
         headers_p = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"}
-        txt = "nothing"
+        txt = ""
         # 获取网页源码
         try:
             # get的方法
@@ -120,6 +120,11 @@ class HtmlSource:
                     list_url.append(url.strip())
         return list_url
 
+
+    ####################################################
+    ######  使用 addr_whole（）计算完整的url地址 #######
+    ####################################################
+
     # 截取相对路径
     def current_url_get(self, url_p=""):
         url_t = ""
@@ -129,6 +134,7 @@ class HtmlSource:
             # 如果存在二级及以上的虚拟目录
             if ("/" in url_p):
                 url_p = url_p.replace('/' + url_p.split('/')[-1], '/')
+            url_p = url_t+"://"+url_p
         else:
             return url_t
         return url_p
@@ -140,10 +146,12 @@ class HtmlSource:
         # print(first_charate)
         if first_charate == '/':
             # 根路径拼接
-            url_root_temp = self.get_url_root(url=url_root)
-            url = url_root_temp + url
             if second_charate == '/':
                 url = url
+            else:
+                url_root_temp = self.get_url_root(url=url_root)
+                url = url_root_temp + url
+
         elif first_charate == '.':
             if second_charate == '/':
                 # 当前路径下拼接
@@ -166,7 +174,9 @@ class HtmlSource:
         elif(url[0:5] == "https:" and url[0:7] != "https://"):
             url = url[0:6] + "//" + url[7:len(url)]
         elif(url[0:2] =="//"):
-            url = "http:"+url
+            if('http:'in url_root or 'https:' in url_root):
+                https = url_root.split(":")[0]
+            url = https+url
 
         return url
 
@@ -174,7 +184,6 @@ class HtmlSource:
     def get_url_root(self, url):
         http = ''
         https = ''
-        url_root = ''
         if 'http://' in url or 'http:/' in url:
             http = 'http://'
             url = url.replace('http://', '').replace('http:/', '').strip()
@@ -187,7 +196,7 @@ class HtmlSource:
         return (http + https + url_root)
 
     # 补全完整路径/
-    def addr_whole(self, all_a_url, url_root, url_key=""):
+    def addr_whole(self, all_a_url, url_root):
         url_temp = []
         current_url = self.current_url_get(url_p=url_root)
         for url in all_a_url:
@@ -212,6 +221,8 @@ class HtmlSource:
             return False
         else:
             return True
+
+    #########################################################
 
     def main(self):
         print("")

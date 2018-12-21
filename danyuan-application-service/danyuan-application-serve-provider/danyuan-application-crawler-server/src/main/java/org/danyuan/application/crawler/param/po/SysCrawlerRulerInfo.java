@@ -81,6 +81,8 @@ public class SysCrawlerRulerInfo implements Serializable {
 	private Integer				deleteFlag;									// delete_flag
 	// 标记
 	
+	private String				statue;
+	
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -329,6 +331,23 @@ public class SysCrawlerRulerInfo implements Serializable {
 	 */
 	public void setNextpageRuler(String nextpageRuler) {
 		this.nextpageRuler = nextpageRuler;
+	}
+	
+	/**  
+	 *  方法名 ： getStatue 
+	 *  功    能 ： 返回变量 statue 的值  
+	 *  @return: String 
+	 */
+	public String getStatue() {
+		return statue;
+	}
+	
+	/**  
+	 *  方法名 ： setStatue 
+	 *  功    能 ： 设置变量 statue 的值
+	 */
+	public void setStatue(String statue) {
+		this.statue = statue;
 	}
 	
 }

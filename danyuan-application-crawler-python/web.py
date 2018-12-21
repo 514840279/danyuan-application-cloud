@@ -5,9 +5,6 @@ import json
 #import os
 from flask import Flask, Response,render_template
 # 引入 模块
-from controller.Search import dosearch as search_blueprinit
-from controller.Crawler import crawler as crawler_blueprinit
-from controller.Navigation import navigation as navigation_blueprinit
 from controller.StartController import start as start_blueprinit
 # BASE_DIR建立一个基础路径，用于静态文件static，templates的调用
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,9 +12,6 @@ from controller.StartController import start as start_blueprinit
 app=Flask(__name__,template_folder='templates',static_folder='static')
 
 # 使用 蓝图 注册不同模块
-app.register_blueprint(crawler_blueprinit,url_prefix='/crawler')
-app.register_blueprint(search_blueprinit,url_prefix='/search')
-app.register_blueprint(navigation_blueprinit,url_prefix='/nivigation')
 app.register_blueprint(start_blueprinit,url_prefix='/start')
 
 
