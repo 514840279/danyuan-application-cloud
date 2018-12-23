@@ -51,11 +51,12 @@ public class SysCrawlerRulerColumInfo implements Serializable {
 	@Column(name = "type", columnDefinition = " varchar(30) COMMENT '处理方式'")
 	private String				type;										// type
 	
-	private Integer				start;
-	private Integer				end;
+	private Integer				start; // 截取开始下标 
+	private Integer				end; // 截取结束的下标
 	@Column(name = "param", columnDefinition = " varchar(500) COMMENT '拼接或替换的字符串'")
-	private String				param;
-	private String				paramNew;
+	private String				param;  // 需要替换的字符串
+	private String				paramNew; // 需要替换成新的字符串
+	private String				md5Flag; // 是否作为md5计算的连接字段
 	
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String				discription;								// 描述
@@ -375,6 +376,23 @@ public class SysCrawlerRulerColumInfo implements Serializable {
 	 */
 	public void setParentUuid(String parentUuid) {
 		this.parentUuid = parentUuid;
+	}
+	
+	/**  
+	 *  方法名 ： getMd5Flag 
+	 *  功    能 ： 返回变量 md5Flag 的值  
+	 *  @return: String 
+	 */
+	public String getMd5Flag() {
+		return md5Flag;
+	}
+	
+	/**  
+	 *  方法名 ： setMd5Flag 
+	 *  功    能 ： 设置变量 md5Flag 的值
+	 */
+	public void setMd5Flag(String md5Flag) {
+		this.md5Flag = md5Flag;
 	}
 	
 }

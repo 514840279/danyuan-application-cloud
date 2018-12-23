@@ -1,7 +1,5 @@
 package org.danyuan.application.dbms;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/zhcx")
 public class ZhcxController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ZhcxController.class);
+	//	private static final Logger logger = LoggerFactory.getLogger(ZhcxController.class);
 	
 	//	@RequestMapping(path = "/forwardYjcx", method = RequestMethod.POST)
 	//	public ModelAndView forwardYjcx(SysDbmsTabsInfoVo vo) {

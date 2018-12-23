@@ -4,14 +4,16 @@ $(function() {
 	// 绑定添加事件
 	$("#submit_add_group_id").bind("click",function(){
 		var param={
-				uuid:$("#add_ruler_group_uuid").val(),
+			uuid:$("#add_ruler_group_uuid").val(),
 			taskUuid:group_param.taskUuid,
 			type:group_param.groupType,
 			name:$("#add_ruler_group_name").val(),
 			ruler:$("#add_ruler_group_ruler").val(),
 			itemsRuler:$("#add_ruler_group_items").val(),
 			nextpageRuler:$("#add_ruler_group_nextpage").val(),
-			parentUuid:group_param.parrentId
+			parentUuid:group_param.parrentId,
+			parentDicUuid:group_param.parentDicUuid,
+			parentDicParams:$("#add_ruler_group_parentDicParams").val()
 		}
 		var url="/crawler/sysCrawlerRulerInfo/save";
 		ajaxPost(url,param,successedSaveRulerGroup)
@@ -68,8 +70,26 @@ function init(){
 		group_param.parrentId = evt.params.data.id;
 		if(group_param.parrentId == "请选择"){
 			group_param.parrentId = null;
+			$(".show-parent-group").css({"display":"none"});
 		}
-		
+		if(group_param.parrentId != null){
+			// 查询父组 中的列
+			var url="/crawler/sysCrawlerRulerColumInfo/findAll";
+			var param={rulerUuid:group_param.parrentId};
+			ajaxPost(url,param,reloadParrentDicUuid);
+			$(".show-parent-group").css({"display":""});
+		}
+	});
+	
+	// 查询父组 中的列
+	$("#add_ruler_parentDicUuid").select2({
+		tags: true, 
+		placeholder: "请选择",
+	}).on('select2:select', function (evt) {
+		group_param.parentDicUuid = evt.params.data.id;
+		if(group_param.parentDicUuid == "请选择"){
+			group_param.parentDicUuid = null;
+		}
 	});
 	
 	// select 初始化 组类型
@@ -94,6 +114,19 @@ function init(){
 		}
 	});
 	
+}
+
+// 重新加载上一层列的数据
+function reloadParrentDicUuid(result){
+	console.log(result)
+	var data = [{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.columName});
+	})
+	$("#add_ruler_parentDicUuid").empty();
+	$("#add_ruler_parentDicUuid").select2({
+	    data: data
+	});
 }
 
 // 下拉框数据加载

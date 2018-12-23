@@ -48,7 +48,11 @@ public class SysCrawlerRulerInfo implements Serializable {
 	private String				name;										// name 名称
 	
 	@Column(name = "parent_uuid", columnDefinition = " varchar(36) COMMENT '上一层id'")
-	private String				parentUuid;									// sub_uri
+	private String				parentUuid;
+	// 父组作为字典的字段
+	private String				parentDicUuid;
+	// 筛选字典时 用的条件语句
+	private String				parentDicParams;									// sub_uri
 	
 	private String				itemsRuler;
 	private String				nextpageRuler;
@@ -348,6 +352,40 @@ public class SysCrawlerRulerInfo implements Serializable {
 	 */
 	public void setStatue(String statue) {
 		this.statue = statue;
+	}
+	
+	/**  
+	 *  方法名 ： getParentDicUuid 
+	 *  功    能 ： 返回变量 parentDicUuid 的值  
+	 *  @return: String 
+	 */
+	public String getParentDicUuid() {
+		return parentDicUuid;
+	}
+	
+	/**  
+	 *  方法名 ： setParentDicUuid 
+	 *  功    能 ： 设置变量 parentDicUuid 的值
+	 */
+	public void setParentDicUuid(String parentDicUuid) {
+		this.parentDicUuid = parentDicUuid;
+	}
+	
+	/**  
+	 *  方法名 ： getParentDicParams 
+	 *  功    能 ： 返回变量 parentDicParams 的值  
+	 *  @return: String 
+	 */
+	public String getParentDicParams() {
+		return parentDicParams;
+	}
+	
+	/**  
+	 *  方法名 ： setParentDicParams 
+	 *  功    能 ： 设置变量 parentDicParams 的值
+	 */
+	public void setParentDicParams(String parentDicParams) {
+		this.parentDicParams = parentDicParams;
 	}
 	
 }

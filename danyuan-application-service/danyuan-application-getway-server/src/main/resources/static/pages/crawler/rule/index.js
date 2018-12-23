@@ -16,7 +16,7 @@ window.operateEvents = {
 			$("#add_ruler_group_name").val(row.name);
 			$("#add_ruler_group_items").val(row.itemsRuler);
 			$("#add_ruler_group_nextpage").val(row.nextpageRuler);
-			
+			$("#add_ruler_group_parentDicParams").val(row.parentDicParams);
 			group_param.groupType= row.type;
 			switch(group_param.groupType){
 				case("listPage"):
@@ -31,7 +31,16 @@ window.operateEvents = {
 			$("#add_search_task_taskUuid").val(row.taskUuid).trigger("change");
 			group_param.parrentId= row.parentUuid;
 			$("#add_ruler_parrentId").val(row.parentUuid).trigger("change"); 
-		}, 2500);
+			if(group_param.parrentId!=null&&group_param.parrentId!=""){
+				group_param.parentDicUuid = row.parentDicUuid;
+				var url="/crawler/sysCrawlerRulerColumInfo/findAll";
+				var param={rulerUuid:group_param.parrentId};
+				ajaxPost(url,param,reloadParrentDicUuid);
+				$(".show-parent-group").css({"display":""});
+				$("#add_ruler_parentDicUuid").val(row.parentDicUuid).trigger("change"); 
+			}
+				
+		}, 1200);
 		
 	
 	},
@@ -222,7 +231,7 @@ function bindClick(){
 				$("#add_ruler_param_str").val(row.param),
 				$("#add_ruler_param_new").val(row.paramNew)
 				
-			}, 2500);
+			}, 1200);
 		}
 	})
 }
@@ -279,7 +288,7 @@ function loadRuleGroup(){
 		clickToSelect : true, // 是否启用点击选中行
 		height : 500, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 		uniqueId : "uuid", // 每一行的唯一标识，一般为主键列
-		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
+//		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
 		detailView : false, // 是否显示父子表
 		singleSelect : true,
@@ -307,12 +316,12 @@ function loadRuleGroup(){
             return param;
 		},
 		columns : [
-			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : '.',field : 'uuid',align : 'center',sortable : true,valign : 'top',visible:false},
-			{title : '规则名称',field : 'name',align : 'center',sortable : true,valign : 'top'},
-			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
-			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
-			{title : '操作', align : 'center',valign : 'top', events: operateEvents,formatter : function(value, row, index) {
+			{title : '全选',checkbox : true,align : 'left',valign : 'middle'},
+			{title : '.',field : 'uuid',align : 'left',sortable : true,valign : 'middle',visible:false},
+			{title : '规则名称',field : 'name',align : 'left',sortable : true,valign : 'middle'},
+			{title : '规则类型',field : 'type',sortable : true,align : 'left',valign : 'middle', sortable: true},
+			{title : '修改时间',field : 'updateTime',sortable : true,align : 'left',valign : 'middle',formatter:dateTimeFormatter},
+			{title : '操作', align : 'left',valign : 'middle', events: operateEvents,formatter : function(value, row, index) {
 				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑' ></i> ";
 				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-remove' title='删除'></i> ";
 				return A + B;
@@ -327,7 +336,8 @@ function loadRuleGroup(){
 		    if(!index[0].children[0].children[0].checked){
 		    	loadRule(row);
 		    }
-		    $("#show_crawler_rule_group_config").attr("class","col-lg-4 col-xs-4");
+		    $("#show_crawler_rule_group_config").attr("class","col-lg-6 col-xs-6");
+		    $("#show_crawler_rule_config").css({"display":""});
 	    },
 	});
 }
@@ -383,16 +393,16 @@ function loadRule(row){
              return param;
 		},
 		columns : [
-			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'top',visible:false},
-			{title : '规则名称',field : 'columName',align : 'center',sortable : true,valign : 'top'},
-			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
-			{title : '规则内容',field : 'ruler',sortable : true,align : 'center',valign : 'top'},
-			{title : '开始位置',field : 'start',sortable : true,align : 'center',valign : 'top'},
-			{title : '结束位置',field : 'end',sortable : true,align : 'center',valign : 'top'},
-			{title : '拼接字符（需要替换的、分割符）',field : 'param',sortable : true,align : 'center',valign : 'top'},
-			{title : '替换成',field : 'paramNew',sortable : true,align : 'center',valign : 'top'},
-			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
+			{title : '全选',checkbox : true,align : 'left',valign : 'middle'},
+			{title : 'id',field : 'uuid',align : 'left',sortable : true,valign : 'middle',visible:false},
+			{title : '规则名称',field : 'columName',align : 'left',sortable : true,valign : 'middle'},
+			{title : '规则类型',field : 'type',sortable : true,align : 'left',valign : 'middle', sortable: true},
+			{title : '规则内容',field : 'ruler',sortable : true,align : 'left',valign : 'middle'},
+			{title : '开始位置',field : 'start',sortable : true,align : 'left',valign : 'middle'},
+			{title : '结束位置',field : 'end',sortable : true,align : 'left',valign : 'middle'},
+			{title : '拼接字符（需要替换的、分割符）',field : 'param',sortable : true,align : 'left',valign : 'middle'},
+			{title : '替换成',field : 'paramNew',sortable : true,align : 'left',valign : 'middle'},
+			{title : '修改时间',field : 'updateTime',sortable : true,align : 'left',valign : 'middle',formatter:dateTimeFormatter},
 		],
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
