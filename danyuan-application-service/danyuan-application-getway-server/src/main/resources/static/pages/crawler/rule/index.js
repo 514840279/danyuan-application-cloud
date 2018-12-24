@@ -37,7 +37,7 @@ window.operateEvents = {
 				var param={rulerUuid:group_param.parrentId};
 				ajaxPost(url,param,reloadParrentDicUuid);
 				$(".show-parent-group").css({"display":""});
-				$("#add_ruler_parentDicUuid").val(row.parentDicUuid).trigger("change"); 
+				 
 			}
 				
 		}, 1200);

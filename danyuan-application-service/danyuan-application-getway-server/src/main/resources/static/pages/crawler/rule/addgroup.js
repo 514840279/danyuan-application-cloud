@@ -127,6 +127,9 @@ function reloadParrentDicUuid(result){
 	$("#add_ruler_parentDicUuid").select2({
 	    data: data
 	});
+	if(group_param.parentDicUuid!=null){
+		$("#add_ruler_parentDicUuid").val(group_param.parentDicUuid).trigger("change");
+	}
 }
 
 // 下拉框数据加载

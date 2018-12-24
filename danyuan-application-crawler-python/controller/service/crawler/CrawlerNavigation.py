@@ -43,7 +43,7 @@ class CrawlerNavigation():
             crawlerResults.instertItems(condata, rows)
 
             # 更新表状态 完成
-            sysCrawlerTaskInfo = SysCrawlerTaskInfo()
-            sysCrawlerTaskInfo.updateTaskInfo(task['uuid'],'完成',len(rows))
+            sysCrawlerGroupInfo = SysCrawlerGroupInfo()
+            sysCrawlerGroupInfo.updateGroupInfo(group['uuid'],task['uuid'],'完成',len(rows))
         return rows
 

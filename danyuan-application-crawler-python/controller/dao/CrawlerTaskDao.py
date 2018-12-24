@@ -21,6 +21,7 @@ class SysCrawlerTaskInfo():
             success_num=success_num+1
             where uuid='%s'
         ''' % (status,surplus,uuid)
+        print(sql)
         self.conn.write_sql(sql)
         self.conn.close()
 
@@ -48,7 +49,6 @@ class SysCrawlerGroupInfo():
         groupsql = '''
             select * from sys_crawler_ruler_info r
             where r.task_uuid='%s'
-            and (r.parent_uuid is null or r.parent_uuid ='')
         ''' % uuid
         res, groupdata = self.conn.read_sql(groupsql)
         return groupdata
@@ -69,10 +69,29 @@ class SysCrawlerGroupInfo():
         ## 数据提取参数获取 ##############
         groupsql = '''
             select * from sys_crawler_ruler_info r
-            where r.parent_uuid = '%s'
+            where r.uuid = '%s'
         ''' % (uuid)
         res, groupdata = self.conn.read_sql(groupsql)
-        return groupdata
+        return groupdata[0]
+
+    # 更新任务表完成
+    def updateGroupInfo(self,groupid, uuid, status, surplus):
+        # 更新任务 状态完成
+        sql = '''
+            update sys_crawler_ruler_info
+            set statue ='%s'
+            where uuid='%s'
+        ''' % (status,groupid)
+        print(sql)
+        self.conn.write_sql(sql)
+        self.conn.close()
+
+        # 更新表组表状态 完成
+        sysCrawlerTaskInfo = SysCrawlerTaskInfo()
+        sysCrawlerTaskInfo.updateTaskInfo(uuid,status, surplus)
+
+    def __init__(self):
+        self.requestConn = 0
 
     if __name__ == '__main__':
         pass
@@ -107,9 +126,9 @@ class SysCrawlerMappedTableOfColumnInfo():
             inner join sys_dbms_tabs_info t on r.table_uuid = t.uuid
             where ruler_uuid='%s'
         ''' % group['uuid']
-        conn = Conn_mysql()
-        res, condata = conn.read_sql(sql)
-        conn.close()
+        print(sql)
+        res, condata = self.conn.read_sql(sql)
+        self.conn.close()
         return condata
 
     # 查询
@@ -130,7 +149,6 @@ class CrawlerResults():
     # 初始化 实例一个数据库连接
     def __init__(self):
         self.conn = Conn_mysql()
-        pass
 
     # 修改结果采集的状态完成
     def instertItems(self,condata,rows):
@@ -162,15 +180,15 @@ class CrawlerResults():
             print(insettemsql)
             instconn.write_sql(insettemsql)
 
+
     def get_navigation_List(self,group):
         sysCrawlerMappedTableOfColumnInfo = SysCrawlerMappedTableOfColumnInfo()
         condata = sysCrawlerMappedTableOfColumnInfo.findCondata(group)
         sql = """
             select * from %s 
         """ % condata[0]['tabs_name']
-        conn = Conn_mysql()
-        rows = conn.read_sql(sql=sql)
-        return rows
+        res,data = self.conn.read_sql(sql=sql)
+        return data
 
 
     if __name__ == '__main__':

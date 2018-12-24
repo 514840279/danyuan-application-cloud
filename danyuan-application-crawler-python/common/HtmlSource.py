@@ -15,7 +15,10 @@ from selenium.webdriver.chrome.options import Options
 
 # 获取网页源码 重要
 class HtmlSource:
-    def get_html(self,url_p, type_p='requestGet', chartset_p='utf-8',timeout_p=10):
+
+    requestConn=0
+
+    def get_html(self,url_p, type_p='requestGet', chartset_p='utf-8',timeout_p=30):
         headers_p = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"}
         txt = ""
         # 获取网页源码
@@ -52,6 +55,8 @@ class HtmlSource:
 
             # TODO
             pass
+        if(txt=="" and self.requestConn < 3):
+            txt = self.get_html(url_p, type_p='requestGet', chartset_p='utf-8',timeout_p=30)
         return txt
 
     #  获取网页原文 （ulib）
