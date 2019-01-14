@@ -42,7 +42,7 @@ class SysCrawlerGroupInfo():
     # 初始化 实例一个数据库连接
     def __init__(self):
         self.conn = Conn_mysql()
-        pass
+        self.requestConn = 0
 
     # 查询
     def findAllByTaskId(self,uuid):
@@ -74,7 +74,7 @@ class SysCrawlerGroupInfo():
         res, groupdata = self.conn.read_sql(groupsql)
         return groupdata[0]
 
-    # 更新任务表完成
+    # TODO 更新任务表完成
     def updateGroupInfo(self,groupid, uuid, status, surplus):
         # 更新任务 状态完成
         sql = '''
@@ -90,8 +90,6 @@ class SysCrawlerGroupInfo():
         sysCrawlerTaskInfo = SysCrawlerTaskInfo()
         sysCrawlerTaskInfo.updateTaskInfo(uuid,status, surplus)
 
-    def __init__(self):
-        self.requestConn = 0
 
     if __name__ == '__main__':
         pass

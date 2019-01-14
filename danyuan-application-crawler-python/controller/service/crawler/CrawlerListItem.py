@@ -95,6 +95,8 @@ class CrawlerListItem():
 
         # TODO 更新任务表
         # TODO 更新数据表根据md5
+        sysCrawlerGroupInfo = SysCrawlerGroupInfo()
+        sysCrawlerGroupInfo.updateGroupInfo(group['uuid'], task['uuid'], '完成', len(rows)-1)
 
         if(len(nextpage)>0):
             # 下一页

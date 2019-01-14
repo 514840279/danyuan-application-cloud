@@ -23,7 +23,7 @@
 	<modules>
 		<module>danyuan-application-eureka-server</module>
 		<module>danyuan-application-oauth2-server</module>
-		<module>danyuan-application-getway-server</module>
+		<module>danyuan-application-zuul-server</module>
 		<module>danyuan-application-sidecar-server</module>
 		<module>danyuan-application-serve-provider</module>
 	</modules>

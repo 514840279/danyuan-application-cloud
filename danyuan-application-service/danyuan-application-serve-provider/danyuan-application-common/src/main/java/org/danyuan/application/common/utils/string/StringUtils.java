@@ -10,6 +10,8 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 /**
  * 文件名 ： StringUtils.java
  * 包 名 ：
@@ -33,7 +35,7 @@ public class StringUtils {
 		String[] strarry = str.replaceAll("[ |~|!|?|，|-|(|)|{|}|`|\\|]|[|/|	]", ",").split(",");
 		return strarry;
 	}
-
+	
 	/**
 	 * 功能：过滤input中的HTML标记
 	 * <p>
@@ -486,4 +488,24 @@ public class StringUtils {
 		}
 	}
 	
+	public static final String randomString(int length) {
+		//产生5位长度的随机字符串，中文环境下是乱码
+		//		String randomString = RandomStringUtils.random(length);
+
+		//使用指定的字符生成5位长度的随机字符串
+		//		randomString = RandomStringUtils.random(length, new char[] { 'a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3' });
+
+		//生成指定长度的字母和数字的随机组合字符串
+		String randomString = RandomStringUtils.randomAlphanumeric(length);
+
+		//生成随机数字字符串
+		//		randomString = RandomStringUtils.randomNumeric(length);
+
+		//生成随机[a-z]字符串，包含大小写
+		//		randomString = RandomStringUtils.randomAlphabetic(length);
+
+		//生成从ASCII 32到126组成的随机字符串
+		//		randomString = RandomStringUtils.randomAscii(length);
+		return randomString;
+	}
 }

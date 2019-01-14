@@ -40,8 +40,8 @@ logging:
   level:
     root: INFO
     org.hibernate: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
-    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    #org.hibernate.type.descriptor.sql.BasicBinder: trace
+    #org.hibernate.type.descriptor.sql.BasicExtractor: trace
     org.danyuan: DEBUG
     
    

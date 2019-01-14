@@ -10,6 +10,34 @@ class CrawlerDetialInfoPage():
     # 详细页面
     def crawlerDetialPage(self,  task, group):
 
+        if (group['parent_uuid'] != '' and group['parent_uuid'] != None):
+            # 获取上一层的group
+            sysCrawlerGroupInfo = SysCrawlerGroupInfo()
+            pGroup = sysCrawlerGroupInfo.findOne(group['parent_uuid'])
+
+            # 获取 字典数据
+            crawlerResults = CrawlerResults()
+            rows = crawlerResults.get_navigation_List(pGroup)
+
+            # 上一层的字段
+            sysCrawlerCloumnInfo = SysCrawlerCloumnInfo()
+            pColumndata = sysCrawlerCloumnInfo.findAll(pGroup)
+
+            # 对比得到配置的连接字段名
+            for column in pColumndata:
+                if (column['uuid'] == group['parent_dic_uuid']):
+                    pLinkConf = column['colum_name']
+
+            # 循环取url
+            for item in rows:
+                # “连接”需要经过配置得到
+                self.crawlerListPageWithUrl(task, group, item[pLinkConf])
+
+        else:
+            self.crawlerListPageWithUrl(task, group, task['url'])
+
+    # 但页面采集解析
+    def crawlerListPageWithUrl(self, task, group, url):
         ## 源码采集 ##############
         source = HtmlSource()
         html = source.get_html(url_p=url, type_p=task['requestType'], chartset_p=task['charset'])
@@ -19,7 +47,6 @@ class CrawlerDetialInfoPage():
         columndata = sysCrawlerCloumnInfo.findAll(group)
 
         ## 数据提取 ##############
-
         rule = Rule()
         rows, nextpage = rule.html_content_analysis_list(html_text=html, group=group, column=columndata)
         source = HtmlSource()
@@ -33,7 +60,12 @@ class CrawlerDetialInfoPage():
         # 拼装入库语句,入库
         crawlerResults = CrawlerResults()
         crawlerResults.instertItems(condata, rows)
-        return;
+
+        # TODO 更新任TODO
+        # TODO 更新数据表根据md5
+        sysCrawlerGroupInfo = SysCrawlerGroupInfo()
+        sysCrawlerGroupInfo.updateGroupInfo(group['uuid'], task['uuid'], '完成', len(rows) - 1)
+
     if __name__ == '__main__':
         pass
     def __init__(self):

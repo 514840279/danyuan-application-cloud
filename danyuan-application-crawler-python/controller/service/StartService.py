@@ -8,6 +8,7 @@ from common.Rule import Rule
 from controller.service.crawler.CrawlerDetialInfoPage import CrawlerDetialInfoPage
 from controller.service.crawler.CrawlerListItem import CrawlerListItem
 from controller.service.crawler.CrawlerNavigation import CrawlerNavigation
+from controller.service.crawler.CrawlerAllPage import CrawlerAllPage
 from controller.dao.CrawlerTaskDao import SysCrawlerGroupInfo
 
 
@@ -29,10 +30,14 @@ class StartService():
                 listItem = CrawlerListItem()
                 #  列表页面采集
                 listItem.crawlerListPage(task, group);
-
             elif (group['type'] == 'detialPage'):# 详细页面
-                # TODO
-                rows = self.crawlerDetialPage(task, group);
+                # 详细页面简易版
+                detial = CrawlerDetialInfoPage()
+                detial.crawlerDetialPage(task, group);
+            elif (group['type'] == 'allPage'):  # 详细页面
+                # 详细页面 包含多个分组
+                crawlerAllPage = CrawlerAllPage()
+                crawlerAllPage.crawlerAllPage(task, group);
 
 
 
