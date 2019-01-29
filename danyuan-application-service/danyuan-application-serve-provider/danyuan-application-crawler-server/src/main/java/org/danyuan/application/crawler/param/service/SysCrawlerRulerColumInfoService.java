@@ -22,21 +22,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysCrawlerRulerColumInfoService extends BaseServiceImpl<SysCrawlerRulerColumInfo> implements BaseService<SysCrawlerRulerColumInfo> {
-	
+
 	@Autowired
 	SysCrawlerRulerColumInfoDao sysCrawlerRulerColumInfoDao;
-	
-	/**  
-	*  方法名： findParent  
-	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+
+	/**
+	*  方法名： findParent
+	*  功    能： TODO(这里用一句话描述这个方法的作用)
 	*  参    数： @param info
-	*  参    数： @return 
-	*  返    回： List<SysCrawlerRulerColumInfo>  
-	*  作    者 ： wang  
-	*  @throws  
+	*  参    数： @return
+	*  返    回： List<SysCrawlerRulerColumInfo>
+	*  作    者 ： wang
+	*  @throws
 	*/
 	public List<SysCrawlerRulerColumInfo> findParent(SysCrawlerRulerInfo sysCrawlerRulerInfo) {
 		return sysCrawlerRulerColumInfoDao.findParent(sysCrawlerRulerInfo.getUuid());
 	}
-	
+
 }

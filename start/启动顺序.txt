@@ -1,0 +1,9 @@
+启动顺序：
+
+1. 服务注册发现中心 （eureka-server:8761）
+		
+2. 基础服务（crawler-server，dbms-server，python-web&sidecar-server）
+
+3. 鉴权中心（oauth2-server）
+
+4. 网关（zuul-server）

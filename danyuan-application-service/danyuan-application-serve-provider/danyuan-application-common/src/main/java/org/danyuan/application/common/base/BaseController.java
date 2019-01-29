@@ -1,15 +1,14 @@
 package org.danyuan.application.common.base;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 文件名 ： BaseController.java
  * 包 名 ： tk.ainiyue.danyuan.application.common.base
- * 描 述 ： TODO(用一句话描述该文件做什么)
+ * 描 述 ： 通用类控制层接口
  * 机能名称：
  * 技能ID ：
  * 作 者 ： wang
@@ -18,24 +17,28 @@ import org.springframework.data.domain.Sort;
  */
 public interface BaseController<T> {
 
-	Page<T> page(Pagination<T> vo);
+	@RequestMapping("/page")
+	BaseResult<Page<T>> page(Pagination<T> vo);
 
-	List<T> findAll(T info);
+	@RequestMapping("/findAll")
+	BaseResult<List<T>> findAll(T info);
 
-	List<T> findAll(Pagination<T> vo);
+	@RequestMapping("/findOne")
+	BaseResult<T> findOne(T info);
 
-	List<T> findAll(T entity, Sort sort);
+	@RequestMapping("/save")
+	BaseResult<T> save(T info);
 
-	T findOne(T info);
+	@RequestMapping("/saveAll")
+	BaseResult<T> saveAll(Pagination<T> vo);
 
-	T save(T info);
+	@RequestMapping("/deleteAll")
+	BaseResult<T> deleteAll(Pagination<T> vo);
 
-	Map<String, Object> saveAll(Pagination<T> vo);
+	@RequestMapping("/delete")
+	BaseResult<T> delete(T info);
 
-	Map<String, Object> deleteAll(Pagination<T> vo);
-
-	Map<String, Object> delete(T info);
-
-	Map<String, Object> trunc();
+	@RequestMapping("/trunc")
+	BaseResult<T> trunc();
 
 }

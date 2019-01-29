@@ -12,6 +12,7 @@ window.operateEvents = {
 		// 反填数据
 		setTimeout(function(){
 			$("#add_ruler_group_uuid").val(row.uuid);
+			$("#add_ruler_group_uuid").val(row.uuid);
 			$("#add_ruler_group_ruler").val(row.ruler);
 			$("#add_ruler_group_name").val(row.name);
 			$("#add_ruler_group_items").val(row.itemsRuler);
@@ -232,11 +233,14 @@ function bindClick(){
 				$("#add_ruler_param_new").val(row.paramNew);
 				var xpath = row.ruler;
 				if(xpath.indexOf("@href")>-1){
-					$("input[name='md5Flag'][value='是']").prop("checked","checked");
+					$("input[name='md5Flag'][value='是']").prop("checked","");
 					$("input[name='md5Flag'][value='否']").prop("checked","");
+					$("input[name='md5Flag'][value='"+row.md5Flag+"']").prop("checked","checked");
+					$("#add_ruler_param_md5Flag_id").css({"display":""});
 				}else{
 					$("input[name='md5Flag'][value='是']").prop("checked","");
 					$("input[name='md5Flag'][value='否']").prop("checked","checked");
+					$("#add_ruler_param_md5Flag_id").css({"display":"none"});
 				};
 				
 			}, 1200);

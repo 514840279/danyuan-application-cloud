@@ -110,6 +110,7 @@ function submit_add_ruler(){
 	var rows = $('#crawler_rule_group_config_table_datagrid').bootstrapTable("getAllSelections");
 	if(rows.length==1){
 		var param={
+				uuid:$("#add_ruler_uuid").val(),
 			rulerUuid:rows[0].uuid,
 			columName:$("#add_ruler_name").val(),
 			ruler:$("#add_ruler_xpath").val(),

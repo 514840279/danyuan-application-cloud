@@ -5,14 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
  * The persistent class for the sys_seed_result_ruler_info database table.
@@ -20,17 +16,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "sys_crawler_result_ruler_info")
 @NamedQuery(name = "SysCrawlerResultRulerInfo.findAll", query = "SELECT s FROM SysCrawlerResultRulerInfo s")
-public class SysCrawlerResultRulerInfo implements Serializable {
+public class SysCrawlerResultRulerInfo extends BaseEntity implements Serializable {
 	
 	/**
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 	 */
 	private static final long	serialVersionUID	= -8550950330729844126L;
-	
-	@Id
-	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(name = "uuid", unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
 	
 	@Column(name = "cols_name", columnDefinition = "varchar(30) COMMENT '表字段名'")
 	private String				colsName;
@@ -49,42 +40,16 @@ public class SysCrawlerResultRulerInfo implements Serializable {
 	
 	@Column(name = "table_uuid", columnDefinition = "varchar(36) COMMENT '表id'")
 	private String				tableUuid;
-	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;							   // discription
-	// 描述
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				createTime;							   // create_time
-	// 插入时间
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;							   // create_user
-	// 插入人
-	
-	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				updateTime;							   // updata_time
-	// 更新时间
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;							   // updata_user
-	// 更新人
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;							   // delete_flag
-	// 标记
-	
+
 	public SysCrawlerResultRulerInfo() {
 	}
 	
+	@Override
 	public String getUuid() {
 		return this.uuid;
 	}
 	
+	@Override
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
@@ -105,34 +70,42 @@ public class SysCrawlerResultRulerInfo implements Serializable {
 		this.colsUuid = colsUuid;
 	}
 	
+	@Override
 	public Date getCreateTime() {
 		return this.createTime;
 	}
 	
+	@Override
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 	
+	@Override
 	public String getCreateUser() {
 		return this.createUser;
 	}
 	
+	@Override
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
 	
+	@Override
 	public Integer getDeleteFlag() {
 		return this.deleteFlag;
 	}
 	
+	@Override
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
 	
+	@Override
 	public String getDiscription() {
 		return this.discription;
 	}
 	
+	@Override
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
@@ -175,6 +148,7 @@ public class SysCrawlerResultRulerInfo implements Serializable {
 	 *
 	 * @return: Date
 	 */
+	@Override
 	public Date getUpdateTime() {
 		return updateTime;
 	}
@@ -183,6 +157,7 @@ public class SysCrawlerResultRulerInfo implements Serializable {
 	 * 方法名 ： setUpdateTime
 	 * 功 能 ： 设置变量 updateTime 的值
 	 */
+	@Override
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
@@ -193,6 +168,7 @@ public class SysCrawlerResultRulerInfo implements Serializable {
 	 *
 	 * @return: String
 	 */
+	@Override
 	public String getUpdateUser() {
 		return updateUser;
 	}
@@ -201,6 +177,7 @@ public class SysCrawlerResultRulerInfo implements Serializable {
 	 * 方法名 ： setUpdateUser
 	 * 功 能 ： 设置变量 updateUser 的值
 	 */
+	@Override
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}

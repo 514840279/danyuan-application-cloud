@@ -23,15 +23,6 @@ start  /wait start-eureka.bat
 echo --等待10s启动eureka完成
 TIMEOUT /T 10
 
-echo 正在启动统一登陆,鉴权中心组件(oAuth2),默认端口：8761
-start  start-oauth2.bat 
-
-echo --等待10s启动OAuth2完成
-TIMEOUT /T 10
-
-echo --正在启动启动网关(Getway),默认端口：82 预计用时10s
-start start-getway.bat
-
 echo --正在启动启动服务(Crawler),默认端口：8080 预计用时30s
 start start-crawler.bat 
 
@@ -43,6 +34,15 @@ start start-sidecar.bat
 
 echo --正在启动启动服务(python web),默认端口：3000 预计用时3s
 ::start start-python.bat
+
+echo 正在启动统一登陆,鉴权中心组件(oAuth2),默认端口：8761
+start  start-oauth2.bat 
+
+echo --等待10s启动OAuth2完成
+TIMEOUT /T 10
+
+echo --正在启动启动网关(zuul),默认端口：82 预计用时10s
+start start-zuul.bat
 
 echo ================================================================================
 

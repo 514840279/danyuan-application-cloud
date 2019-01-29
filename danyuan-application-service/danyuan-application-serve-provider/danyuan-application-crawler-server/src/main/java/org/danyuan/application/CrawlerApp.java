@@ -3,6 +3,7 @@ package org.danyuan.application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * 文件名 ： App.java
@@ -16,10 +17,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient
+@EnableJpaAuditing
 public class CrawlerApp {
-	
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(CrawlerApp.class, args);
 	}
-	
+
 }
