@@ -3,7 +3,7 @@ _history = [];
     var menu_data = [];
 //	        console.log(username);
     // 请求数据地址
-    var url = "/oauth2/sysMenuInfo/findzTreeByUser";
+    var url = "/rbac/sysMenuInfo/findzTreeByUser";
     // 请求数据
     ajaxPost(url, username, loadMenu, null, findError);
     // 加载menu

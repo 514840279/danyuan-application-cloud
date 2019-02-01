@@ -5,7 +5,7 @@ spring:
   application:
     name: danyuan-application-oauth2-server
   datasource:
-    url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
+    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
     username: root
     password: 514840279@qq.com
     #driver-class-name: com.mysql.cj.jdbc.Driver
@@ -62,4 +62,41 @@ eureka:
     health-check-url-path: ${server.servlet.context-path}/actuator/health
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}${server.servlet.context-path}
-          
+  
+  
+zuul:
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  add-host-header: true
+  add-proxy-headers: true
+  routes:
+    rbac:
+      path: /rbac/**
+      serviceId: danyuan-application-rbac-server
+      
+feign:
+  compression:
+    request:
+      enabled: true #开启请求压缩功能
+      mime-types: text/xml;application/xml;application/json #指定压缩请求数据类型
+      min-request-size: 2048 #如果传输超过该字节，就对其进行压缩
+    response:
+      enabled: true #开启响应压缩功能
+      
+      #Fegin 连接超时
+ribbon:
+  ReadTimeout: 6000
+  ConnectTimeout: 6000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  
+# hystrix 时间要是ribbon的三倍
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 900000
+                

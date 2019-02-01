@@ -55,7 +55,7 @@ function userAddFormValidator(){
 	                } ,
 	                remote: {
 	                    message: '已经注册过了',
-	                    url: '/oauth2/sysUserBase/checkUserName',
+	                    url: '/rbac/sysUserBase/checkUserName',
 	                    type: 'POST',//请求方式
 //	                    data : '',//这里默认会传递该验证字段的值到后端
 	                    delay:2000 //这里特别要说明，必须要加此属性，否则用户输入一个字就会访问后台一次，会消耗大量的系统资源，
@@ -194,7 +194,7 @@ $(function() {
 							"list":data,
 						};
 						// 重载
-						var url = "/oauth2/sysUserBase/delete";
+						var url = "/rbac/sysUserBase/delete";
 						ajaxPost(url, param, successDelete, 1000, findError);
 					}
 				}
@@ -249,7 +249,7 @@ $(function() {
 //				headPic:$('#upd_userBase_headPic').val(),
 				discription:$('#upd_userBase_discription').val(),
 			};
-			ajaxPost("/oauth2/sysUserBase/saveu", params, successUpdsysuser, 1000, findError);
+			ajaxPost("/rbac/sysUserBase/saveu", params, successUpdsysuser, 1000, findError);
 		}
 	});
 	
@@ -269,7 +269,7 @@ $(function() {
 				phone:$('#add_userBase_phone').val(),
 				discription:$('#add_userBase_discription').val(),
 			};
-			ajaxPost("/oauth2/sysUserBase/save", params, successAddsysuser, 10000, findError);
+			ajaxPost("/rbac/sysUserBase/save", params, successAddsysuser, 10000, findError);
 		}
 	});
 	
@@ -298,14 +298,14 @@ $(function() {
 				password:$('#change_userBase_password').val(),
 				}
 			};
-			ajaxPost("/oauth2/sysUserBase/changePassword", params, successchangesysuser, 10000, findError);
+			ajaxPost("/rbac/sysUserBase/changePassword", params, successchangesysuser, 10000, findError);
 		}
 	})
 	
 	
 	// bootstrap table
 	$('#admin_userBase_datagrid').bootstrapTable({
-	    url : "/oauth2/sysUserBase/sysUserBaseList",
+	    url : "/rbac/sysUserBase/sysUserBaseList",
 	    dataType : "json",
 	    toolbar : '#userBase_toolbar', // 工具按钮用哪个容器
 	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -380,7 +380,7 @@ $('#change_user_password_modal').on('hidden.bs.modal', function() {
 
 function InitSubRoleTable(index) { 
     $("#admin_userBase_role_datagrid").bootstrapTable({  
-        url:'/oauth2/sysRoles/findAllRoleBySearchText',  
+        url:'/rbac/sysRoles/findAllRoleBySearchText',  
         dataType : "json",
 		toolbar : '#userBase_role_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -454,7 +454,7 @@ function updateUserRole(row,index){
 		"rolesId":row.uuid,
 		"checked":row.checked
 	}
-	var url="/oauth2/sysUserRoles/save";
+	var url="/rbac/sysUserRoles/save";
 	ajaxPost(url, params, successUpdsysuserRole, 10000, findError);
 };
 

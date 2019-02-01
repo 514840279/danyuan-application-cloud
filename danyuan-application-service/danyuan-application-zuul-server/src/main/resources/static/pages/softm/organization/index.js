@@ -11,7 +11,7 @@ window.operateEvents = {
 				title : "系统提示",
 				callback : function(result) {
 						if (result) {
-							var submiturl = "/oauth2/sysOrganization/sysOrganizationDelete";
+							var submiturl = "/rbac/sysOrganization/sysOrganizationDelete";
 							ajaxPost(submiturl, row, success, 5000, error);
 						}
 					}
@@ -37,7 +37,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var submiturl = "/oauth2/sysOrganization/delete";
+						var submiturl = "/rbac/sysOrganization/delete";
 						ajaxPost(submiturl, {list:data}, success, 5000, error);
 					}
 				}
@@ -56,7 +56,7 @@ $(function() {
 
 	// bootstrap table
 	$('#admin_organization_datagrid').bootstrapTable({
-		url : "/oauth2/sysOrganization/sysOrganizationList",
+		url : "/rbac/sysOrganization/sysOrganizationList",
 		dataType : "json",
 		toolbar : '#organization_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -164,7 +164,7 @@ function add(){
 				organizationEmail:$('#add_organizationEmail').val(),
 		};
 		
-		var submiturl = "/oauth2/sysOrganization/sysOrganizationAdd";
+		var submiturl = "/rbac/sysOrganization/sysOrganizationAdd";
 		ajaxPost(submiturl, info, success, 5000, error);
 	}
 };
@@ -247,7 +247,7 @@ function edit(){
 //				deleteFlag:$('#edit_flag:checked').val()
 		};
 		console.log(info);
-		var submiturl = "/oauth2/sysOrganization/sysOrganizationEdit";
+		var submiturl = "/rbac/sysOrganization/sysOrganizationEdit";
 		ajaxPost(submiturl, info, success, 5000, error);
 	}
 };
@@ -283,7 +283,7 @@ function success(result){
 		// 隐藏模态框
 		$('#admin_organization_edit_modal').modal("hide");
 		// 重载table
-		$('#admin_organization_datagrid').bootstrapTable('refresh',"/oauth2/sysOrganization/sysOrganizationList");
+		$('#admin_organization_datagrid').bootstrapTable('refresh',"/rbac/sysOrganization/sysOrganizationList");
 		// 模态框提示
 //		toastr.success("成功修改");
 	}else{

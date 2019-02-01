@@ -1,0 +1,51 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: danyuan-application-rbac-server
+  datasource:
+    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
+    username: root
+    password: 514840279@qq.com
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect      
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    enabled: true
+    mode: HTML5
+    encoding: UTF-8
+    servlet:      content-type: text/html; charset=utf-8    
+  main:    allow-bean-definition-overriding: true
+
+
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    org.danyuan: DEBUG
+    
+   
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://wth:wth@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+          

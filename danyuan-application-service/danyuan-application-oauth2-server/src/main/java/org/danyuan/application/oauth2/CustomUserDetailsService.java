@@ -3,9 +3,9 @@ package org.danyuan.application.oauth2;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.danyuan.application.softm.roles.po.SysRolesInfo;
-import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
-import org.danyuan.application.softm.roles.service.SysUserBaseService;
+import org.danyuan.application.user.SysRolesInfo;
+import org.danyuan.application.user.SysUserBaseInfo;
+import org.danyuan.application.user.SysUserLoginFein;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,8 +28,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class CustomUserDetailsService implements UserDetailsService {
-	@Autowired // 数据库服务类
-	private SysUserBaseService	sysUserBaseService;
+	@Autowired
+	SysUserLoginFein	sysUserLoginFein;
 	
 	@Autowired
 	PasswordEncoder				passwordEncoder;
@@ -38,9 +38,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		System.err.println("CustomUserDetailsService.loadUserByUsername");
 		System.err.println(passwordEncoder.encode("test"));
-		SysUserBaseInfo user;
+		SysUserBaseInfo user = new SysUserBaseInfo();
 		try {
-			user = sysUserBaseService.findByName(userName);
+			user.setUserName(userName);
+			user =sysUserLoginFein.findByName(userName);
 			
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("user select fail");
@@ -51,7 +52,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		} else {
 			System.err.println(user.getPassword());
 			try {
-				List<SysRolesInfo> menu = sysUserBaseService.getRoleByUser(user.getUuid());
+				List<SysRolesInfo> menu = sysUserLoginFein.getRoleByUser(user);
 				List<GrantedAuthority> gas = new ArrayList<>();
 				if (menu != null) {
 					for (SysRolesInfo sysRolesInfo : menu) {

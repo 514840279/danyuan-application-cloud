@@ -2,7 +2,7 @@ server:
   port: 82
 spring:
   application:
-    name: danyuan-application-getway-server  devtools:    restart:      enabled: false
+    name: danyuan-application-zuul-server  devtools:    restart:      enabled: false
   thymeleaf:    cache: false  main:
     allow-bean-definition-overriding: true
     
@@ -76,6 +76,9 @@ zuul:
     dbms:
       path: /dbms/**
       serviceId: danyuan-application-dbms-server
+    rbac:
+      path: /rbac/**
+      serviceId: danyuan-application-rbac-server
     oauth2:
       path: /oauth2/**
       serviceId: danyuan-application-oauth2-server
