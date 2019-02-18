@@ -28,7 +28,7 @@ import org.jsoup.nodes.Document;
  * 版 本 ： V1.0
  */
 public class AutoGetHtml {
-	
+
 	/**
 	 * @throws IOException
 	 * 方法名： getBody
@@ -42,23 +42,23 @@ public class AutoGetHtml {
 	 */
 	public static String getBody(String url, String key) throws IOException {
 		Document doc = Jsoup.connect("http://www.oschina.net/")
-		        
+
 		        .data("query", "Java") // 请求参数
-		        
+
 		        .userAgent("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2") // 设置 User-Agent
-		        
+
 		        .cookie("auth", "token") // 设置 cookie
-		        
+
 		        .timeout(3000) // 设置连接超时时间
-		        
+
 		        .post(); // 使用 POST 方法访问 URL
-		
+
 		return doc.title();
 	}
-	
+
 	// 要查找的网址
 	private ArrayList<String> websites;
-	
+
 	/**
 	 * 构造函数
 	 * @param websites 网站列表
@@ -66,7 +66,7 @@ public class AutoGetHtml {
 	public AutoGetHtml(ArrayList<String> websites) {
 		this.websites = websites;
 	}
-	
+
 	/**
 	 * 获取响应头
 	 * 打印到控制台
@@ -88,10 +88,11 @@ public class AutoGetHtml {
 					Entry<String, List<String>> next = iterator.next();
 					String key = next.getKey();
 					List<String> value = next.getValue();
-					if (key == null)
+					if (key == null) {
 						System.out.println(value.toString());
-					else
+					} else {
 						System.out.println(key + ":" + value.toString());
+					}
 				}
 				System.out.println("");
 			}
@@ -99,9 +100,9 @@ public class AutoGetHtml {
 			System.err.println("无法查询网址！");
 		}
 	}
-	
+
 	private static HttpClient httpClient = new HttpClient();
-	
+
 	/**
 	 * @param path
 	 *            目标网页的链接
@@ -142,7 +143,7 @@ public class AutoGetHtml {
 		}
 		return false;
 	}
-	
+
 	// public static void main(String[] args) throws Exception {
 	// String web1 = "http://www.oschina.net/";
 	// String web2 = "http://news.baidu.com/";
@@ -160,7 +161,7 @@ public class AutoGetHtml {
 	// AutoGetHtml.downloadPage(web2);
 	//
 	// }
-	
+
 	// public static void main(String[] args) {
 	//
 	// try {
@@ -192,22 +193,22 @@ public class AutoGetHtml {
 	//
 	// }
 	
-	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
-	public static void main(String[] args) throws IOException {
-		String web1 = "http://www.oschina.net/";
-		String web2 = "http://news.baidu.com/";
-		String web3 = "http://linux.cn/";
-		String web4 = "http://www.taobao.com/";
-		URL url = new URL(web1);
-		URLConnection conn = url.openConnection();
-		
-		Map headers = conn.getHeaderFields();
-		Set<String> keys = headers.keySet();
-		for (String key : keys) {
-			String val = conn.getHeaderField(key);
-			System.out.println(key + "    " + val);
-		}
-		System.out.println(conn.getLastModified());
-	}
-	
+	//	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
+	//	public static void main(String[] args) throws IOException {
+	//		String web1 = "http://www.oschina.net/";
+	//		String web2 = "http://news.baidu.com/";
+	//		String web3 = "http://linux.cn/";
+	//		String web4 = "http://www.taobao.com/";
+	//		URL url = new URL(web1);
+	//		URLConnection conn = url.openConnection();
+	//		
+	//		Map headers = conn.getHeaderFields();
+	//		Set<String> keys = headers.keySet();
+	//		for (String key : keys) {
+	//			String val = conn.getHeaderField(key);
+	//			System.out.println(key + "    " + val);
+	//		}
+	//		System.out.println(conn.getLastModified());
+	//	}
+
 }

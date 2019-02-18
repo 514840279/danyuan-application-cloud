@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * 版 本 ： V1.0
  */
 public class Test {
-	
+
 	// 固定大小的线程池
 	public static void newFixedThreadPool() {
 		// 创建一个可重用固定线程数的线程池
@@ -37,7 +37,7 @@ public class Test {
 		// 关闭线程池
 		pool.shutdown();
 	}
-	
+
 	// 二、单任务线程池
 	public static void newSingleThreadExecutor() {
 		// 创建一个使用单个 worker 线程的 Executor，以无界队列方式来运行该线程。
@@ -57,7 +57,7 @@ public class Test {
 		// 关闭线程池
 		pool.shutdown();
 	}
-	
+
 	// 三、可变尺寸的线程池
 	public static void newCachedThreadPool() {
 		// 创建一个可根据需要创建新线程的线程池，但是在以前构造的线程可用时将重用它们。
@@ -77,7 +77,7 @@ public class Test {
 		// 关闭线程池
 		pool.shutdown();
 	}
-	
+
 	// 四、延迟连接池
 	public static void newScheduledThreadPool() {
 		// 创建一个线程池，它可安排在给定延迟后运行命令或者定期地执行。
@@ -98,7 +98,7 @@ public class Test {
 		// 关闭线程池
 		pool.shutdown();
 	}
-	
+
 	// 五、单任务延迟连接池
 	public static void newSingleThreadScheduledExecutor() {
 		// 创建一个单线程执行程序，它可安排在给定延迟后运行命令或者定期地执行。
@@ -119,11 +119,11 @@ public class Test {
 		// 关闭线程池
 		pool.shutdown();
 	}
-	
+
 	// 六、自定义线程池
 	public static void ArrayBlockingQueue() {
 		// 创建等待队列
-		BlockingQueue<Runnable> bqueue = new ArrayBlockingQueue<Runnable>(20);
+		BlockingQueue<Runnable> bqueue = new ArrayBlockingQueue<>(20);
 		// 创建一个单线程执行程序，它可安排在给定延迟后运行命令或者定期地执行。
 		ThreadPoolExecutor pool = new ThreadPoolExecutor(2, 3, 2, TimeUnit.MILLISECONDS, bqueue);
 		// 创建实现了Runnable接口对象，Thread对象当然也实现了Runnable接口
@@ -146,14 +146,14 @@ public class Test {
 		pool.shutdown();
 	}
 	
-	public static void main(String[] args) {
-		newFixedThreadPool();
-		newSingleThreadExecutor();
-		newCachedThreadPool();
-		newScheduledThreadPool();
-		newSingleThreadScheduledExecutor();
-		ArrayBlockingQueue();
-	}
+	//	public static void main(String[] args) {
+	//		newFixedThreadPool();
+	//		newSingleThreadExecutor();
+	//		newCachedThreadPool();
+	//		newScheduledThreadPool();
+	//		newSingleThreadScheduledExecutor();
+	//		ArrayBlockingQueue();
+	//	}
 }
 
 class MyThread extends Thread {

@@ -5,7 +5,7 @@ spring:
   application:
     name: danyuan-application-crawler-server
   datasource:
-    url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
+    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT
     username: root
     password: 514840279@qq.com
     #driver-class-name: com.mysql.cj.jdbc.Driver

@@ -341,7 +341,7 @@ function loadRuleGroup(){
 		],
 		responseHandler: function(result){  // 成功时执行
 			console.log(result)
-			return {data:result};
+			return {data:result.data};
 		}, 
 		onClickRow:function(row,index){
 //			$("#crawler_rule_config_table_datagrid").bootstrapTable("destroy");

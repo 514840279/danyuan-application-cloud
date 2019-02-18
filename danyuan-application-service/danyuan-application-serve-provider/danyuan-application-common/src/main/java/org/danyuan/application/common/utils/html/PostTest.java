@@ -1,13 +1,8 @@
 package org.danyuan.application.common.utils.html;
 
-/**    
-*  文件名 ： PostTest.java  
-*  包    名 ： org.danyuan.download  
-*  描    述 ： TODO(用一句话描述该文件做什么)  
-*  作    者 ： Tenghui.Wang  
-*  时    间 ： 2016年3月17日 下午8:31:22  
-*  版    本 ： V1.0    
-*/
+/**
+ * 文件名 ： PostTest.java 包 名 ： org.danyuan.download 描 述 ： TODO(用一句话描述该文件做什么) 作 者 ： Tenghui.Wang 时 间 ： 2016年3月17日 下午8:31:22 版 本 ： V1.0
+ */
 import java.io.IOException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -33,10 +28,10 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
  * @author tianjun
  */
 public class PostTest {
-	public static void main(String[] args) {
-		main2();
-	}
-	
+	//	public static void main(String[] args) {
+	//		main2();
+	//	}
+
 	public static void main2() {
 		try {
 			CookieManager manager = new CookieManager();
@@ -52,13 +47,13 @@ public class PostTest {
 				System.out.printf("原:%s  名称:%s  解码值:%s\n", cookie.toString(), cookie.getName(), URLDecoder.decode(cookie.getValue(), "UTF8"));
 			}
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			
+
 		}
-		
+
 	}
-	
+
 	@SuppressWarnings("unused")
 	public static String main1(String uri) {
 		String body = "";
@@ -69,7 +64,7 @@ public class PostTest {
 		// GetMethod getMethod = new
 		// GetMethod("http://localhost:8080/b/test1.do");
 		// （3）设置http request头
-		List<Header> headers = new ArrayList<Header>();
+		List<Header> headers = new ArrayList<>();
 		// headers.add(new Header("tianjun_key", "tianjun_value"));
 		// httpClient.getHostConfiguration().getParams().setParameter(
 		// "http.default-headers", headers);
