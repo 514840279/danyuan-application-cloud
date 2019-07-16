@@ -6,17 +6,19 @@
 		<groupId>org.danyuan.application</groupId>
 		<artifactId>danyuan-application</artifactId>
 		<version>C1.0.0</version>
+		<relativePath>/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>danyuan-application-crawler-server</artifactId>
 	<name>danyuan-application-crawler-server</name>
+	<version>C1.0.0</version>
 
 
 	<dependencies>
 		<dependency>
 			<groupId>org.danyuan.application</groupId>
 			<artifactId>danyuan-application-common</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<!-- spring boot web支持：mvc,aop... -->
 		<dependency>

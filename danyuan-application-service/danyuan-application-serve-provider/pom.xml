@@ -5,6 +5,7 @@
 		<groupId>org.danyuan.application</groupId>
 		<artifactId>danyuan-application</artifactId>
 		<version>C1.0.0</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>danyuan-application-serve-provider</artifactId>
 	<name>danyuan-application-serve-provider</name>

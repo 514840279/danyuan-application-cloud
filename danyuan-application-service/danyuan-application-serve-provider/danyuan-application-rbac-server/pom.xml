@@ -8,9 +8,11 @@
 		<groupId>org.danyuan.application</groupId>
 		<artifactId>danyuan-application-serve-provider</artifactId>
 		<version>C1.0.0</version>
+		<relativePath>../../pom.xml</relativePath>
 	</parent>
 	<artifactId>danyuan-application-rbac-server</artifactId>
 	<name>danyuan-application-rbac-server</name>
+	<version>C1.0.0</version>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +21,7 @@
 		<dependency>
 			<groupId>org.danyuan.application</groupId>
 			<artifactId>danyuan-application-common</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
